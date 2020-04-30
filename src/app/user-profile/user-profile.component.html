@@ -1,0 +1,46 @@
+<form #f= "ngForm" *ngIf = "user" (ngSubmit) = "save(f.value)">
+    <div class="row">
+        <div class="col-xs-3">
+            <img [src]="user.photoUrl" alt="Фото пользователя" style="width: 150px; border-radius: 100%;">
+        </div>    
+        <div class="col-xs-9">
+            <div class="form-group">
+                <label for="photoUrl">Ссылка на фото:</label>
+                <input #userName="ngModel" [(ngModel)] = "user.photoUrl" name = "photoUrl" id= "photoUrl" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="userName">Ваше имя:</label>
+        <input #userName="ngModel" [(ngModel)] = "user.name" name = "userName" id= "userName" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="userName.touched && userName.invalid">Необходимо ввести имя пользователя</div>
+    </div>
+    <div class="form-group">
+        <label for="birthday">День рождения:</label>
+        <input #birthday="ngModel" [(ngModel)] = "user.birthday" name = "birthday" id= "birthday" type="date" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="birthday.touched && birthday.invalid">Необходимо ввести дату рождения</div>
+        <!-- <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+            <div *ngIf = "price.errors.required">Price is required</div>
+            <div *ngIf = "price.errors.minValueValidator">Price should be 0 or higher</div>
+        </div> -->
+    </div>
+    <div class = "form-group">
+        <label for = "sex">Пол:</label>
+        <input #weight = "ngModel" [(ngModel)] = "user.sex" name = "sex" id = "sex" type = "text" class="form-control" required>
+        <!-- <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Category is required</div> -->
+    </div>
+    <div class = "form-group">
+        <label for = "weight">Вес:</label>
+        <input #weight = "ngModel" [(ngModel)] = "user.weight" name = "weight" id = "weight" type = "number" class="form-control" required>
+        <!-- <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Category is required</div> -->
+    </div>
+    <div class = "form-group">
+        <label for = "height">Рост:</label>
+        <input #weight = "ngModel" [(ngModel)] = "user.height" name = "height" id = "height" type = "number" class="form-control" required>
+        <!-- <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Category is required</div> -->
+    </div>
+    
+
+    <button class="btn btn-primary">Сохранить</button>
+    <button type="button" (click) = "delete()" class="btn btn-danger">Удалить профиль</button>
+</form>

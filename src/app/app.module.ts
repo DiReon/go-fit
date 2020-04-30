@@ -17,6 +17,9 @@ import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoginComponent } from './login/login.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { FormsModule } from '@angular/forms';
+import { TrainingFormComponent } from './admin/training-form/training-form.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +33,14 @@ import { LoginComponent } from './login/login.component';
     TrainingsComponent,
     AdminTrainingsComponent,
     BsNavbarComponent,
-    LoginComponent
+    LoginComponent,
+    UserProfileComponent,
+    TrainingFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     NgbModule,
     FontAwesomeModule

@@ -22,7 +22,7 @@ export class BsNavbarComponent implements OnInit {
   }
 
   logout() {
-    
+   this.authService.logout(); 
   }
 
 }

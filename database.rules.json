@@ -1,6 +1,9 @@
 {
   "rules": {
-    ".read": true,
-    ".write": false
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "trainings": {
+      ".read": true
+    }
   }
 }

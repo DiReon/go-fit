@@ -3,11 +3,17 @@ export class AppUser {
     name: string;
     email: string;
     sex: string;
-    birthday: Date;
     photoUrl: string;
-    body: {
-        weight: number;
-        height: number;
-    }
+    weight: number;
+    height: number;
     isAdmin: boolean;
+    birthday: Date;
+
+    get age() {
+        let today = new Date()
+        console.log("Today is ", today.getUTCDay);
+        
+        return (today.getFullYear()-this.birthday.getFullYear())
+    }
+    
 }
