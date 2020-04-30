@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +42,7 @@ import { TrainingFormComponent } from './admin/training-form/training-form.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgxDatatableModule,
     AngularFireModule.initializeApp(environment.firebase),
     NgbModule,
     FontAwesomeModule

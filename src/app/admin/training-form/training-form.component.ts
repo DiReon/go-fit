@@ -3,6 +3,7 @@ import { TrainingService } from 'src/app/training.service';
 import { Training } from 'src/app/models/training';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { CategoryService } from 'src/app/category.service';
 
 @Component({
   selector: 'app-training-form',
@@ -12,20 +13,33 @@ import { take } from 'rxjs/operators';
 export class TrainingFormComponent implements OnInit {
   training = {} as Training;
   trainingId: string;
-  constructor(private trainingService: TrainingService,
-              private route: ActivatedRoute,
-              private router: Router) {
-    this.trainingId = this.route.snapshot.paramMap.get('id')
-    if (this.trainingId) this.trainingService.get(this.trainingId).valueChanges().pipe(take(1)).subscribe(t => this.training = t)
+  categories$;
+  constructor(
+    private trainingService: TrainingService,
+    private categoryService: CategoryService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.trainingId = this.route.snapshot.paramMap.get('id');
+    if (this.trainingId) this.trainingService.get(this.trainingId).valueChanges().pipe(take(1)).subscribe(t => this.training = t);
+    this.categories$ = this.categoryService.getAll().snapshotChanges();
   }
 
   ngOnInit(): void {
   }
 
   save(value) {
-    this.trainingService.create(value);
+    if (this.trainingId) this.trainingService.update(this.trainingId, value)
+    else this.trainingService.create(value);
     this.router.navigate(['/admin/trainings'])
-
+  }
+  
+  delete() {
+    if (!confirm('Точно хотите удалить тренировку?')) return;
+    
+    this.trainingService.delete(this.trainingId);
+    this.router.navigate(['/admin/trainings']);
+    
   }
 
 }

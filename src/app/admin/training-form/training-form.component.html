@@ -11,26 +11,27 @@
                 <input #imageUrl = "ngModel" [(ngModel)] = "training.videoUrl" name = "videoUrl" id= "videoUrl" type="URL" class="form-control" required>
                 <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">Нужна ссылка на видео</div>
             </div>
-            <!-- <div class = "form-group">
+            <div class = "form-group">
+                <label for = "complexity">Уровень сложности</label>
+                <select #complexity = "ngModel" [(ngModel)] = "training.complexity" name = "complexity" id = "complexity" type = "text" class="form-control" required>
+                    <option value="Для начинающих">Для начинающих</option>
+                    <option value="Простой">Простой</option>
+                    <option value="Средний">Средний</option>
+                    <option value="Сложный">Сложный</option>
+                    <option value="Богоподобный">Богоподобный</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="complexity.touched && complexity.invalid">Выберите уровень сложности</div>
+            </div>
+            <div class = "form-group">
                 <label for = "category">Категория</label>
                 <select #category = "ngModel" [(ngModel)] = "training.category" name = "category" id = "category" type = "text" class="form-control" required>
                     <option value=""></option>
-                    <option *ngFor="let category of categories$ | async" [value] = "category.key" >
+                    <option *ngFor="let category of categories$ | async" [value] = "category.payload.val().name" >
                         {{ category.payload.val().name }}
                     </option>
                 </select>
-                <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Выберите категорию видео</div>
-            </div> -->
-            <!-- <div class = "form-group">
-                <label for = "category">Уровень сложности</label>
-                <select #category = "ngModel" [(ngModel)] = "training.category" name = "category" id = "category" type = "text" class="form-control" required>
-                    <option value=""></option>
-                    <option *ngFor="let category of categories$ | async" [value] = "category.key" >
-                        {{ category.payload.val().name }}
-                    </option>
-                </select>
-                <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Выберите категорию видео</div>
-            </div> -->
+                <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Выберите категорию тренировки</div>
+            </div>
 
             <button class="btn btn-primary">Сохранить</button>
             <!-- <button type="button" (click) = "delete()" class="btn btn-danger">Удалить</button> -->
