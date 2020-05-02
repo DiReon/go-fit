@@ -20,6 +20,7 @@ export class TrainingService {
     return this.db.object('/trainings/'+trainingId).update(training);
   }
 
+
   getAll() {
     this.listRef = this.db.list('/trainings')
     return this.listRef.snapshotChanges()
@@ -31,7 +32,7 @@ export class TrainingService {
   get(trainingId) {
     return this.db.object<Training>('/trainings/' + trainingId);
   }
-
+  
   delete(trainingId) {
     return this.db.object('/trainings/'+trainingId).remove();
   }

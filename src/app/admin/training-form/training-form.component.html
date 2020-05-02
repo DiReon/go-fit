@@ -14,11 +14,11 @@
             <div class = "form-group">
                 <label for = "complexity">Уровень сложности</label>
                 <select #complexity = "ngModel" [(ngModel)] = "training.complexity" name = "complexity" id = "complexity" type = "text" class="form-control" required>
-                    <option value="Для начинающих">Для начинающих</option>
-                    <option value="Простой">Простой</option>
-                    <option value="Средний">Средний</option>
-                    <option value="Сложный">Сложный</option>
-                    <option value="Богоподобный">Богоподобный</option>
+                    <option value="базовый">базовый</option>
+                    <option value="простой">Простой</option>
+                    <option value="средний">Средний</option>
+                    <option value="сложный">Сложный</option>
+                    <option value="богоподобный">Богоподобный</option>
                 </select>
                 <div class="alert alert-danger" *ngIf="complexity.touched && complexity.invalid">Выберите уровень сложности</div>
             </div>
@@ -31,6 +31,11 @@
                     </option>
                 </select>
                 <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Выберите категорию тренировки</div>
+            </div>
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <textarea #description="ngModel" [(ngModel)] = "training.description" name = "description" id= "description" type="text" class="form-control" required></textarea>
+                <div class="alert alert-danger" *ngIf="description.touched && description.invalid">Введите, пожалуйста, описание</div>
             </div>
 
             <button class="btn btn-primary">Сохранить</button>

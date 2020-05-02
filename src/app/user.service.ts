@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { AppUser } from './models/app-user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,6 @@ export class UserService {
       name: user.displayName, 
       email: user.email,
       photoUrl: user.photoURL,
-      // birthday: new Date().toDateString(),
-      // sex: 'male',
-      // weight: 0,
-      // height: 0
     })
   }
 
@@ -31,8 +28,19 @@ export class UserService {
     return this.db.object('/users/' + uid)
   }
 
+  getCompletedTrainings(uid: string) {
+    let completedTrainings$ = this.db.object('/users/' + uid + '/completedTrainings').valueChanges()
+    return completedTrainings$;
+  }
+
   delete(uid: string) {
     this.db.object('/users/'+uid).remove();
+  }
+
+  
+  markCompleted(uid: string, id: string) {
+    console.log("Training completed, id: ", id, uid);
+    this.db.list('/users/' + uid + '/completedTrainings').push(id)
   }
 
 }

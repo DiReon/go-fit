@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
 import { AppUser } from './models/app-user';
-import { switchMap } from 'rxjs/operators'
+import { switchMap, take } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,22 @@ export class AuthService {
   logout() {
     this.afAuth.signOut();
     this.router.navigateByUrl('/');
+  }
+
+  getCompletedTrainings () {
+    return this.user$.pipe(switchMap(user => {
+      if (user) return this.userService.getCompletedTrainings(user.uid);
+
+      return of(null)
+    }))
+  }
+
+  markCompleted(id) {
+    let uid: string;
+    this.appUser$.pipe(take(1)).subscribe(u => {
+      uid = u.userId;
+      this.userService.markCompleted(uid, id)
+    })
   }
 
   get appUser$(): Observable<AppUser> {

@@ -21,6 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FormsModule } from '@angular/forms';
 import { TrainingFormComponent } from './admin/training-form/training-form.component';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { TrainingFormComponent } from './admin/training-form/training-form.compo
     BsNavbarComponent,
     LoginComponent,
     UserProfileComponent,
-    TrainingFormComponent
+    TrainingFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,8 @@ import { TrainingFormComponent } from './admin/training-form/training-form.compo
     NgxDatatableModule,
     AngularFireModule.initializeApp(environment.firebase),
     NgbModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    YouTubePlayerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

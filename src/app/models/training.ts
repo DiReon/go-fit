@@ -3,4 +3,7 @@ export interface Training {
     videoUrl: string;
     category: string;
     complexity: string;
+    description: string;
+
+   
 }

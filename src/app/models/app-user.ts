@@ -8,11 +8,11 @@ export class AppUser {
     height: number;
     isAdmin: boolean;
     birthday: Date;
+    completedTrainings: Array<string>;
 
     get age() {
         let today = new Date()
         console.log("Today is ", today.getUTCDay);
-        
         return (today.getFullYear()-this.birthday.getFullYear())
     }
     
