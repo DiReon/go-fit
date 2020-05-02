@@ -8,21 +8,23 @@ import { TrainingsComponent } from './trainings/trainings.component';
 import { AdminTrainingsComponent } from './admin/admin-trainings/admin-trainings.component';
 import { AdminDietComponent } from './admin/admin-diet/admin-diet.component';
 import { TrainingFormComponent } from './admin/training-form/training-form.component';
+import { AuthGuard } from './auth-guard.service';
+import { AdminAuthGuard } from './admin-auth-guard.service';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'user-profile', component: UserProfileComponent},
+  {path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'diet', component: DietComponent},
   {path: 'trainings', component: TrainingsComponent},
 
-  {path: 'admin/trainings/new', component: TrainingFormComponent},
-  {path: 'admin/trainings/:id', component: TrainingFormComponent},
-  {path: 'admin/trainings', component: AdminTrainingsComponent},
-  {path: 'admin/diet/new', component: AdminDietComponent},
-  {path: 'admin/diet/:id', component: AdminDietComponent},
-  {path: 'admin/diet', component: AdminDietComponent},
+  {path: 'admin/trainings/new', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/trainings/:id', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/trainings', component: AdminTrainingsComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/diet/new', component: AdminDietComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/diet/:id', component: AdminDietComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/diet', component: AdminDietComponent, canActivate: [AdminAuthGuard]},
 
 ];
 

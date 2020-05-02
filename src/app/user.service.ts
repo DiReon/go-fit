@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { AppUser } from './models/app-user';
 import { Observable } from 'rxjs';
+import { Training } from './models/training';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class UserService {
   }
 
   getCompletedTrainings(uid: string) {
-    let completedTrainings$ = this.db.object('/users/' + uid + '/completedTrainings').valueChanges()
+    let completedTrainings$ = this.db.object<Training>('/users/' + uid + '/completedTrainings').valueChanges()
     return completedTrainings$;
   }
 

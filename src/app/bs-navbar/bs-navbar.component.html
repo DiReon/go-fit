@@ -13,23 +13,23 @@
             <li class="nav-item">
               <a class="nav-link" routerLink = "/user-profile" (click)="isMenuCollapsed = true">Мой профиль</a>
             </li>
-            <li class="nav-item">
+        </ng-container>
+          <li class="nav-item">
                 <a class="nav-link" routerLink = "/diet" (click)="isMenuCollapsed = true">Питание</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink = "/trainings" (click)="isMenuCollapsed = true">Тренировки</a>
             </li>
-            <li class="nav-item">
+            <li *ngIf = "appUser" class="nav-item">
                 <a class="nav-link" (click)="logout()">Выйти</a>
             </li>
-        </ng-container>
         <ng-template #anonymousUser>
           <li class="nav-item">
             <a class="nav-link" routerLink = "/login" (click)="isMenuCollapsed = true">Войти</a>
           </li>
         </ng-template>
         
-        <li ngbDropdown   class="nav-item dropdown">
+        <li ngbDropdown *ngIf ="appUser && appUser.isAdmin"  class="nav-item dropdown">
           <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Администрирование
           </a>

@@ -22,6 +22,12 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FormsModule } from '@angular/forms';
 import { TrainingFormComponent } from './admin/training-form/training-form.component';
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { TrainingsListComponent } from './trainings-list/trainings-list.component';
+import { AuthService } from './auth.service';
+import { UserService } from './user.service';
+import { TrainingService } from './training.service';
+import { AuthGuard } from './auth-guard.service';
+import { AdminAuthGuard } from './admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +44,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     LoginComponent,
     UserProfileComponent,
     TrainingFormComponent,
+    TrainingsListComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +56,13 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     FontAwesomeModule,
     YouTubePlayerModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard,
+    AdminAuthGuard,
+    UserService,
+    TrainingService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,8 @@
+.nav-link {
+    cursor: pointer;
+    padding-top: 1px ;
+    padding-bottom: 1px;
+}
+.completed {
+    color: grey;
+}

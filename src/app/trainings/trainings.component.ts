@@ -1,55 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TrainingService } from '../training.service';
 import { Training } from '../models/training';
-import { filter, take, switchMap } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
-import { AppUser } from '../models/app-user';
-import { UserService } from '../user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-trainings',
   templateUrl: './trainings.component.html',
   styleUrls: ['./trainings.component.css']
 })
-export class TrainingsComponent implements OnInit {
+export class TrainingsComponent implements OnInit, OnDestroy {
   trainings: Training[];
   training = {} as Training;
-  completedTrainingsKeys: Array<string>;
-  incompleteTrainings: Training[];
+  completedTrKeys: Array<string>;
+  incompleteTr: Training[];
   videoId: string = '';
+  subscription: Subscription;
   constructor(
     private trainingService: TrainingService,
     private authService: AuthService,
     ) {
-    
-       this.authService.getCompletedTrainings().pipe(take(1)).subscribe(t => {
-        console.log("Completed trainings from firebase: ", t);
-        
-        if (t != null) this.completedTrainingsKeys = Object.values(t);
-        else this.completedTrainingsKeys = [];
-        console.log("Completed trainings keys from firebase: ", this.completedTrainingsKeys);
-        this.trainingService.getAll().pipe(
-          take(1))
-          .subscribe(allT => {
-            this.trainings = allT;
-
-            if (this.completedTrainingsKeys === null) this.completedTrainingsKeys = [];
-            console.log("Trainings: ", this.trainings);
-            console.log("Completed trainings: ", this.completedTrainingsKeys);
-            let trainingKeys = this.trainings.map(x => x['key'])
-            console.log("Training keys: ", trainingKeys);
-            this.incompleteTrainings = this.trainings.filter(x => (!(this.completedTrainingsKeys.includes(x['key']))))
-            console.log("Incomplete trainings: ", this.incompleteTrainings);
-            this.training = this.incompleteTrainings[0]
-            console.log("First incomplete training", this.training);
-            this.videoId = this.training.videoUrl.split('https://youtu.be/')[1];
-          });
-      });
+      this.loadTraining();       
     }
-   
-  
 
-  async ngOnInit() {
+  ngOnInit() {
    // This code loads the IFrame Player API code asynchronously, according to the instructions at
     // https://developers.google.com/youtube/iframe_api_reference#Getting_Started
     const tag = document.createElement('script');
@@ -58,8 +33,31 @@ export class TrainingsComponent implements OnInit {
     document.body.appendChild(tag);  
   }
   
-  markCompleted() {
-    this.authService.markCompleted(this.training['key'])
+  loadTraining() {
+    this.subscription = this.authService.getCompletedTrainings().subscribe(t => {
+      (t != null) ? this.completedTrKeys = Object.values(t) : this.completedTrKeys = [];
+      this.trainingService.getAll().pipe(take(1)).subscribe(allT => {
+          this.trainings = allT;
+          if (this.completedTrKeys === null) this.completedTrKeys = [];
+          this.incompleteTr = this.trainings.filter(x => (!(this.completedTrKeys.includes(x['key']))));
+          (this.incompleteTr[0]) ? this.training = this.incompleteTr[0] :  this.training = this.trainings[this.trainings.length-1]
+          this.videoId = this.training.videoUrl.split('https://youtu.be/')[1];
+        });
+    });
   }
-  
+
+  markCompleted() {
+    this.authService.markCompleted(this.training['key']);
+  }
+
+  change(change) {
+    let index = this.trainings.indexOf(this.training)
+    if (index+change>=0 && index+change < this.trainings.length ) this.training = this.trainings[index+change];
+    this.videoId = this.training.videoUrl.split('https://youtu.be/')[1];
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
 }

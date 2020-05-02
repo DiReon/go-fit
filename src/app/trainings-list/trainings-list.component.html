@@ -1,0 +1,12 @@
+<button class="btn btn-info w-100" type="button" (click)="isListCollapsed = !isListCollapsed">Все тренировки</button>
+
+<div [ngbCollapse]="isListCollapsed" class="list-group">
+    <div *ngFor = "let category of categories$ | async" class="list-group-item">
+        {{ category.name }}
+        <div *ngFor = "let training of trainings" class="list-group">
+            <div class="list-group-item" *ngIf = "training.category === category.name">
+                <a class="nav-link" [class.completed] = "checkCompletion(training)">{{training.title}}</a>
+            </div>
+        </div>
+    </div>
+</div>
