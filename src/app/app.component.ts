@@ -7,11 +7,8 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'go-fit';
-  items;
-  constructor(private db: AngularFireDatabase) {
+  constructor() {
     console.log("Hello world!");
     
-    this.items = db.list('items').valueChanges()
   }
 }

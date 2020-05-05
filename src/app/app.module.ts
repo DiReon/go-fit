@@ -28,6 +28,11 @@ import { UserService } from './user.service';
 import { TrainingService } from './training.service';
 import { AuthGuard } from './auth-guard.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
+import { MealFormComponent } from './admin/meal-form/meal-form.component';
+import { MealService } from './meal.service';
+import { AdminDietComponent } from './admin/admin-diet/admin-diet.component';
+import { MealFilterComponent } from './diet/meal-filter/meal-filter.component';
+import { MealCardComponent } from './meal-card/meal-card.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +50,10 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
     UserProfileComponent,
     TrainingFormComponent,
     TrainingsListComponent,
+    MealFormComponent,
+    AdminDietComponent,
+    MealFilterComponent,
+    MealCardComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +71,7 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
     AdminAuthGuard,
     UserService,
     TrainingService,
+    MealService,
   ],
   bootstrap: [AppComponent]
 })

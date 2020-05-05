@@ -1,0 +1,8 @@
+<div *ngIf = "meal.title" class="card mb-3">
+    <img [src]="meal.imageUrl" class="card-img-top" alt="{{ meal.title }}" *ngIf = "meal.imageUrl">
+    <div class="card-body">
+        <h5 class="card-title">{{ meal.title }}</h5>
+        <p class="card-text">{{ meal.kkal }} ккал</p>
+        <p class="card-text">{{ meal.description }}</p>
+    </div>
+</div>

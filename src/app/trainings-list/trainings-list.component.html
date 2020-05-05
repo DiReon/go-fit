@@ -4,8 +4,8 @@
     <div *ngFor = "let category of categories$ | async" class="list-group-item">
         {{ category.name }}
         <div *ngFor = "let training of trainings" class="list-group">
-            <div class="list-group-item" *ngIf = "training.category === category.name">
-                <a class="nav-link" [class.completed] = "checkCompletion(training)">{{training.title}}</a>
+            <div *ngIf = "training.category === category.name">
+                <a [routerLink] ="['/trainings/', training.key]" class="nav-link" [class.completed] = "checkCompletion(training)">{{training.title}}, {{training.key}}</a>
             </div>
         </div>
     </div>

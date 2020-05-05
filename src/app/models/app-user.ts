@@ -6,9 +6,11 @@ export class AppUser {
     photoUrl: string;
     weight: number;
     height: number;
-    isAdmin: boolean;
     birthday: Date;
     completedTrainings: Array<string>;
+    goal: string;
+    physicalActivity: number;
+    isAdmin: boolean;
 
     get age() {
         let today = new Date()

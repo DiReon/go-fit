@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-6">
+        <form #f= "ngForm" (ngSubmit) = "save(f.value)">
+            <div class="form-group">
+                <label for="title">Название блюда</label>
+                <input #title="ngModel" [(ngModel)] = "meal.title" name = "title" id= "title" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="title.touched && title.invalid">Введите, пожалуйста, название</div>
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Ссылка на фото</label>
+                <input #imageUrl = "ngModel" [(ngModel)] = "meal.imageUrl" name = "imageUrl" id= "imageUrl" type="URL" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">Нужна ссылка на картинку</div>
+            </div>
+            <div class = "form-group">
+                <label for = "category">Категория</label>
+                <select #category = "ngModel" [(ngModel)] = "meal.category" name = "category" id = "category" type = "text" class="form-control" required>
+                    <option value="breakfast">Завтрак</option>
+                    <option value="lunch">Обед</option>
+                    <option value="dinner">Ужин</option>
+                    <option value="snack">Перекус</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Выберите категорию блюда</div>
+            </div>
+            <div class="form-group">
+                <label for="kkal">Пищевая ценность:</label>
+                <input #kkal="ngModel" [(ngModel)] = "meal.kkal" name = "kkal" id= "kkal" type="number" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="kkal.touched && kkal.invalid">Введите, пожалуйста, количество калорий</div>
+            </div>
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <textarea #description="ngModel" [(ngModel)] = "meal.description" name = "description" id= "description" type="text" class="form-control" required></textarea>
+                <div class="alert alert-danger" *ngIf="description.touched && description.invalid">Введите, пожалуйста, описание</div>
+            </div>
+
+            <button class="btn btn-primary">Сохранить</button>
+            <button type="button" (click) = "delete()" class="btn btn-danger">Удалить</button>
+        </form>
+    </div>
+    <!-- <div class="col-md-6">
+        <meal-card [product] = "product" [show-actions]="false"></product-card>
+    </div> -->
+</div>

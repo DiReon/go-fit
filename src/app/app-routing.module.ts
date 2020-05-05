@@ -10,6 +10,7 @@ import { AdminDietComponent } from './admin/admin-diet/admin-diet.component';
 import { TrainingFormComponent } from './admin/training-form/training-form.component';
 import { AuthGuard } from './auth-guard.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
+import { MealFormComponent } from './admin/meal-form/meal-form.component';
 
 
 const routes: Routes = [
@@ -17,13 +18,14 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'diet', component: DietComponent},
+  {path: 'trainings/:id', component: TrainingsComponent},
   {path: 'trainings', component: TrainingsComponent},
 
   {path: 'admin/trainings/new', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/trainings/:id', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/trainings', component: AdminTrainingsComponent, canActivate: [AdminAuthGuard]},
-  {path: 'admin/diet/new', component: AdminDietComponent, canActivate: [AdminAuthGuard]},
-  {path: 'admin/diet/:id', component: AdminDietComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/diet/new', component: MealFormComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/diet/:id', component: MealFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/diet', component: AdminDietComponent, canActivate: [AdminAuthGuard]},
 
 ];
