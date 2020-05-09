@@ -20,7 +20,4 @@ export class TrainingsListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  checkCompletion(training) {
-    return (this.completedTrKeys.indexOf(training['key'])!=-1) ? true: false
-  }
 }

@@ -33,6 +33,8 @@ import { MealService } from './meal.service';
 import { AdminDietComponent } from './admin/admin-diet/admin-diet.component';
 import { MealFilterComponent } from './diet/meal-filter/meal-filter.component';
 import { MealCardComponent } from './meal-card/meal-card.component';
+import { TrainingCardComponent } from './training-card/training-card.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { MealCardComponent } from './meal-card/meal-card.component';
     MealFormComponent,
     AdminDietComponent,
     MealFilterComponent,
-    MealCardComponent
+    MealCardComponent,
+    TrainingCardComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,

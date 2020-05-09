@@ -1,0 +1,32 @@
+<button class="btn btn-info w-100" type="button" (click)="isListCollapsed = !isListCollapsed">Еще тренировки</button>
+
+<div [ngbCollapse]="isListCollapsed">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a routerLink = "/trainings/" class="nav-link">Другие категории</a>
+        </li>
+        <li (click)="isListCollapsed = !isListCollapsed" *ngFor = "let training of trainings" class="list-group-item">
+            <a (click) = "pickTraining(training)" class="nav-link" [class.completed] = "checkCompletion(training)">
+                <fa-icon *ngIf = "checkCompletion(training)" [icon]="icon" size="1x"></fa-icon>
+                {{training.title}}
+            </a>
+        </li>
+    </ul>
+</div>
+<h6>{{ training.title}}</h6>
+
+<div class="embed-responsive embed-responsive-16by9">
+    <youtube-player class="embed-responsive-item"
+        [videoId]="videoId"
+        suggestedQuality="hd720"
+    >
+    </youtube-player>
+</div>
+<p>{{ training.category }} {{ training.complexity }} уровень сложности</p>
+<p>{{ training.description }}</p>
+<button *ngIf = "appUser" (click) = "markCompleted()" class="btn btn-success w-100">Сделано!</button>
+<br>
+<div class="row justify-content-center">
+    <button (click) = "change(-1)" class="btn btn-secondary m-1" style="width: 47%"><< Пред.</button>
+    <button (click) = "change(1)" class="btn btn-secondary m-1" style="width: 47%">След. >></button>
+</div>

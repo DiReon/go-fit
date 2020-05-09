@@ -20,7 +20,7 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
     private sharedService: SharedService) {
     authService.appUser$.subscribe(u => {
       this.appUser = u;
-      localStorage.setItem('appUser', this.appUser.userId)
+      if (this.appUser) localStorage.setItem('appUser', this.appUser.userId)
     });
     
   }

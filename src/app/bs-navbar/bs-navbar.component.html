@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg  navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <a class="navbar-brand" routerLink = "/">
-        Go<fa-icon [icon]="icon" size="1x"></fa-icon>Fit
+        Go<fa-icon [icon]="icon" size="1x" class="primary-color"></fa-icon>Fit
     </a>
     <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
       <span class="navbar-toggler-icon"></span>
@@ -21,8 +21,12 @@
                 <a class="nav-link" routerLink = "/trainings" (click)="isMenuCollapsed = true">Тренировки</a>
             </li>
             <li *ngIf = "appUser" class="nav-item">
+              <a class="nav-link" routerLink = "/statistics" (click)="isMenuCollapsed = true">Моя Статистика</a>
+          </li>
+            <li *ngIf = "appUser" class="nav-item">
                 <a class="nav-link" (click)="logout()">Выйти</a>
             </li>
+
         <ng-template #anonymousUser>
           <li class="nav-item">
             <a class="nav-link" routerLink = "/login" (click)="isMenuCollapsed = true">Войти</a>
@@ -42,3 +46,4 @@
       </ul>
     </div>
   </nav>
+<br>

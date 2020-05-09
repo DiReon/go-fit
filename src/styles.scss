@@ -5,7 +5,21 @@
 @import '~@swimlane/ngx-datatable/themes/material.css';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 
+$primary-color: rgba(0, 174, 255, 0.637);
+
 body {
     margin-left: 20px;
     margin-right: 20px;
+}
+
+.bg-primary-color {
+    background-color: $primary-color;
+}
+
+.primary-color {
+    color: $primary-color;
+}
+.list-group-item.active {
+    background-color: $primary-color;
+    border-color: $primary-color;
 }

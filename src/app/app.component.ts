@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,8 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor() {
+  constructor(private sharedService: SharedService) {
     console.log("Hello world!");
-    
+        
   }
 }

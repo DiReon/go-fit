@@ -1,18 +1,9 @@
-<trainings-list [trainings] = 'trainings' [incompleteTr] = "incompleteTr" [completedTrKeys] = "completedTrKeys"></trainings-list>
-<h3>{{ training.title}}</h3>
+<div class="list-group">
+    <a 
+        *ngFor = "let c of categories$ | async" 
+        [routerLink] = "['/trainings/', c.payload.val().name]"
+        class="list-group-item list-group-item-action">
+        {{c.payload.val().name}}
+    </a>
+</div>
 
-<div class="embed-responsive embed-responsive-16by9">
-    <youtube-player class="embed-responsive-item"
-    [videoId]="videoId"
-    suggestedQuality="hd720"
-        >
-        </youtube-player>
-</div>
-<p>{{ training.category }} {{ training.complexity }} уровень сложности</p>
-<p>{{ training.description }}</p>
-<button (click) = "markCompleted()" class="btn btn-success w-100">Сделано!</button>
-<br>
-<div class="row justify-content-center">
-    <button (click) = "change(-1)" class="btn btn-secondary m-1" style="width: 47%"><< Пред.</button>
-    <button (click) = "change(1)" class="btn btn-secondary m-1" style="width: 47%">След. >></button>
-</div>

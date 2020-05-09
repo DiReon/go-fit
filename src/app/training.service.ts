@@ -29,6 +29,15 @@ export class TrainingService {
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))));
   }
 
+  getFromCategory(category) {
+    this.listRef = this.db.list('/trainings/', ref => ref.orderByChild('category').equalTo(category) )
+    return this.listRef.snapshotChanges()
+      .pipe(
+        map(changes => 
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))));
+  }
+
+
   get(trainingId) {
     return this.db.object<Training>('/trainings/' + trainingId);
   }
