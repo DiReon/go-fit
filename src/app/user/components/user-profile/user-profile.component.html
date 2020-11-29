@@ -1,0 +1,71 @@
+<form #f= "ngForm" *ngIf = "appUser as user" (ngSubmit) = "save(f.value)">
+    <div class="row">
+        <div class="col-xs-3">
+            <img [src]="user.photoUrl" alt="Фото пользователя" style="width: 150px; border-radius: 100%;">
+        </div>    
+        <div class="col-xs-9">
+            <div class="form-group">
+                <label for="photoUrl">Ссылка на фото:</label>
+                <input #photoUrl="ngModel" [(ngModel)] = "user.photoUrl" name = "photoUrl" id= "photoUrl" type="text" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="userName">Ваше имя:</label>
+        <input #userName="ngModel" [(ngModel)] = "user.name" name = "userName" id= "userName" type="text" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="userName.touched && userName.invalid">Необходимо ввести имя пользователя</div>
+    </div>
+    <div class="form-group">
+        <label for="birthday">День рождения:</label>
+        <input #birthday="ngModel" [(ngModel)] = "user.birthday" name = "birthday" id= "birthday" type="date" class="form-control" required>
+        <div class="alert alert-danger" *ngIf="birthday.touched && birthday.invalid">Необходимо ввести дату рождения</div>
+    </div>
+    <div class = "form-group">
+        <label for = "sex">Пол:</label>
+        <select #sex = "ngModel" [(ngModel)] = "user.sex" name = "sex" id = "sex" type = "text" class="form-control" required>
+            <option value="мужской">Мужской</option>
+            <option value="женский">Женский</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="sex.touched && sex.invalid">Выберите Ваш пол</div>
+    </div>
+    <div class = "form-group">
+        <label for = "lastWeightRecord">Вес:</label>
+        <input #lastWeightRecord = "ngModel" [(ngModel)] = "user.lastWeightRecord" name = "lastWeightRecord" id = "lastWeightRecord" type = "number" class="form-control" required>
+    </div>
+    <div class = "form-group">
+        <label for = "height">Рост:</label>
+        <input #height = "ngModel" [(ngModel)] = "user.height" name = "height" id = "height" type = "number" class="form-control" required>
+    </div>
+    <div class = "form-group">
+        <label for = "physicalActivity">Физическая активность:</label>
+        <select #physicalActivity = "ngModel" [(ngModel)] = "user.physicalActivity" name = "physicalActivity" id = "physicalActivity" type = "number" class="form-control" required>
+            <option value="1.2">Физическая нагрузка отсутствует или минимальная</option>
+            <option value="1.38">Тренировки средней тяжести 3 раза в неделю</option>
+            <option value="1.48">Тренировки средней тяжести 5 раз в неделю</option>
+            <option value="1.55">Интенсивные тренировки 5 раз в неделю</option>
+            <option value="1.64">Тренировки каждый день</option>
+            <option value="1.73">Интенсивные тренировки каждый день или по 2 раза в день</option>
+            <option value="1.9">Ежедневная физическая нагрузка + физическая работа</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="physicalActivity.touched && physicalActivity.invalid">Выберите Вашу цель</div>
+    </div>
+    <div class = "form-group">
+        <label for = "goal">Цель:</label>
+        <select #goal = "ngModel" [(ngModel)] = "user.goal" name = "goal" id = "goal" type = "text" class="form-control" required>
+            <option value="lose">Похудение</option>
+            <option value="gain">Набор мышечной массы</option>
+            <option value="maintain">Функциональное развитие при поддержании веса</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="goal.touched && goal.invalid">Выберите Вашу цель</div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col align-self-start">
+                <button class="btn btn-primary">Сохранить</button>
+            </div>
+            <div class="col align-self-end">
+                <button type="button" (click) = "delete()" class="btn btn-danger">Удалить профиль</button>
+            </div>
+        </div>
+    </div>
+</form>

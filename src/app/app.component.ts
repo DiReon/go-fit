@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { SharedService } from './shared.service';
+import { SharedService } from './shared/services/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +7,7 @@ import { SharedService } from './shared.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title = "go-fit"
   constructor(private sharedService: SharedService) {
     console.log("Hello world!");
         

@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { DietComponent } from './diet/diet.component';
-import { TrainingsComponent } from './trainings/trainings.component';
-import { AdminTrainingsComponent } from './admin/admin-trainings/admin-trainings.component';
-import { AdminDietComponent } from './admin/admin-diet/admin-diet.component';
-import { TrainingFormComponent } from './admin/training-form/training-form.component';
-import { AuthGuard } from './auth-guard.service';
-import { AdminAuthGuard } from './admin-auth-guard.service';
-import { MealFormComponent } from './admin/meal-form/meal-form.component';
-import { TrainingCardComponent } from './training-card/training-card.component';
-import { StatisticsComponent } from './statistics/statistics.component';
+import { LoginComponent } from './core/components/login/login.component';
+import { HomeComponent } from './core/components/home/home.component';
+import { UserProfileComponent } from './user/components/user-profile/user-profile.component';
+import { DietComponent } from './core/components/diet/diet.component';
+import { TrainingsComponent } from './core/components/trainings/trainings.component';
+import { AdminTrainingsComponent } from './admin/components/admin-trainings/admin-trainings.component';
+import { AdminDietComponent } from './admin/components/admin-diet/admin-diet.component';
+import { TrainingFormComponent } from './admin/components/training-form/training-form.component';
+import { AuthGuard } from './shared/services/auth-guard.service';
+import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
+import { MealFormComponent } from './admin/components/meal-form/meal-form.component';
+import { TrainingCardComponent } from './core/components/training-card/training-card.component';
+import { StatisticsComponent } from './user/components/statistics/statistics.component';
 
 
 const routes: Routes = [
