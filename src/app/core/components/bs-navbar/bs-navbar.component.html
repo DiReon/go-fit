@@ -8,24 +8,28 @@
   
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" style="z-index: 2000">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" routerLink = "/diet" (click)="isMenuCollapsed = true">Питание</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink = "/trainings" (click)="isMenuCollapsed = true">Тренировки</a>
+        </li>
         <ng-container *ngIf = "appUser as user; else anonymousUser">
-            <li class="username">{{ user.name }}</li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink = "/user-profile" (click)="isMenuCollapsed = true">Мой профиль</a>
-            </li>
+          <li *ngIf = "user" class="nav-item">
+            <a class="nav-link" routerLink = "/statistics" (click)="isMenuCollapsed = true">Моя Статистика</a>
+          </li>
+          <li ngbDropdown *ngIf ="user"  class="nav-item dropdown">
+            <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img [src]="user.photoUrl" alt="Фото пользователя" style="width: 25px; border-radius: 100%;">
+            </a>
+            <div ngbDropdownMenu class="dropdown-menu">
+              <a href="#" class="dropdown-item">{{user.name}}</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" routerLink = "/user-profile" (click)="isMenuCollapsed = true">Мой профиль</a>
+              <a class="dropdown-item" (click)="logout()">Выйти</a>
+            </div>
+          </li>
         </ng-container>
-            <li class="nav-item">
-                <a class="nav-link" routerLink = "/diet" (click)="isMenuCollapsed = true">Питание</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink = "/trainings" (click)="isMenuCollapsed = true">Тренировки</a>
-            </li>
-            <li *ngIf = "appUser" class="nav-item">
-              <a class="nav-link" routerLink = "/statistics" (click)="isMenuCollapsed = true">Моя Статистика</a>
-            </li>
-            <li *ngIf = "appUser" class="nav-item">
-                <a class="nav-link" (click)="logout()">Выйти</a>
-            </li>
 
         <ng-template #anonymousUser>
           <li class="nav-item">

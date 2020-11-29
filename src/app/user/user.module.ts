@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { JournalComponent } from './components/journal/journal.component';
 
 
 
@@ -11,6 +12,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
   declarations: [
     UserProfileComponent,
     StatisticsComponent,
+    JournalComponent,
   ],
   imports: [
     CommonModule,

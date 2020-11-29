@@ -13,6 +13,7 @@ import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
 import { MealFormComponent } from './admin/components/meal-form/meal-form.component';
 import { TrainingCardComponent } from './core/components/training-card/training-card.component';
 import { StatisticsComponent } from './user/components/statistics/statistics.component';
+import { JournalComponent } from './user/components/journal/journal.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'trainings/:category', component: TrainingCardComponent},
   {path: 'trainings', component: TrainingsComponent},
   {path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard]},
+  {path: 'journal', component: JournalComponent, canActivate: [AuthGuard]},
 
   {path: 'admin/trainings/new', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/trainings/:id', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
