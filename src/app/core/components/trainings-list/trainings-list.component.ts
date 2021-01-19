@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Training } from '../../../shared/models/training';
-import { CategoryService } from '../../../shared/services/category.service';
+import { Training } from 'src/app/shared/models/training';
+import { CategoryService } from 'src/app/shared/services/category.service';
 
 @Component({
   selector: 'trainings-list',

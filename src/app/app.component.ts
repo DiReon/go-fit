@@ -9,7 +9,5 @@ import { SharedService } from './shared/services/shared.service';
 export class AppComponent {
   title = "go-fit"
   constructor(private sharedService: SharedService) {
-    console.log("Hello world!");
-        
   }
 }

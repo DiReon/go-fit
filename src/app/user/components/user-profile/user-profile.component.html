@@ -29,8 +29,8 @@
         <div class="alert alert-danger" *ngIf="sex.touched && sex.invalid">Выберите Ваш пол</div>
     </div>
     <div class = "form-group">
-        <label for = "lastWeightRecord">Вес:</label>
-        <input #lastWeightRecord = "ngModel" [(ngModel)] = "user.lastWeightRecord" name = "lastWeightRecord" id = "lastWeightRecord" type = "number" class="form-control" required>
+        <label for = "lastWeight">Вес:</label>
+        <input #lastWeight = "ngModel" [(ngModel)] = "user.lastWeight" name = "lastWeight" id = "lastWeight" type = "number" class="form-control" required>
     </div>
     <div class = "form-group">
         <label for = "height">Рост:</label>

@@ -17,8 +17,8 @@ export class UserProfileComponent implements OnInit {
               private router: Router) {
     this.authService.appUser$.pipe(take(1)).subscribe(user => {
       this.appUser = new AppUser(user);
-      console.log("Last user weight record: ", this.appUser.lastWeightRecord);
-      if (!this.appUser.weight) this.appUser.weight = [{date: null, weightToday: null}]
+      // console.log("Last user weight record: ", this.appUser.lastWeightRecord);
+      // if (!this.appUser.lastWeight) this.appUser.weight = [{date: null, weightToday: null}]
     });
   }
 
@@ -28,8 +28,8 @@ export class UserProfileComponent implements OnInit {
   save(value) {
     console.log("Form value: ", value);
     let date = new Date().getTime();
-    this.appUser.weight.push({date: date, weightToday: this.appUser.lastWeightRecord})
-    console.log("User weight records: ", this.appUser.weight);
+    // this.appUser.weight.push({date: date, weightToday: this.appUser.lastWeightRecord})
+    // console.log("User weight records: ", this.appUser.weight);
     if (this.appUser.userId) this.userService.update(this.appUser.userId, this.appUser);
     // if (this.appUser.userId) this.userService.update(this.appUser.userId, this.appUser.weight);
 

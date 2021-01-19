@@ -1,12 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TrainingService } from '../../../shared/services/training.service';
-import { Training } from '../../../shared/models/training';
-import { take, switchMap } from 'rxjs/operators';
-import { AuthService } from '../../../shared/services/auth.service';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import { Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
 import { AppUser } from '../../../shared/models/app-user';
+import { Training } from '../../../shared/models/training';
+import { AuthService } from '../../../shared/services/auth.service';
+import { TrainingService } from '../../../shared/services/training.service';
 
 @Component({
   selector: 'app-training-card',

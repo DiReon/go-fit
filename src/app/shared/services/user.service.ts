@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-import { Observable } from 'rxjs';
 import { AppUser } from 'src/app/shared/models/app-user';
 import { Training } from 'src/app/shared/models/training';
+import { MyRecord } from '../models/my-record';
 
 @Injectable({
   providedIn: 'root'
@@ -39,11 +39,15 @@ export class UserService {
   delete(uid: string) {
     this.db.object('/users/'+uid).remove();
   }
-
   
   markCompleted(uid: string, id: string) {
     console.log("Training completed, id: ", id, uid);
     this.db.list('/users/' + uid + '/completedTrainings').push(id)
+  }
+
+  addToJournal(uid: string, record: MyRecord) {
+    this.db.list(`/users/${uid}/journal`).update(record.date, record);
+    if (record.weight) this.db.object(`/users/${uid}/lastWeight`).set(record.weight);
   }
 
 }

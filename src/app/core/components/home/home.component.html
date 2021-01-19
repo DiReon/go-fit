@@ -1,19 +1,30 @@
 <ng-container *ngIf = "appUser as u; else anonymousUser">
-<h3 >Здравствуй, {{u.name}}</h3>
-<p>Тебе уже {{u.age}}</p>
-<p>Твой базовый метаболизм {{u.BMR }} ккал в сутки</p>
-<p>Чтобы добиться цели, рекомендуем потреблять не менее {{u.kkalTarget}} ккал в сутки</p>
+    <h3 >Здравствуй, {{u.name}}</h3>
+    <h5>Ваш последний вес {{ u.lastWeight }} кг</h5>
+    <p>Твой базовый метаболизм {{u.BMR }} ккал в сутки</p>
+    <p>Чтобы добиться цели, рекомендуем потреблять около {{u.kkalTarget}} ккал в сутки</p>
 
-<form *ngIf = "showActions; else noInputTemplate" #f = ngForm (ngSubmit) = "save(f.value)">
-    <div class="form-group">
-        <label for="weight">Ваш вес сегодня:</label>
-        <input #weight="ngModel" [(ngModel)] = "u.lastWeightRecord" name = "weight" id= "weight" type="number" class="form-control">
-    </div>
-    <button (click) = "showActions = !showActions" class="btn btn-primary">Сохранить</button>
-</form>
-<ng-template #noInputTemplate>
-    <h5>Ваш вес сегодня {{ u.lastWeightRecord }} кг</h5>
-</ng-template>
+    <form *ngIf = "showActions" #f = ngForm (ngSubmit) = "save(f.value)">
+        Добавить новую запись в дневник:
+        <div class="form-group">
+            <label for="">Дата:</label>
+            <input (change) = "load()" [(ngModel)] = "date" name = "date" id="date" type="date" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">Съедено калорий:</label>
+            <input [(ngModel)] = "kkal" name = "kkal" id="kkal" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="">Сделано шагов:</label>
+            <input [(ngModel)] = "steps" name = "steps" id="steps" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="weight">Ваш вес сегодня:</label>
+            <input [(ngModel)] = "weight" name = "weight" id= "weight" type="number" class="form-control">
+        </div>
+        <p *ngIf = "showConfirmationMsg">Запись сохранена</p>
+        <button class="btn btn-primary">Сохранить</button>
+    </form>
 </ng-container>
 <ng-template #anonymousUser>
     <p>Чтобы получить рекомендации по питанию и тренировкам , войдите в профиль и внесите личные данные</p>

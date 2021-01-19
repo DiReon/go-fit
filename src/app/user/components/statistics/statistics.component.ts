@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../shared/services/auth.service';
-import { AppUser } from '../../../shared/models/app-user';
-import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { AppUser } from 'src/app/shared/models/app-user';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-statistics',
@@ -18,7 +17,7 @@ export class StatisticsComponent implements OnInit {
     this.authService.appUser$.pipe(take(1)).subscribe(u =>{
       this.appUser = new AppUser(u);
       console.log("User data: ", this.appUser);
-      this.weightArray = this.appUser.weight
+      // this.weightArray = this.appUser.lastWeightRecord;
       console.log(this.weightArray);
       
     })

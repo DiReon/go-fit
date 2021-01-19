@@ -1,14 +1,13 @@
+import { MyRecord } from './my-record';
+
 export class AppUser {
     userId: string;
     name: string;
     email: string;
     sex: string;
     photoUrl: string;
-    weight: [{
-        date: number,
-        weightToday: number
-    }];
-    lastWeightRecord: number;
+    journal: {[id: string]: MyRecord};
+    lastWeight: number;
     height: number;
     birthday: Date;
     completedTrainings: Array<string>;
@@ -29,7 +28,7 @@ export class AppUser {
     get BMR() {
         let sexCoef: number;
         sexCoef = (this.sex === "мужской") ? 5 : -161;
-        if (this.weight) return Math.round((10*this.lastWeight + 6.25*this.height - 5*this.age + sexCoef)*this.physicalActivity);
+        if (this.lastWeight) return Math.round((10*this.lastWeight + 6.25*this.height - 5*this.age + sexCoef)*this.physicalActivity);
         return null;
     }
 
@@ -44,9 +43,5 @@ export class AppUser {
         }
     }
     
-    get lastWeight() {
-        if (this.weight) return this.weight[this.weight.length-1].weightToday;
-        return null;
-    }
-
 }
+
