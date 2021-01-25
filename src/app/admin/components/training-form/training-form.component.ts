@@ -14,6 +14,7 @@ export class TrainingFormComponent implements OnInit {
   training = {} as Training;
   trainingId: string;
   categories$;
+  uploadIsValid = true;
   constructor(
     private trainingService: TrainingService,
     private categoryService: CategoryService,
@@ -21,17 +22,40 @@ export class TrainingFormComponent implements OnInit {
     private router: Router
   ) {
     this.trainingId = this.route.snapshot.paramMap.get('id');
-    if (this.trainingId) this.trainingService.get(this.trainingId).valueChanges().pipe(take(1)).subscribe(t => this.training = t);
+    if (this.trainingId) this.trainingService.get(this.trainingId).valueChanges().pipe(take(1)).subscribe(t => {
+      this.training = t;
+      console.log("this training in quiz form:", this.training);
+      
+    });
     this.categories$ = this.categoryService.getAll().snapshotChanges();
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onUploadFile(url) {
+    this.training.thumbnailUrl = url;
+    console.log("Emitted url:", url);
+    
   }
 
+  uploadValidTrigger(value: boolean) {
+    console.log("Received ", value);
+    this.uploadIsValid = value;
+  }
+
+
   save(value) {
-    if (this.trainingId) this.trainingService.update(this.trainingId, value)
-    else this.trainingService.create(value);
-    this.router.navigate(['/admin/trainings'])
+    
+    this.training.title = value.title;
+    this.training.category = value.category;
+    this.training.description = value.description;
+    this.training.videoUrl = value.videoUrl;
+    this.training.complexity = value.complexity;
+
+    if (this.trainingId) this.trainingService.update(this.trainingId, this.training)
+    else this.trainingService.create(this.training);
+
+    this.router.navigate(['/admin/trainings']);
   }
   
   delete() {

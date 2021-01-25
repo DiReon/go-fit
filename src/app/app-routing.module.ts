@@ -14,6 +14,7 @@ import { MealFormComponent } from './admin/components/meal-form/meal-form.compon
 import { TrainingCardComponent } from './core/components/training-card/training-card.component';
 import { StatisticsComponent } from './user/components/statistics/statistics.component';
 import { JournalComponent } from './user/components/journal/journal.component';
+import { TrainingsListComponent } from './core/components/trainings-list/trainings-list.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'diet', component: DietComponent},
-  {path: 'trainings/:category', component: TrainingCardComponent},
+  {path: 'trainings/:category', component: TrainingsListComponent},
+  {path: 'trainings/:category/:id', component: TrainingCardComponent},
   {path: 'trainings', component: TrainingsComponent},
   {path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard]},
   {path: 'journal', component: JournalComponent, canActivate: [AuthGuard]},

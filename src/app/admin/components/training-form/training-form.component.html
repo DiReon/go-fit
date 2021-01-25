@@ -11,6 +11,12 @@
                 <input #videoUrl = "ngModel" [(ngModel)] = "training.videoUrl" name = "videoUrl" id= "videoUrl" type="URL" class="form-control" required>
                 <div class="alert alert-danger" *ngIf="videoUrl.touched && videoUrl.invalid">Нужна ссылка на видео</div>
             </div>
+            <upload-files 
+                [url] = "training.thumbnailUrl"
+                [training] = "training" 
+                (upload) = "onUploadFile($event)"
+                (uploadIsValid) = "uploadValidTrigger($event)">
+            </upload-files>
             <div class = "form-group">
                 <label for = "complexity">Уровень сложности</label>
                 <select #complexity = "ngModel" [(ngModel)] = "training.complexity" name = "complexity" id = "complexity" type = "text" class="form-control" required>
@@ -38,7 +44,7 @@
                 <div class="alert alert-danger" *ngIf="description.touched && description.invalid">Введите, пожалуйста, описание</div>
             </div>
 
-            <button class="btn btn-primary">Сохранить</button>
+            <button [disabled] = "!uploadIsValid" class="btn btn-primary">Сохранить</button>
             <button type="button" (click) = "delete()" class="btn btn-danger">Удалить</button>
         </form>
     </div>

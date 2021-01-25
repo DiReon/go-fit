@@ -26,9 +26,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private router: Router) { 
     this.subscription = this.authService.appUser$.subscribe( u => {
-      this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
-      this.appUser = new AppUser(u);
-      this.load();
+      if (u) {
+        this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+        this.appUser = new AppUser(u);
+        this.load();
+      };
     })
   }
 
