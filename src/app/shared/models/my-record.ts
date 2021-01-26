@@ -4,6 +4,7 @@ export interface MyRecord {
     kkal: number,
     steps: number,
     trainingTitle: string,
+    trainingId: string[],
     weight: number,
     proofUrl: string,
 }

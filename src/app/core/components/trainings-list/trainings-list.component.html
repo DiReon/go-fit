@@ -5,10 +5,14 @@
                 <ng-container *ngFor = "let training of trainings; let i = index">
                     <div class="col-4">
                         <div *ngIf = "training.title" class="card mb-3">
-                            <img 
+                            <a 
+                                [routerLink] = "['/trainings/', training.category, training.key]"
+                                [class.completed] = "checkCompletion(training)">
+                                <img 
                                 [src]="training.thumbnailUrl" 
                                 class="card-img-top" 
                                 alt="{{ training.title }}">
+                            </a>
                         </div>
                     </div>
                     <div *ngIf = "(i + 1) % 3 === 0" class="w-100"></div>

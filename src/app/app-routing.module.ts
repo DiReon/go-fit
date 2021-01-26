@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'diet', component: DietComponent},
   {path: 'trainings/:category', component: TrainingsListComponent},
-  {path: 'trainings/:category/:id', component: TrainingCardComponent},
+  {path: 'trainings/:category/:trainingId', component: TrainingCardComponent},
   {path: 'trainings', component: TrainingsComponent},
   {path: 'statistics', component: StatisticsComponent, canActivate: [AuthGuard]},
   {path: 'journal', component: JournalComponent, canActivate: [AuthGuard]},

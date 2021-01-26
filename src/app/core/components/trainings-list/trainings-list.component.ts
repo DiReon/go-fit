@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AppUser } from 'src/app/shared/models/app-user';
 import { Training } from 'src/app/shared/models/training';
-import { CategoryService } from 'src/app/shared/services/category.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { TrainingService } from 'src/app/shared/services/training.service';
 
 @Component({
@@ -13,16 +14,34 @@ import { TrainingService } from 'src/app/shared/services/training.service';
 export class TrainingsListComponent implements OnInit {
   category: string;
   trainings: Training[];
+  appUser: AppUser;
+  completedKeys = [];
   subscription: Subscription;
+  authSubscription: Subscription;
   constructor(
     private route: ActivatedRoute,
     private trainingService: TrainingService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
     this.category = this.route.snapshot.paramMap.get('category');
     this.subscription = this.trainingService.getFromCategory(this.category).subscribe(t => this.trainings = t)
+    this.authSubscription = this.authService.appUser$.subscribe(u => {
+      this.appUser = u;
+      let ct = [];
+      if (u) ct = this.appUser.completedTrainings;
+      this.completedKeys = ct ? Object.values(ct): [];
+      console.log("Completed training keys", this.completedKeys);
+      console.log("All trainings: ", this.trainings);
+    })
   }
+
+  checkCompletion(training) {
+    return (this.completedKeys.indexOf(training['key'])!=-1) ? true: false
+  }
+
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

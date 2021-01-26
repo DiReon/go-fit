@@ -5,4 +5,5 @@ export interface Training {
     complexity: string;
     description: string;
     thumbnailUrl: string;
+    key: string;
 }

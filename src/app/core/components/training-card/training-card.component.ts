@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
+import { UserService } from 'src/app/shared/services/user.service';
 
 import { AppUser } from '../../../shared/models/app-user';
 import { Training } from '../../../shared/models/training';
@@ -15,81 +16,45 @@ import { TrainingService } from '../../../shared/services/training.service';
   styleUrls: ['./training-card.component.css']
 })
 export class TrainingCardComponent implements OnInit {
-  icon = faCheckCircle;
-  isListCollapsed = true;
-  trainings: Training[];
-  training ={} as Training;
-  completedTKeys: string[] = [];
-  incompleteTs: Training[] = [];
+  training = {} as Training;
   category: string;
+  trainingId: string;
   videoId: string;
-  subscription: Subscription;
+  trainingSubscription: Subscription;
   appUser: AppUser;
 
   constructor(
     private trainingService: TrainingService,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit() {
     this.category = this.route.snapshot.paramMap.get('category');
+    this.trainingId = this.route.snapshot.paramMap.get('trainingId');
+    this.authService.appUser$.pipe(take(1)).subscribe(u => this.appUser = u);
     console.log("Category: ", this.category);
-    this.loadTraining();
+    
    // This code loads the IFrame Player API code asynchronously, according to the instructions at
     // https://developers.google.com/youtube/iframe_api_reference#Getting_Started
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);  
+    this.trainingSubscription = this.trainingService.get(this.trainingId).valueChanges().subscribe(t => {
+      this.training = t;
+      this.videoId = this.training.videoUrl.split('https://youtu.be/')[1];
+    })
   }
   
-  loadTraining() {
-    console.log("loadTraining started");
-    this.subscription = this.authService.appUser$.pipe(switchMap(u => {
-      this.appUser = u;
-      let ct = [];
-      if (u) ct = this.appUser.completedTrainings;
-      this.completedTKeys = ct? Object.values(ct): [];
-      console.log("Completed training keys", this.completedTKeys);
-      return this.trainingService.getFromCategory(this.category)
-    }))
-      .subscribe(t => {
-        this.trainings = t.sort((a, b) => (a.title>b.title) ? 1 : -1 );
-        console.log("All trainings: ", this.trainings);
-        this.incompleteTs = this.trainings.filter(x => (!(this.completedTKeys.includes(x['key']))));
-        console.log("Incomplete trainings: ", this.incompleteTs);
-        this.training = (this.incompleteTs[0]) ? this.incompleteTs[0] :this.trainings[this.trainings.length-1]
-        console.log("This training: ", this.training);
-        
-        this.videoId = this.training.videoUrl.split('https://youtu.be/')[1];
-      })
-  
-  
-  }
-
   markCompleted() {
-    this.authService.markCompleted(this.training['key']);
+    this.userService.markCompleted(this.appUser.userId, this.trainingId);
+    this.router.navigate(['/trainings', this.category])
   }
-
-  change(change) {
-    let index = this.trainings.indexOf(this.training)
-    if (index+change>=0 && index+change < this.trainings.length ) this.training = this.trainings[index+change];
-    this.videoId = this.training.videoUrl.split('https://youtu.be/')[1];
-  }
-
-  checkCompletion(training) {
-    return (this.completedTKeys.indexOf(training['key'])!=-1) ? true: false
-  }
-
-  pickTraining(training) {
-    this.training = training;
-    console.log("Training picked: ", training);
-    
-  }
-
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.trainingSubscription.unsubscribe();
   }
 
 }

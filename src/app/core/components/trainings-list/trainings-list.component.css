@@ -5,4 +5,5 @@
 }
 .completed {
     color: grey;
+    border: 2px solid greenyellow;
 }
