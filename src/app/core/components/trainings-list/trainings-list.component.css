@@ -4,6 +4,14 @@
     padding-bottom: 1px;
 }
 .completed {
-    color: grey;
-    border: 2px solid greenyellow;
+    box-shadow: 0 0 10px rgb(112, 238, 81);
+    padding: 0px 0px 0px 0px;
+    /* margin: 5px 1px 3px 0px; */
+    border: 2px solid rgba(112, 238, 81, 1);
+}
+.icon-check {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    color: rgba(112, 238, 81, 1);
 }

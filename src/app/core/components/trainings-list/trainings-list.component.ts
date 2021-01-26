@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { faCheckSquare } from '@fortawesome/free-regular-svg-icons';
 import { Subscription } from 'rxjs';
 import { AppUser } from 'src/app/shared/models/app-user';
 import { Training } from 'src/app/shared/models/training';
@@ -18,6 +19,7 @@ export class TrainingsListComponent implements OnInit {
   completedKeys = [];
   subscription: Subscription;
   authSubscription: Subscription;
+  icon = faCheckSquare;
   constructor(
     private route: ActivatedRoute,
     private trainingService: TrainingService,

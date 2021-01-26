@@ -5,13 +5,10 @@
                 <ng-container *ngFor = "let training of trainings; let i = index">
                     <div class="col-4">
                         <div *ngIf = "training.title" class="card mb-3">
-                            <a 
-                                [routerLink] = "['/trainings/', training.category, training.key]"
-                                [class.completed] = "checkCompletion(training)">
-                                <img 
-                                [src]="training.thumbnailUrl" 
-                                class="card-img-top" 
-                                alt="{{ training.title }}">
+                            <a [routerLink] = "['/trainings/', training.category, training.key]">
+                                <img [src]="training.thumbnailUrl" class="card-img-top" alt="{{ training.title }}">
+                                
+                                <fa-icon *ngIf = "checkCompletion(training)" [icon]="icon" size="2x" class="icon-check"></fa-icon>
                             </a>
                         </div>
                     </div>
