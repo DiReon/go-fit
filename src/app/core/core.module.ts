@@ -7,6 +7,7 @@ import { DietComponent } from './components/diet/diet.component';
 import { MealFilterComponent } from './components/diet/meal-filter/meal-filter.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { TrainingCardComponent } from './components/training-card/training-card.component';
 import { TrainingsListComponent } from './components/trainings-list/trainings-list.component';
 import { TrainingsComponent } from './components/trainings/trainings.component';
@@ -23,6 +24,7 @@ import { TrainingsComponent } from './components/trainings/trainings.component';
     TrainingsComponent,
     TrainingsListComponent,
     MealFilterComponent,
+    RegisterComponent,
   ],
   imports: [
     CommonModule,

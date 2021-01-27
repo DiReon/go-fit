@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private router: Router) { 
     this.subscription = this.authService.appUser$.subscribe( u => {
       if (u) {
+        if (!u.name) this.router.navigate(['user-profile']);
         this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
         this.appUser = new AppUser(u);
         this.load();
@@ -37,7 +38,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   load() {
-    if (this.appUser.journal) 
+    if (this.appUser.journal && this.appUser.journal!=null) {
+      console.log("Journal: ", this.appUser.journal);
       console.log(Object.values(this.appUser.journal));
       let record = Object.values(this.appUser.journal).filter(r => r.date == this.date)[0];
       if (record) {
@@ -45,6 +47,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.steps = record.steps;
         this.weight = record.weight;
       } else this.kkal = this.steps = this.weight = null
+    }
   }
 
   save(value: MyRecord) {

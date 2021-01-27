@@ -15,11 +15,13 @@ import { TrainingCardComponent } from './core/components/training-card/training-
 import { StatisticsComponent } from './user/components/statistics/statistics.component';
 import { JournalComponent } from './user/components/journal/journal.component';
 import { TrainingsListComponent } from './core/components/trainings-list/trainings-list.component';
+import { RegisterComponent } from './core/components/register/register.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'diet', component: DietComponent},
   {path: 'trainings/:category', component: TrainingsListComponent},

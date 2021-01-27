@@ -63,5 +63,28 @@ export class AuthService {
       return of(null)
     }))
   }
+  async loginByEmail(email: string, password: string) {
+    var result = await this.afAuth.signInWithEmailAndPassword(email, password)
+    let returnUrl = localStorage.getItem('returnUrl');
+    this.router.navigateByUrl(returnUrl)
+  }
+
+  async register(email: string, password: string) {
+    var result = await this.afAuth.createUserWithEmailAndPassword(email, password).then(user =>{
+      if (user) {
+        this.userService.save(user.user)
+      }
+    })
+    this.sendEmailVerification();
+  }
+
+  async sendEmailVerification() {
+    await (await this.afAuth.currentUser).sendEmailVerification();
+    let returnUrl = localStorage.getItem('returnUrl');
+    this.router.navigateByUrl(returnUrl)
+  }
+  async sendPasswordResetEmail(passwordResetEmail: string) {
+    return await this.afAuth.sendPasswordResetEmail(passwordResetEmail);
+  }
 
 }
