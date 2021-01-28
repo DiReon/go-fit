@@ -23,7 +23,7 @@
           </li>
           <li ngbDropdown *ngIf ="user"  class="nav-item dropdown">
             <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img [src]="user.photoUrl" [alt]="user.name" style="width: 25px; border-radius: 100%;">
+              {{ user.name}}
             </a>
             <div ngbDropdownMenu class="dropdown-menu">
               <a href="#" class="dropdown-item">{{user.name}}</a>
