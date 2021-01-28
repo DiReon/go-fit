@@ -36,7 +36,7 @@ export class AuthService {
 
   logout() {
     this.afAuth.signOut();
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/login');
   }
 
   getCompletedTrainings () {
