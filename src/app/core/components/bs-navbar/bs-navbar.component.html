@@ -9,10 +9,10 @@
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" style="z-index: 2000">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" routerLink = "/diet" (click)="isMenuCollapsed = true">Питание</a>
+          <a class="nav-link" routerLink = "/trainings" (click)="isMenuCollapsed = true">Тренировки</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink = "/trainings" (click)="isMenuCollapsed = true">Тренировки</a>
+            <a class="nav-link" routerLink = "/diet" (click)="isMenuCollapsed = true">Питание</a>
         </li>
         <ng-container *ngIf = "appUser as user; else anonymousUser">
           <li class="nav-item">

@@ -1,31 +1,33 @@
-<ng-container *ngIf = "appUser as u; else anonymousUser">
-    <h3 >Здравствуй, {{u.name}}</h3>
-    <h5>Ваш последний вес {{ u.lastWeight }} кг</h5>
-    <p>Твой базовый метаболизм {{u.BMR }} ккал в сутки</p>
-    <p>Чтобы добиться цели, рекомендуем потреблять около {{u.kkalTarget}} ккал в сутки</p>
+<div class="card bg-dark text-center mb-3" style="max-width: 400px; margin: auto">
+    <img class="card-img"  src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/Regina_training_800px.jpg?alt=media&token=9048a2e4-cc23-4710-95d2-6a5468616499"  alt="Тренировки">
+    <a class="nav-link p-0" routerLink = "/trainings">
+      <div class="card-img-overlay">
+        <h2 class="card-title text-white">Тренировки</h2>
+      </div>
+    </a>
+</div>
 
-    <form *ngIf = "showActions" #f = ngForm (ngSubmit) = "save(f.value)">
-        Добавить новую запись в дневник:
-        <div class="form-group">
-            <label for="">Дата:</label>
-            <input (change) = "load()" [(ngModel)] = "date" name = "date" id="date" type="date" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="">Съедено калорий:</label>
-            <input [(ngModel)] = "kkal" name = "kkal" id="kkal" type="number" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="">Сделано шагов:</label>
-            <input [(ngModel)] = "steps" name = "steps" id="steps" type="number" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="weight">Ваш вес сегодня:</label>
-            <input [(ngModel)] = "weight" name = "weight" id= "weight" type="number" class="form-control">
-        </div>
-        <p *ngIf = "showConfirmationMsg">Запись сохранена</p>
-        <button class="btn btn-primary">Сохранить</button>
-    </form>
-</ng-container>
-<ng-template #anonymousUser>
-    <p>Чтобы получить рекомендации по питанию и тренировкам , войдите в профиль и внесите личные данные</p>
-</ng-template>
+<div class="card bg-dark text-center mb-3" style="max-width: 400px; margin: auto">
+  <img class="card-img"  src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/Regina_training_800px.jpg?alt=media&token=9048a2e4-cc23-4710-95d2-6a5468616499"  alt="Тренировки">
+  <a class="nav-link p-0" routerLink = "/diet">
+    <div class="card-img-overlay">
+      <h2 class="card-title text-white">Питание</h2>
+    </div>
+  </a>
+</div>
+<div class="card bg-dark text-center mb-3" style="max-width: 400px; margin: auto">
+  <img class="card-img"  src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/Regina_training_800px.jpg?alt=media&token=9048a2e4-cc23-4710-95d2-6a5468616499"  alt="Тренировки">
+  <a class="nav-link p-0" routerLink = "/journal">
+    <div class="card-img-overlay">
+      <h2 class="card-title text-white">Дневник</h2>
+    </div>
+  </a>
+</div>
+<div class="card bg-dark text-center mb-3" style="max-width: 400px; margin: auto">
+  <img class="card-img"  src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/Regina_training_800px.jpg?alt=media&token=9048a2e4-cc23-4710-95d2-6a5468616499"  alt="Тренировки">
+  <a class="nav-link p-0" routerLink = "/statistics">
+    <div class="card-img-overlay">
+      <h2 class="card-title text-white">Статистика</h2>
+    </div>
+  </a>
+</div>
