@@ -28,7 +28,8 @@ export class TrainingsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.category = this.route.snapshot.paramMap.get('category');
-    this.subscription = this.trainingService.getFromCategory(this.category).subscribe(t => this.trainings = t)
+    if (this.category == 'all') { this.subscription = this.trainingService.getAll().subscribe(t => this.trainings = t) }
+    else this.subscription = this.trainingService.getFromCategory(this.category).subscribe(t => this.trainings = t)
     this.authSubscription = this.authService.appUser$.subscribe(u => {
       this.appUser = u;
       let ct = [];
