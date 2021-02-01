@@ -1,0 +1,9 @@
+<div *ngIf = "meal$ | async as meal" class="card">
+    <img [src]="meal.imageUrl" class="card-img-top" alt="meal.title">
+    <div class="card-body">
+      <h5 class="card-title">{{ meal.title }}</h5>
+      <p class="card-text">{{ meal.description }}</p>
+      <br>
+      <div class="card-text">{{ meal.recipe }}</div>
+    </div>
+</div>

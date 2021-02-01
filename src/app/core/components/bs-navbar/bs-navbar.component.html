@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top pl-0 pr-0">
     <a class="navbar-brand" routerLink = "/">
         Go<fa-icon [icon]="icon" size="1x" class="primary-color"></fa-icon>Fit
     </a>
@@ -8,6 +8,9 @@
   
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse" style="z-index: 2000">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink = "/" (click)="isMenuCollapsed = true">Главная</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" routerLink = "/trainings" (click)="isMenuCollapsed = true">Тренировки</a>
         </li>

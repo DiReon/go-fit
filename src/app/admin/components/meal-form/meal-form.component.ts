@@ -12,7 +12,7 @@ import { MealService } from 'src/app/shared/services/meal.service';
 export class MealFormComponent implements OnInit {
   meal = {} as Meal;
   mealId: string;
-  categories = ['breakfast', 'lunch', 'dinner', 'snack'];
+  uploadIsValid = true;
   constructor(
     private mealService: MealService,
     private route: ActivatedRoute,
@@ -24,9 +24,23 @@ export class MealFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
+  onUploadFile(url) {
+    this.meal.imageUrl = url;
+    console.log("Emitted url:", url);
+    
+  }
+
+  uploadValidTrigger(value: boolean) {
+    console.log("Received ", value);
+    this.uploadIsValid = value;
+  }
 
   save(value) {
-    if (this.mealId) this.mealService.update(this.mealId, value)
+    this.meal.description = value.description;
+    this.meal.recipe = value.recipe;
+    this.meal.title = value.title;
+    if (this.mealId) this.mealService.update(this.mealId, this.meal)
     else this.mealService.create(value);
     this.router.navigate(['/admin/diet'])
   }
@@ -35,7 +49,7 @@ export class MealFormComponent implements OnInit {
     if (!confirm('Точно хотите удалить блюдо?')) return;
     
     this.mealService.delete(this.mealId);
-    this.router.navigate(['/admin/meals']);
+    this.router.navigate(['/admin/diet']);
     
   }
 

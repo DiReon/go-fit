@@ -11,6 +11,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { TrainingCardComponent } from './components/training-card/training-card.component';
 import { TrainingsListComponent } from './components/trainings-list/trainings-list.component';
 import { TrainingsComponent } from './components/trainings/trainings.component';
+import { RecipeComponent } from './recipe/recipe.component';
+import { MealComponent } from './components/meal/meal.component';
 
 
 
@@ -25,6 +27,8 @@ import { TrainingsComponent } from './components/trainings/trainings.component';
     TrainingsListComponent,
     MealFilterComponent,
     RegisterComponent,
+    RecipeComponent,
+    MealComponent,
   ],
   imports: [
     CommonModule,

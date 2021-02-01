@@ -29,7 +29,13 @@ export class UploadFilesComponent implements OnInit {
     console.log("Emit false")
     console.table(this.training);
     const file = event.target.files[0];
-    const filePath = `/trainings/${this.training.category}/${this.training.title}/thumbnail/${file.name}`;
+    let filePath = '/'
+    if (this.training) {
+      filePath = `/trainings/${this.training.category}/${this.training.title}/thumbnail/${file.name}`;
+    } else {
+      let time = new Date().getTime();
+      filePath = `/recipes/${time}_${file.name}`
+    }
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
 

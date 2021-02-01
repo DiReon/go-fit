@@ -16,6 +16,8 @@ import { StatisticsComponent } from './user/components/statistics/statistics.com
 import { JournalComponent } from './user/components/journal/journal.component';
 import { TrainingsListComponent } from './core/components/trainings-list/trainings-list.component';
 import { RegisterComponent } from './core/components/register/register.component';
+import { RecipeComponent } from './core/recipe/recipe.component';
+import { MealComponent } from './core/components/meal/meal.component';
 
 
 const routes: Routes = [
@@ -24,6 +26,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'diet', component: DietComponent},
+  {path: 'diet/recipes', component: RecipeComponent},
+  {path: 'diet/recipes/:mealId', component: MealComponent},
   {path: 'trainings/:category', component: TrainingsListComponent},
   {path: 'trainings/:category/:trainingId', component: TrainingCardComponent},
   {path: 'trainings', component: TrainingsComponent},

@@ -1,0 +1,57 @@
+.cropped {
+    object-fit: cover;
+    object-position: 50% 50%;
+
+    width: 49vw;
+    height: 30vw;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    position: relative;
+  }
+
+.shade {
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+p {
+    color: white;
+    font-size: 32px;
+    margin: 0;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+  }
+  .ts {
+    font-family: Arial;
+    font-size: 24px;
+    color: #FFFFFF;
+    text-shadow: 
+      -0   -1px 1px #000000,
+       0   -1px 1px #000000,
+      -0    1px 1px #000000,
+       0    1px 1px #000000,
+      -1px -0   1px #000000,
+       1px -0   1px #000000,
+      -1px  0   1px #000000,
+       1px  0   1px #000000,
+      -1px -1px 1px #000000,
+       1px -1px 1px #000000,
+      -1px  1px 1px #000000,
+       1px  1px 1px #000000,
+      -1px -1px 1px #000000,
+       1px -1px 1px #000000,
+      -1px  1px 1px #000000,
+       1px  1px 1px #000000;
+  }
