@@ -13,6 +13,8 @@ import { TrainingsListComponent } from './components/trainings-list/trainings-li
 import { TrainingsComponent } from './components/trainings/trainings.component';
 import { RecipeComponent } from './recipe/recipe.component';
 import { MealComponent } from './components/meal/meal.component';
+import { LecturesComponent } from './components/lectures/lectures.component';
+import { LectureCardComponent } from './components/lecture-card/lecture-card.component';
 
 
 
@@ -29,6 +31,8 @@ import { MealComponent } from './components/meal/meal.component';
     RegisterComponent,
     RecipeComponent,
     MealComponent,
+    LecturesComponent,
+    LectureCardComponent,
   ],
   imports: [
     CommonModule,

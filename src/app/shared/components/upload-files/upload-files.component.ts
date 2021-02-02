@@ -12,6 +12,7 @@ import { Training } from '../../models/training';
 export class UploadFilesComponent implements OnInit {
   @Input("training") training: Training;
   @Input() url: string;
+  @Input() type: string;
   @Output() upload = new EventEmitter<string>();
   @Output() uploadIsValid = new EventEmitter<boolean>();
   uploadCompleted = false;
@@ -30,6 +31,18 @@ export class UploadFilesComponent implements OnInit {
     console.table(this.training);
     const file = event.target.files[0];
     let filePath = '/'
+    let time = new Date().getTime();
+    switch (this.type) {
+      case 'training':
+        filePath = `/trainings/${this.training.category}/${this.training.title}/thumbnail/${file.name}`;
+        break;
+      case 'lecture':
+        filePath = `/lectures/${time}_${file.name}`
+        break;
+      case 'recipe':
+        filePath = `/recipes/${time}_${file.name}`
+        break;
+    }
     if (this.training) {
       filePath = `/trainings/${this.training.category}/${this.training.title}/thumbnail/${file.name}`;
     } else {

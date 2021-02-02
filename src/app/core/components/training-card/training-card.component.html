@@ -8,5 +8,5 @@
     </youtube-player>
 </div>
 <p>{{ training.category }} {{ training.complexity }} уровень сложности</p>
-<p>{{ training.description }}</p>
+<div style="white-space: pre-wrap;">{{ training.description }}</div>
 <button *ngIf = "appUser" (click) = "markCompleted()" class="btn btn-success w-100">Сделано!</button>

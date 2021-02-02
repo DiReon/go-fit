@@ -40,9 +40,12 @@ export class UserService {
     this.db.object('/users/'+uid).remove();
   }
   
-  markCompleted(uid: string, id: string) {
-    console.log("Training completed, id: ", id, uid);
+  markTrainingCompleted(uid: string, id: string) {
     this.db.list('/users/' + uid + '/completedTrainings').push(id)
+  }
+
+  markLectureCompleted(uid: string, id: string) {
+    this.db.list('/users/' + uid + '/completedLectures').push(id)
   }
 
   addToJournal(uid: string, record: MyRecord) {

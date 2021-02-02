@@ -49,7 +49,7 @@ export class TrainingCardComponent implements OnInit {
   }
   
   markCompleted() {
-    this.userService.markCompleted(this.appUser.userId, this.trainingId);
+    this.userService.markTrainingCompleted(this.appUser.userId, this.trainingId);
     this.router.navigate(['/trainings', this.category])
   }
 

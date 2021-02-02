@@ -9,6 +9,8 @@ import { SharedModule } from '../shared/shared.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsModule } from '@angular/forms';
 import { MealCardComponent } from '../shared/components/meal-card/meal-card.component';
+import { LectureFormComponent } from './components/lecture-form/lecture-form.component';
+import { AdminLecturesComponent } from './components/admin-lectures/admin-lectures.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { MealCardComponent } from '../shared/components/meal-card/meal-card.comp
     MealFormComponent,
     AdminDietComponent,
     TrainingFormComponent,
+    LectureFormComponent,
+    AdminLecturesComponent,
   ],
   imports: [
     CommonModule,

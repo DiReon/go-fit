@@ -19,12 +19,15 @@
         </li>
         <ng-container *ngIf = "appUser as user; else anonymousUser">
           <li class="nav-item">
-            <a class="nav-link" routerLink = "/statistics" (click)="isMenuCollapsed = true">Моя Статистика</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" routerLink = "/journal" (click)="isMenuCollapsed = true">Дневник</a>
           </li>
-          <li ngbDropdown *ngIf ="user"  class="nav-item dropdown">
+          <li class="nav-item">
+            <a class="nav-link" routerLink = "/statistics" (click)="isMenuCollapsed = true">Моя статистика</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink = "/lectures" (click)="isMenuCollapsed = true">Лекции</a>
+          </li>
+            <li ngbDropdown *ngIf ="user"  class="nav-item dropdown">
             <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ user.name}}
             </a>
@@ -48,8 +51,9 @@
             Администрирование
           </a>
           <div ngbDropdownMenu class="dropdown-menu">
-              <a class="dropdown-item" routerLink = "/admin/trainings" (click)="isMenuCollapsed = true">Тренировки</a>
-              <a class="dropdown-item" routerLink = "/admin/diet" (click)="isMenuCollapsed = true">Питание</a>
+            <a class="dropdown-item" routerLink = "/admin/trainings" (click)="isMenuCollapsed = true">Тренировки</a>
+            <a class="dropdown-item" routerLink = "/admin/lectures" (click)="isMenuCollapsed = true">Лекции</a>
+            <a class="dropdown-item" routerLink = "/admin/diet" (click)="isMenuCollapsed = true">Питание</a>
           </div>
         </li>
         

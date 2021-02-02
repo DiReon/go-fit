@@ -1,0 +1,11 @@
+<h6>{{ lecture.title}}</h6>
+
+<div class="embed-responsive embed-responsive-16by9">
+    <youtube-player class="embed-responsive-item"
+        [videoId]="videoId"
+        suggestedQuality="hd720"
+    >
+    </youtube-player>
+</div>
+<div style="white-space: pre-wrap;">{{ lecture.description }}</div>
+<button *ngIf = "appUser" (click) = "markCompleted()" class="btn btn-success w-100">Прослушано!</button>

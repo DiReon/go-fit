@@ -11,6 +11,7 @@ export class AppUser {
     height: number;
     birthday: Date;
     completedTrainings: Array<string>;
+    completedLectures: Array<string>;
     goal: string;
     physicalActivity: number;
     isAdmin: boolean;

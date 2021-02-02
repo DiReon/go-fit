@@ -18,6 +18,7 @@
             </div>
             <upload-files 
                 [url] = "meal.imageUrl"
+                [type] = "'type'"
                 (upload) = "onUploadFile($event)"
                 (uploadIsValid) = "uploadValidTrigger($event)">
             </upload-files>

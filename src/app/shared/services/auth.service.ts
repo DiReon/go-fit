@@ -51,7 +51,7 @@ export class AuthService {
     let uid: string;
     this.appUser$.pipe(take(1)).subscribe(u => {
       uid = u.userId;
-      this.userService.markCompleted(uid, id)
+      this.userService.markTrainingCompleted(uid, id)
     })
   }
 
