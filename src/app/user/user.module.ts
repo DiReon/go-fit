@@ -2,17 +2,17 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
-import { StatisticsComponent } from './components/statistics/statistics.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 import { JournalComponent } from './components/journal/journal.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 
 @NgModule({
   declarations: [
     UserProfileComponent,
-    StatisticsComponent,
     JournalComponent,
+    CalendarComponent,
   ],
   imports: [
     CommonModule,

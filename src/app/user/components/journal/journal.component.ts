@@ -49,7 +49,7 @@ export class JournalComponent implements OnInit {
       } else this.kkal = this.steps = this.weight = null
     }
   }
-
+ks
   save(value: MyRecord) {
     let date = new Date().getTime();
     value.dateRecorded = date;

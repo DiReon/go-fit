@@ -3,7 +3,7 @@ export interface MyRecord {
     date: string,
     kkal: number,
     steps: number,
-    trainingTitle: string,
+    trainingTitles: string[],
     trainingId: string[],
     weight: number,
     proofUrl: string,

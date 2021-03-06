@@ -47,11 +47,11 @@ export class AuthService {
     }))
   }
 
-  markCompleted(id) {
+  markCompleted(id: string, title: string) {
     let uid: string;
     this.appUser$.pipe(take(1)).subscribe(u => {
       uid = u.userId;
-      this.userService.markTrainingCompleted(uid, id)
+      this.userService.markTrainingCompleted(uid, id, title)
     })
   }
 

@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { AppUser } from 'src/app/shared/models/app-user';
@@ -40,8 +41,13 @@ export class UserService {
     this.db.object('/users/'+uid).remove();
   }
   
-  markTrainingCompleted(uid: string, id: string) {
-    this.db.list('/users/' + uid + '/completedTrainings').push(id)
+  markTrainingCompleted(uid: string, id: string, title: string) {
+    this.db.list('/users/' + uid + '/completedTrainings').push(id);
+    let record: MyRecord = null;
+    record.date =  formatDate(new Date(), 'yyyy-MM-dd', 'en');
+    record.trainingId.push(id);
+    record.trainingTitles.push(title)
+    this.addToJournal(uid, record)
   }
 
   markLectureCompleted(uid: string, id: string) {
