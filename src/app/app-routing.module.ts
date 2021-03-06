@@ -14,25 +14,16 @@ import { LectureCardComponent } from './core/components/lecture-card/lecture-car
 import { LecturesComponent } from './core/components/lectures/lectures.component';
 import { LoginComponent } from './core/components/login/login.component';
 import { MealComponent } from './core/components/meal/meal.component';
-<<<<<<< HEAD
 import { MoreComponent } from './core/components/more/more.component';
 import { RegisterComponent } from './core/components/register/register.component';
-=======
-import { RegisterComponent } from './core/components/register/register.component';
 import { ResetPasswordComponent } from './core/components/reset-password/reset-password.component';
->>>>>>> feature_resetPass
 import { TrainingCardComponent } from './core/components/training-card/training-card.component';
 import { TrainingsListComponent } from './core/components/trainings-list/trainings-list.component';
 import { TrainingsComponent } from './core/components/trainings/trainings.component';
 import { RecipeComponent } from './core/recipe/recipe.component';
 import { AuthGuard } from './shared/services/auth-guard.service';
-<<<<<<< HEAD
 import { CalendarComponent } from './user/components/calendar/calendar.component';
 import { JournalComponent } from './user/components/journal/journal.component';
-=======
-import { JournalComponent } from './user/components/journal/journal.component';
-import { StatisticsComponent } from './user/components/statistics/statistics.component';
->>>>>>> feature_resetPass
 import { UserProfileComponent } from './user/components/user-profile/user-profile.component';
 
 
