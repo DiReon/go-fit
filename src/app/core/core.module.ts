@@ -15,7 +15,11 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { MealComponent } from './components/meal/meal.component';
 import { LecturesComponent } from './components/lectures/lectures.component';
 import { LectureCardComponent } from './components/lecture-card/lecture-card.component';
+<<<<<<< HEAD
 import { MoreComponent } from './components/more/more.component';
+=======
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+>>>>>>> feature_resetPass
 
 
 
@@ -34,7 +38,11 @@ import { MoreComponent } from './components/more/more.component';
     MealComponent,
     LecturesComponent,
     LectureCardComponent,
+<<<<<<< HEAD
     MoreComponent,
+=======
+    ResetPasswordComponent,
+>>>>>>> feature_resetPass
   ],
   imports: [
     CommonModule,

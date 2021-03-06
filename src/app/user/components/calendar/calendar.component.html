@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col">
+        <div class="row">
+            <ng-container *ngFor = "let day of days; let i = index">
+                <div class="col-3" style="width: 24vw; height: 24vw; margin-bottom: 1px; border: 1px solid green;">
+                    <p class="m-0">{{ day.date }}</p>
+                    <p class="m-0">{{ day.trainingTitle }}</p>
+                    <p class="m-0">Вес: {{ day.weight }}</p>
+                    <p class="m-0">Шаги: {{ day.steps }}</p>
+                    <p class="m-0">Ккал: {{ day.kkal }}</p>
+                </div>
+                <div *ngIf = "(i + 1) % 3 === 0" class="w-100"></div>
+            </ng-container>
+        </div>
+    </div>
+</div>
