@@ -15,6 +15,7 @@ import { RecipeComponent } from './recipe/recipe.component';
 import { MealComponent } from './components/meal/meal.component';
 import { LecturesComponent } from './components/lectures/lectures.component';
 import { LectureCardComponent } from './components/lecture-card/lecture-card.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 
@@ -33,6 +34,7 @@ import { LectureCardComponent } from './components/lecture-card/lecture-card.com
     MealComponent,
     LecturesComponent,
     LectureCardComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     CommonModule,

@@ -1,33 +1,36 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './core/components/login/login.component';
-import { HomeComponent } from './core/components/home/home.component';
-import { UserProfileComponent } from './user/components/user-profile/user-profile.component';
-import { DietComponent } from './core/components/diet/diet.component';
-import { TrainingsComponent } from './core/components/trainings/trainings.component';
-import { AdminTrainingsComponent } from './admin/components/admin-trainings/admin-trainings.component';
+import { RouterModule, Routes } from '@angular/router';
+
 import { AdminDietComponent } from './admin/components/admin-diet/admin-diet.component';
-import { TrainingFormComponent } from './admin/components/training-form/training-form.component';
-import { AuthGuard } from './shared/services/auth-guard.service';
-import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
-import { MealFormComponent } from './admin/components/meal-form/meal-form.component';
-import { TrainingCardComponent } from './core/components/training-card/training-card.component';
-import { StatisticsComponent } from './user/components/statistics/statistics.component';
-import { JournalComponent } from './user/components/journal/journal.component';
-import { TrainingsListComponent } from './core/components/trainings-list/trainings-list.component';
-import { RegisterComponent } from './core/components/register/register.component';
-import { RecipeComponent } from './core/recipe/recipe.component';
-import { MealComponent } from './core/components/meal/meal.component';
-import { LecturesComponent } from './core/components/lectures/lectures.component';
-import { LectureFormComponent } from './admin/components/lecture-form/lecture-form.component';
 import { AdminLecturesComponent } from './admin/components/admin-lectures/admin-lectures.component';
+import { AdminTrainingsComponent } from './admin/components/admin-trainings/admin-trainings.component';
+import { LectureFormComponent } from './admin/components/lecture-form/lecture-form.component';
+import { MealFormComponent } from './admin/components/meal-form/meal-form.component';
+import { TrainingFormComponent } from './admin/components/training-form/training-form.component';
+import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
+import { DietComponent } from './core/components/diet/diet.component';
+import { HomeComponent } from './core/components/home/home.component';
 import { LectureCardComponent } from './core/components/lecture-card/lecture-card.component';
+import { LecturesComponent } from './core/components/lectures/lectures.component';
+import { LoginComponent } from './core/components/login/login.component';
+import { MealComponent } from './core/components/meal/meal.component';
+import { RegisterComponent } from './core/components/register/register.component';
+import { ResetPasswordComponent } from './core/components/reset-password/reset-password.component';
+import { TrainingCardComponent } from './core/components/training-card/training-card.component';
+import { TrainingsListComponent } from './core/components/trainings-list/trainings-list.component';
+import { TrainingsComponent } from './core/components/trainings/trainings.component';
+import { RecipeComponent } from './core/recipe/recipe.component';
+import { AuthGuard } from './shared/services/auth-guard.service';
+import { JournalComponent } from './user/components/journal/journal.component';
+import { StatisticsComponent } from './user/components/statistics/statistics.component';
+import { UserProfileComponent } from './user/components/user-profile/user-profile.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'resetPassword', component: ResetPasswordComponent},
   {path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'diet', component: DietComponent},
   {path: 'diet/recipes', component: RecipeComponent},
