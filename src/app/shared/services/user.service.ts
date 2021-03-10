@@ -43,11 +43,10 @@ export class UserService {
   
   markTrainingCompleted(uid: string, id: string, title: string) {
     this.db.list('/users/' + uid + '/completedTrainings').push(id);
-    let record: MyRecord = null;
-    record.date =  formatDate(new Date(), 'yyyy-MM-dd', 'en');
-    record.trainingId.push(id);
-    record.trainingTitles.push(title)
-    this.addToJournal(uid, record)
+    let date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+     
+    this.db.list(`/users/${uid}/journal`).update(date, {date: date}); 
+    this.db.list(`/users/${uid}/journal/${date}/trainingTitles`).push(title); 
   }
 
   markLectureCompleted(uid: string, id: string) {
@@ -55,6 +54,8 @@ export class UserService {
   }
 
   addToJournal(uid: string, record: MyRecord) {
+    console.log("add to Journal: ", uid, record);
+    
     this.db.list(`/users/${uid}/journal`).update(record.date, record);
     if (record.weight) this.db.object(`/users/${uid}/lastWeight`).set(record.weight);
   }

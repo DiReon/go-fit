@@ -1,18 +1,28 @@
-<button (click) = "loadMonth(-1)" class="btn btn-secondary">{{ previousMonth }}</button>
-<button (click) = "loadMonth(1)" class="btn btn-secondary">{{ nextMonth }}</button>
-<div class="row">
-    <div class="col">
-        <div class="row">
+<div class="row" >
+    <div (click) = "loadMonth(-1)" class="col btn btn-secondary">{{ previousMonth }}</div>
+    <div class="col btn btn-outline-secondary">{{ currentMonth }}</div>
+    <div (click) = "loadMonth(1)" class="col btn btn-secondary">{{ nextMonth }}</div>
+</div>
+
+<div class="container m-0 p-0">
+        <div class="row m-0 p-0">
             <ng-container *ngFor = "let day of days; let i = index">
-                <div class="col-3" style="width: 24vw; height: 24vw; margin-bottom: 1px; border: 1px solid green;">
-                    <p class="m-0">{{ day.date }}</p>
-                    <p class="m-0">{{ day.trainingTitle }}</p>
-                    <p class="m-0">Вес: {{ day.weight }}</p>
-                    <p class="m-0">Шаги: {{ day.steps }}</p>
-                    <p class="m-0">Ккал: {{ day.kkal }}</p>
+                <div class="col p-0 m-0" style="width: 13.5vw; height: 13.5vw; border: 1px solid green;">
+                    <p class="m-1 p-2" style="font-size: 1.5rem;">{{ i+1 }}</p>
+                    <div *ngFor = "let title of day.trainingTitles" class="m-0" >
+                        <div *ngIf = "title" class="training"></div>
+                    </div>
+                    <!-- <p class="m-0">Вес: {{ day.weight }}</p> -->
+                    <div *ngIf = "day.stepsIsGood" class="steps"></div>
+                    <div *ngIf = "day.kkalIsGood" class="kkal"></div>
+                    <!-- <p class="m-0">Шаги: {{ day.steps }}</p> -->
+                    <!-- <p class="m-0">Ккал: {{ day.kkal }}</p> -->
                 </div>
-                <div *ngIf = "(i + 1) % 3 === 0" class="w-100"></div>
+                
+                <div *ngIf = "(i + 1) % 7 === 0" class="w-100"></div>
+            </ng-container>
+            <ng-container *ngFor = "let extraDay of extraDays">
+                <div class="col p-0 m-0" style="width: 13.5vw; height: 13.5vw; border: 1px solid white;"></div>
             </ng-container>
         </div>
-    </div>
 </div>

@@ -1,0 +1,17 @@
+.steps {
+    width: 100%;
+    height: 5px;
+    background-color: greenyellow;
+}
+
+.kkal {
+    width: 100%;
+    height: 5px;
+    background-color: blue;
+}
+
+.training {
+    width: 100%;
+    height: 5px;
+    background-color: red;
+}

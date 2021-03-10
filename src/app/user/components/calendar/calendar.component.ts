@@ -1,5 +1,4 @@
 import { formatDate } from '@angular/common';
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AppUser } from 'src/app/shared/models/app-user';
 import { MyRecord } from 'src/app/shared/models/my-record';
@@ -13,11 +12,13 @@ import { UserService } from 'src/app/shared/services/user.service';
 })
 export class CalendarComponent implements OnInit {
   appUser: AppUser;
-  days: MyRecord[] = [];
+  days = [];
   date: Date;
   month: number;
   previousMonth: string;
+  currentMonth: string;
   nextMonth: string;
+  extraDays = [];
   monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
   constructor(
     private authService: AuthService,
@@ -27,8 +28,7 @@ export class CalendarComponent implements OnInit {
     this.authService.appUser$.subscribe(u => {
       this.appUser = new AppUser(u);
       this.date = new Date();
-      //this.month = this.date.getMonth();
-      this.month = 1
+      this.month = this.date.getMonth();
       this.loadMonth(0);
     })
   }
@@ -38,6 +38,15 @@ export class CalendarComponent implements OnInit {
 
   setMonth(value: number) {
     console.log("number of days in the month: ", value);
+    let j = 35 - value;
+    console.log("j: ", j);
+    this.extraDays = [];
+    for (let i = 1; i < j+1; i++) {
+      this.extraDays.push(i);
+      console.log(i);
+      
+    }
+    console.log(`extra days: ${this.extraDays}`);
     
     for (let index = 1; index < value + 1; index++) {
       let dateForm = formatDate(new Date(this.date.getFullYear(), this.month, index), 'yyyy-MM-dd', 'en');
@@ -63,10 +72,14 @@ export class CalendarComponent implements OnInit {
 
   loadMonth(value: number) {
     this.clearMonth();
-    this.month += value;
+    if (value < 0 && this.month < 1) { this.month = 11 }
+    else if (value > 0 && this.month > 10) { this.month = 0 }
+    else { this.month += value; }
     
     this.previousMonth = (this.month < 1) ? this.monthNames[11] : this.monthNames[this.month - 1];
+    this.currentMonth = this.monthNames[this.month];
     this.nextMonth = (this.month > 10) ? this.monthNames[0] : this.monthNames[this.month + 1];
+     
     console.log("this.month+1: ", this.month+1);
     
     if ([1, 3, 5, 7, 8, 10, 12].indexOf(this.month+1) != -1)  { 
@@ -86,7 +99,10 @@ export class CalendarComponent implements OnInit {
         d.kkal = record.kkal;
         d.steps = record.steps;
         d.weight = record.weight;
-        d.trainingTitles = record.trainingTitles;
+        d.trainingTitles = record.trainingTitles ? Object.values(record.trainingTitles) : [];
+        d.kkalIsGood = (d.kkal <= this.appUser.kkalTarget);
+        d.stepsIsGood = (d.steps >= 8000);
+        
       } else d.kkal = d.steps = d.weight = d.trainingTitles= null;
     })
   }
