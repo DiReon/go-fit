@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AppUser } from 'src/app/shared/models/app-user';
 import { MyRecord } from 'src/app/shared/models/my-record';
@@ -21,14 +21,25 @@ export class JournalComponent implements OnInit {
   subscription: Subscription;
   kkal: number;
   steps: number;
+  day: number;
+  month: number
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private router: Router) { 
+    private router: Router,
+    private route: ActivatedRoute
+  ) { 
+    this.day = +this.route.snapshot.queryParamMap.get('day');
+    this.month = +this.route.snapshot.queryParamMap.get('month');
+    console.log(`Date: ${this.day}/${this.month}`);
+    
     this.subscription = this.authService.appUser$.subscribe( u => {
       if (u) {
         if (!u.name) this.router.navigate(['user-profile']);
-        this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+        let dateObj = new Date();
+        if (this.day && this.month) {
+          this.date = formatDate(`${dateObj.getFullYear()}-${this.month+1}-${this.day}`, 'yyyy-MM-dd', 'en');
+        } else this.date = formatDate(dateObj, 'yyyy-MM-dd', 'en');
         this.appUser = new AppUser(u);
         this.load();
       };

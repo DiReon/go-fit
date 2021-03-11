@@ -36,9 +36,9 @@ export class AppUser {
     get kkalTarget() {
         switch (this.goal) {
             case "gain":
-                return this.BMR*1.2;
+                return Math.round(this.BMR*1.2);
             case "lose":
-                return this.BMR*0.8;
+                return Math.round(this.BMR*0.8);
             case "maintain":
                 return this.BMR;
         }

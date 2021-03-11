@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppUser } from 'src/app/shared/models/app-user';
 import { MyRecord } from 'src/app/shared/models/my-record';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -15,6 +16,7 @@ export class CalendarComponent implements OnInit {
   days = [];
   date: Date;
   month: number;
+  year: number;
   previousMonth: string;
   currentMonth: string;
   nextMonth: string;
@@ -22,12 +24,13 @@ export class CalendarComponent implements OnInit {
   monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
   constructor(
     private authService: AuthService,
-    private userService: UserService,
+    private router: Router,
 
   ) { 
     this.authService.appUser$.subscribe(u => {
       this.appUser = new AppUser(u);
       this.date = new Date();
+      this.year = this.date.getFullYear();
       this.month = this.date.getMonth();
       this.loadMonth(0);
     })
@@ -49,7 +52,7 @@ export class CalendarComponent implements OnInit {
     console.log(`extra days: ${this.extraDays}`);
     
     for (let index = 1; index < value + 1; index++) {
-      let dateForm = formatDate(new Date(this.date.getFullYear(), this.month, index), 'yyyy-MM-dd', 'en');
+      let dateForm = formatDate(new Date(this.year, this.month, index), 'yyyy-MM-dd', 'en');
       console.log(dateForm);
       
       let emptyDay: MyRecord = {
@@ -72,8 +75,14 @@ export class CalendarComponent implements OnInit {
 
   loadMonth(value: number) {
     this.clearMonth();
-    if (value < 0 && this.month < 1) { this.month = 11 }
-    else if (value > 0 && this.month > 10) { this.month = 0 }
+    if (value < 0 && this.month < 1) { 
+      this.month = 11;
+      this.year -= 1; 
+    }
+    else if (value > 0 && this.month > 10) { 
+      this.month = 0;
+      this.year += 1;
+    }
     else { this.month += value; }
     
     this.previousMonth = (this.month < 1) ? this.monthNames[11] : this.monthNames[this.month - 1];
@@ -106,4 +115,9 @@ export class CalendarComponent implements OnInit {
       } else d.kkal = d.steps = d.weight = d.trainingTitles= null;
     })
   }
+
+  goToJournal(day) {
+    this.router.navigate(['/journal/'], {queryParams: {month: this.month, day: day}});
+  }
+
 }

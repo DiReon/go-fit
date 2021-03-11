@@ -1,6 +1,9 @@
+
 <div class="row mb-5" >
     <div (click) = "loadMonth(-1)" class="col btn btn-info" style="border: none; border-radius: 0; background-color: rgb(10,194,206)" >{{ previousMonth }}</div>
-    <div class="col btn btn-info" style="border: none; border-radius: 0; background-color: rgb(64,214, 221);">{{ currentMonth }}</div>
+    <div class="col btn btn-info" style="border: none; border-radius: 0; background-color: rgb(64,214, 221);">
+        {{ currentMonth }} {{ year }}
+    </div>
     <div (click) = "loadMonth(1)" class="col btn btn-info" style="border: none; border-radius: 0; background-color: rgb(10,194,206)">{{ nextMonth }}</div>
 </div>
 
@@ -9,15 +12,15 @@
             <ng-container *ngFor = "let day of days; let i = index">
                 <div class="col p-0 m-0" >
                     <div class="card m-0 p-0" style="height: 13vw; ">
-                        <div class="card-body m-0 p-0" >
-                          <h6 class="card-title" style="font-size: 1rem;">{{ i+1 }}</h6>
-                        </div>
-                        <div class="footer">
-                            <div *ngFor = "let title of day.trainingTitles" class="m-0" >
-                                <div *ngIf = "title" class="training"></div>
+                        <div (click) = "goToJournal(i+1)" class="card-body m-0 p-0" >
+                            <h6 class="card-title" style="font-size: 1rem;">{{ i+1 }}</h6>
                             </div>
-                            <div *ngIf = "day.stepsIsGood" class="steps"></div>
-                            <div *ngIf = "day.kkalIsGood" class="kkal"></div>
+                            <div class="footer">
+                                <div *ngFor = "let title of day.trainingTitles" class="m-0" >
+                                    <div *ngIf = "title" class="training"></div>
+                                </div>
+                                <div *ngIf = "day.stepsIsGood" class="steps"></div>
+                                <div *ngIf = "day.kkalIsGood" class="kkal"></div>
                         </div>
                       </div>
                     <!-- <p class="m-1 p-2" style="font-size: 1.5rem;">{{ i+1 }}</p> -->
