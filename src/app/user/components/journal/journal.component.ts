@@ -21,6 +21,8 @@ export class JournalComponent implements OnInit {
   subscription: Subscription;
   kkal: number;
   steps: number;
+  trainingTitles: string[];
+  activity: string;
   day: number;
   month: number
   constructor(
@@ -54,24 +56,45 @@ export class JournalComponent implements OnInit {
       console.log(Object.values(this.appUser.journal));
       let record = Object.values(this.appUser.journal).filter(r => r.date == this.date)[0];
       if (record) {
-        this.kkal = record.kkal;
-        this.steps = record.steps;
-        this.weight = record.weight;
-      } else this.kkal = this.steps = this.weight = null
+        this.kkal = record.kkal || null;
+        this.steps = record.steps || null;
+        this.weight = record.weight || null;
+        this.trainingTitles = record.trainingTitles ? Object.values(record.trainingTitles) : [];
+        this.activity = record.activity || null;
+      } else this.kkal = this.steps = this.weight = this.activity = null
     }
   }
-ks
-  save(value: MyRecord) {
+
+  save(value: Partial<MyRecord>) {
     let date = new Date().getTime();
     value.dateRecorded = date;
     console.log("Form value: ", value);
     console.log(this.appUser);
-    
+    value.isKkalInRange = (value['kkal'] && value['kkal'] != null) ? this.isKkalInRange(value['kkal']) : false;
+    console.log(`is kkal in range? ${value.isKkalInRange}`);
+
     if (this.appUser.userId) this.userService.addToJournal(this.appUser.userId, value)
     this.showConfirmationMsg = true;
-    this.router.navigate(['/'])
+  }
+
+  isKkalInRange(kkal) {
+    let result = false;
+    let target = this.appUser.kkalTarget;
+    switch (this.appUser.goal) {
+      case 'gain':
+        if (kkal >= target) result = true;
+        break;
+      case 'lose':
+        if (kkal <= target) result = true;
+        break;
+      case 'maintain':
+        if (kkal <= target*1.1 && kkal >= target*0.9) result = true;
+        break;
+    }
+    return result;
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe()
-  }}
+  }
+}

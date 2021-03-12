@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { AppUser } from 'src/app/shared/models/app-user';
 import { MyRecord } from 'src/app/shared/models/my-record';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-calendar',
@@ -55,10 +54,11 @@ export class CalendarComponent implements OnInit {
       let dateForm = formatDate(new Date(this.year, this.month, index), 'yyyy-MM-dd', 'en');
       console.log(dateForm);
       
-      let emptyDay: MyRecord = {
+      let emptyDay: Partial<MyRecord> = {
         date: dateForm,
         dateRecorded: null,
         kkal: null,
+        isKkalInRange: false,
         steps: 1000,
         trainingTitles: ['qwerty'],
         trainingId: [],
@@ -109,9 +109,9 @@ export class CalendarComponent implements OnInit {
         d.steps = record.steps;
         d.weight = record.weight;
         d.trainingTitles = record.trainingTitles ? Object.values(record.trainingTitles) : [];
-        d.kkalIsGood = (d.kkal <= this.appUser.kkalTarget);
+        d.isKkalInRange = record.isKkalInRange;
         d.stepsIsGood = (d.steps >= 8000);
-        
+        d.activity = record.activity;
       } else d.kkal = d.steps = d.weight = d.trainingTitles= null;
     })
   }

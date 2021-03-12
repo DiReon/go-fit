@@ -22,8 +22,15 @@
             <label for="">Съедено калорий:</label>
             <input [(ngModel)] = "kkal" name = "kkal" id="kkal" type="number" class="form-control">
         </div>
-        <p *ngIf = "showConfirmationMsg">Запись сохранена</p>
-        <button class="btn btn-primary">Сохранить</button>
+        <ul *ngIf = "trainingTitles && trainingTitles?.length != 0" class="list-group">Выполненные тренировки:
+            <li *ngFor = "let title of trainingTitles" class="list-group-item">{{ title }}</li>
+        </ul>
+        <div class="form-group">
+            <label for="">Добавить активность:</label>
+            <input [(ngModel)] = "activity" name = "activity" id="activity" type="text" class="form-control">
+        </div>
+        <div *ngIf = "showConfirmationMsg" class="alert alert-success" role="alert">Запись сохранена</div>
+        <button class="btn btn-success btn-block">Сохранить</button>
     </form>
 </ng-container>
 <ng-template #anonymousUser>

@@ -12,6 +12,7 @@
 
 .training {
     width: 100%;
-    height: 5px;
+    height: 6px;
     background-color: rgb(241, 78, 105);
+    border-top: 1px solid white;
 }

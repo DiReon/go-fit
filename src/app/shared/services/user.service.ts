@@ -53,7 +53,7 @@ export class UserService {
     this.db.list('/users/' + uid + '/completedLectures').push(id)
   }
 
-  addToJournal(uid: string, record: MyRecord) {
+  addToJournal(uid: string, record: Partial<MyRecord>) {
     console.log("add to Journal: ", uid, record);
     
     this.db.list(`/users/${uid}/journal`).update(record.date, record);

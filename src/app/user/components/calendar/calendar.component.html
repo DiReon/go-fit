@@ -8,32 +8,30 @@
 </div>
 
 <div class="container w-100 mx-auto">
-        <div class="row justify-content-center">
-            <ng-container *ngFor = "let day of days; let i = index">
-                <div class="col p-0 m-0" >
-                    <div class="card m-0 p-0" style="height: 13vw; ">
-                        <div (click) = "goToJournal(i+1)" class="card-body m-0 p-0" >
-                            <h6 class="card-title" style="font-size: 1rem;">{{ i+1 }}</h6>
-                            </div>
-                            <div class="footer">
-                                <div *ngFor = "let title of day.trainingTitles" class="m-0" >
-                                    <div *ngIf = "title" class="training"></div>
-                                </div>
-                                <div *ngIf = "day.stepsIsGood" class="steps"></div>
-                                <div *ngIf = "day.kkalIsGood" class="kkal"></div>
+    <div class="row justify-content-center">
+        <ng-container *ngFor = "let day of days; let i = index">
+            <div class="col p-0 m-0" >
+                <div class="card m-0 p-0" style="height: 13vw; ">
+                    <div (click) = "goToJournal(i+1)" class="card-body m-0 p-0" >
+                        <h6 class="card-title" style="font-size: 1rem;">{{ i+1 }}</h6>
                         </div>
-                      </div>
-                    <!-- <p class="m-1 p-2" style="font-size: 1.5rem;">{{ i+1 }}</p> -->
-                    
-                    <!-- <p class="m-0">Вес: {{ day.weight }}</p> -->
-                    <!-- <p class="m-0">Шаги: {{ day.steps }}</p> -->
-                    <!-- <p class="m-0">Ккал: {{ day.kkal }}</p> -->
+                        <div class="footer">
+                            <div *ngFor = "let title of day.trainingTitles" class="m-0" >
+                                <div *ngIf = "title" class="training"></div>
+                            </div>
+                            <div *ngIf = "day.activity" class="training"></div>
+                            <div *ngIf = "day.stepsIsGood" class="steps"></div>
+                            <div *ngIf = "day.isKkalInRange" class="kkal"></div>
+                    </div>
+                    </div>
                 </div>
-                
-                <div *ngIf = "(i + 1) % 7 === 0" class="w-100"></div>
-            </ng-container>
-            <ng-container *ngFor = "let extraDay of extraDays">
-                <div class="col p-0 m-0" style="width: 13.5vw; height: 13.5vw; border: 1px solid white;"></div>
-            </ng-container>
-        </div>
+            <div *ngIf = "(i + 1) % 7 === 0" class="w-100"></div>
+        </ng-container>
+        <ng-container *ngFor = "let extraDay of extraDays">
+            <div class="col p-0 m-0" style="width: 13.5vw; height: 13.5vw; border: 1px solid white;"></div>
+        </ng-container>
+    </div>
 </div>
+<div><div class="training" style="width: 13vw; display: inline-block"></div> - одна тренировка или другая активность</div>
+<div><div class="steps" style="width: 13vw; display: inline-block"></div> - больше 8000 шагов</div>
+<div><div class="kkal" style="width: 13vw; display: inline-block"></div> - в норме по калориям</div>
