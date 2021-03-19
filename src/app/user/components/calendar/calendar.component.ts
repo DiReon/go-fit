@@ -20,6 +20,9 @@ export class CalendarComponent implements OnInit {
   currentMonth: string;
   nextMonth: string;
   extraDays = [];
+  showRecord = false;
+  selectedDay;
+  selectedDate: number;
   monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
   constructor(
     private authService: AuthService,
@@ -116,7 +119,14 @@ export class CalendarComponent implements OnInit {
     })
   }
 
-  goToJournal(day) {
+  showJournal(day) {
+    this.selectedDay = this.days[day];
+    this.selectedDate = day;
+    this.showRecord = true;
+    console.log(this.selectedDay);
+    
+  }
+  updateJournal(day) {
     this.router.navigate(['/journal/'], {queryParams: {month: this.month, day: day}});
   }
 
