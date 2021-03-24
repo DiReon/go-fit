@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-6">
+        <form #f= "ngForm" (ngSubmit) = "save(f.value)">
+            <div class="form-group">
+                <label for="title">Название</label>
+                <input #title="ngModel" [(ngModel)] = "meditation.title" name = "title" id= "title" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="title.touched && title.invalid">Введите, пожалуйста, название</div>
+            </div>
+            <div class="form-group">
+                <label for="videoUrl">Ссылка на видео</label>
+                <input #videoUrl = "ngModel" [(ngModel)] = "meditation.videoUrl" name = "videoUrl" id= "videoUrl" type="URL" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="videoUrl.touched && videoUrl.invalid">Нужна ссылка на видео</div>
+            </div>
+            <upload-files 
+                [url] = "meditation.thumbnailUrl"
+                [type] = "'meditation'" 
+                (upload) = "onUploadFile($event)"
+                (uploadIsValid) = "uploadValidTrigger($event)">
+            </upload-files>
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <textarea #description="ngModel" [(ngModel)] = "meditation.description" name = "description" id= "description" type="text" class="form-control" required></textarea>
+                <div class="alert alert-danger" *ngIf="description.touched && description.invalid">Введите, пожалуйста, описание</div>
+            </div>
+
+            <button [disabled] = "!uploadIsValid" class="btn btn-primary">Сохранить</button>
+            <button type="button" (click) = "delete()" class="btn btn-danger">Удалить</button>
+        </form>
+    </div>
+    
+</div>

@@ -8,38 +8,27 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
-  selector: 'app-lectures',
-  templateUrl: './lectures.component.html',
-  styleUrls: ['./lectures.component.css']
+  selector: 'app-meditations',
+  templateUrl: './meditations.component.html',
+  styleUrls: ['./meditations.component.css']
 })
-export class LecturesComponent implements OnInit {
-  lectures: Lecture[];
+export class MeditationsComponent implements OnInit {
+  meditations: Lecture[];
   appUser: AppUser;
-  completedKeys = [];
   subscription: Subscription;
   authSubscription: Subscription;
   icon = faCheckSquare;
   constructor(
-    private lectureService: SharedService,
+    private sharedService: SharedService,
     private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.lectureService.getAll('lectures').subscribe(t => this.lectures = t)
+    this.subscription = this.sharedService.getAll('meditations').subscribe(t => this.meditations = t)
     this.authSubscription = this.authService.appUser$.subscribe(u => {
       this.appUser = u;
-      let ct = [];
-      if (u) ct = this.appUser.completedLectures;
-      this.completedKeys = ct ? Object.values(ct): [];
-      console.log("Completed lecture keys", this.completedKeys);
-      console.log("All lectures: ", this.lectures);
     })
   }
-
-  checkCompletion(lecture) {
-    return (this.completedKeys.indexOf(lecture['key'])!=-1) ? true: false
-  }
-
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

@@ -9,27 +9,25 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
-  selector: 'app-lecture-card',
-  templateUrl: './lecture-card.component.html',
-  styleUrls: ['./lecture-card.component.css']
+  selector: 'app-meditation-card',
+  templateUrl: './meditation-card.component.html',
+  styleUrls: ['./meditation-card.component.css']
 })
-export class LectureCardComponent implements OnInit {
-  lecture = {} as Lecture;
-  lectureId: string;
+export class MeditationCardComponent implements OnInit {
+  meditation = {} as Lecture;
+  meditationId: string;
   videoId: string;
-  lectureSubscription: Subscription;
+  meditationSubscription: Subscription;
   appUser: AppUser;
 
   constructor(
     private lectureService: SharedService,
     private authService: AuthService,
-    private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router,
   ) {}
 
   ngOnInit() {
-    this.lectureId = this.route.snapshot.paramMap.get('lectureId');
+    this.meditationId = this.route.snapshot.paramMap.get('lectureId');
     this.authService.appUser$.pipe(take(1)).subscribe(u => this.appUser = u);
     
    // This code loads the IFrame Player API code asynchronously, according to the instructions at
@@ -37,18 +35,14 @@ export class LectureCardComponent implements OnInit {
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);  
-    this.lectureSubscription = this.lectureService.get('lectures', this.lectureId).valueChanges().subscribe(t => {
-      this.lecture = t;
-      this.videoId = this.lecture.videoUrl.split('https://youtu.be/')[1];
+    this.meditationSubscription = this.lectureService.get('meditation', this.meditationId).valueChanges().subscribe(t => {
+      this.meditation = t;
+      this.videoId = this.meditation.videoUrl.split('https://youtu.be/')[1];
     })
   }
   
-  markCompleted() {
-    this.userService.markLectureCompleted(this.appUser.userId, this.lectureId);
-    this.router.navigate(['/lectures'])
+  ngOnDestroy() {
+    this.meditationSubscription.unsubscribe();
   }
 
-  ngOnDestroy() {
-    this.lectureSubscription.unsubscribe();
-  }
 }

@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { AppUser } from 'src/app/shared/models/app-user';
 import { Training } from 'src/app/shared/models/training';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { TrainingService } from 'src/app/shared/services/training.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'trainings-list',
@@ -22,13 +22,13 @@ export class TrainingsListComponent implements OnInit {
   icon = faCheckSquare;
   constructor(
     private route: ActivatedRoute,
-    private trainingService: TrainingService,
+    private trainingService: SharedService,
     private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
     this.category = this.route.snapshot.paramMap.get('category');
-    if (this.category == 'all') { this.subscription = this.trainingService.getAll().subscribe(t => this.trainings = t) }
+    if (this.category == 'all') { this.subscription = this.trainingService.getAll('trainings').subscribe(t => this.trainings = t) }
     else this.subscription = this.trainingService.getFromCategory(this.category).subscribe(t => this.trainings = t)
     this.authSubscription = this.authService.appUser$.subscribe(u => {
       this.appUser = u;

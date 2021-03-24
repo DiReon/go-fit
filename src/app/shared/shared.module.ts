@@ -12,7 +12,7 @@ import { UploadFilesComponent } from './components/upload-files/upload-files.com
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { MealService } from './services/meal.service';
-import { TrainingService } from './services/training.service';
+import { SharedService } from './services/shared.service';
 import { UserService } from './services/user.service';
 
 @NgModule({
@@ -43,7 +43,7 @@ import { UserService } from './services/user.service';
     AuthService,
     AuthGuard,
     UserService,
-    TrainingService,
+    SharedService,
     MealService,
   ],
 })

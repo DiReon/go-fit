@@ -1,0 +1,27 @@
+<a routerLink="/admin/meditations/new" class="btn btn-primary">Добавить медитацию</a>
+<br><br>
+<input #query type="text" class="form-control" placeholder="Искать..." (keyup) = "filter(query.value)">
+<br>
+<ngx-datatable 
+  class="material" 
+  [rows]="rows"
+  [columnMode]="ColumnMode.force" 
+  [headerHeight]="50" 
+  [footerHeight]="50"
+  [rowHeight]="50"
+  [limit]="50"
+   >
+  <ngx-datatable-column name="Название" prop = "title">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.title}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Действия" prop = "key">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <a [routerLink]="['/admin/meditations/', row.key]">
+        <fa-icon [icon]="icon" size="2x"></fa-icon>
+      </a>
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>
+

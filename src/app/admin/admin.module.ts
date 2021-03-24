@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { MealCardComponent } from '../shared/components/meal-card/meal-card.component';
 import { LectureFormComponent } from './components/lecture-form/lecture-form.component';
 import { AdminLecturesComponent } from './components/admin-lectures/admin-lectures.component';
+import { MeditationFormComponent } from './components/meditation-form/meditation-form.component';
+import { AdminMeditationsComponent } from './components/admin-meditations/admin-meditations.component';
+import { AdminContentComponent } from './components/admin-content/admin-content.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { AdminLecturesComponent } from './components/admin-lectures/admin-lectur
     TrainingFormComponent,
     LectureFormComponent,
     AdminLecturesComponent,
+    MeditationFormComponent,
+    AdminMeditationsComponent,
+    AdminContentComponent,
   ],
   imports: [
     CommonModule,

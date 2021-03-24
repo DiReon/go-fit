@@ -3,18 +3,24 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AdminDietComponent } from './admin/components/admin-diet/admin-diet.component';
 import { AdminLecturesComponent } from './admin/components/admin-lectures/admin-lectures.component';
+import { AdminMeditationsComponent } from './admin/components/admin-meditations/admin-meditations.component';
 import { AdminTrainingsComponent } from './admin/components/admin-trainings/admin-trainings.component';
 import { LectureFormComponent } from './admin/components/lecture-form/lecture-form.component';
 import { MealFormComponent } from './admin/components/meal-form/meal-form.component';
+import { MeditationFormComponent } from './admin/components/meditation-form/meditation-form.component';
 import { TrainingFormComponent } from './admin/components/training-form/training-form.component';
 import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
+import { ArticlesComponent } from './core/components/articles/articles.component';
 import { DietComponent } from './core/components/diet/diet.component';
 import { HomeComponent } from './core/components/home/home.component';
 import { LectureCardComponent } from './core/components/lecture-card/lecture-card.component';
 import { LecturesComponent } from './core/components/lectures/lectures.component';
 import { LoginComponent } from './core/components/login/login.component';
 import { MealComponent } from './core/components/meal/meal.component';
+import { MeditationCardComponent } from './core/components/meditation-card/meditation-card.component';
+import { MeditationsComponent } from './core/components/meditations/meditations.component';
 import { MoreComponent } from './core/components/more/more.component';
+import { MotivationComponent } from './core/components/motivation/motivation.component';
 import { RegisterComponent } from './core/components/register/register.component';
 import { ResetPasswordComponent } from './core/components/reset-password/reset-password.component';
 import { TrainingCardComponent } from './core/components/training-card/training-card.component';
@@ -44,6 +50,10 @@ const routes: Routes = [
   {path: 'lectures/:lectureId', component: LectureCardComponent, canActivate: [AuthGuard]},
   {path: 'lectures', component: LecturesComponent, canActivate: [AuthGuard]},
   {path: 'more', component: MoreComponent, canActivate: [AuthGuard]},
+  {path: 'meditations', component: MeditationsComponent, canActivate: [AuthGuard]},
+  {path: 'meditations/:meditationId', component: MeditationCardComponent, canActivate: [AuthGuard]},
+  {path: 'motivation', component: MotivationComponent, canActivate: [AuthGuard]},
+  {path: 'articles', component: ArticlesComponent, canActivate: [AuthGuard]},
 
   {path: 'admin/trainings/new', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/trainings/:id', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
@@ -54,6 +64,9 @@ const routes: Routes = [
   {path: 'admin/lectures/new', component: LectureFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/lectures/:id', component: LectureFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/lectures', component: AdminLecturesComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/meditations/new', component: MeditationFormComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/meditations/:id', component: MeditationFormComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/meditations', component: AdminMeditationsComponent, canActivate: [AdminAuthGuard]},
 
 ];
 

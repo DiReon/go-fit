@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Lecture } from 'src/app/shared/models/lecture';
-import { LectureService } from 'src/app/shared/services/lecture.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-lecture-form',
@@ -15,12 +15,12 @@ export class LectureFormComponent implements OnInit {
   categories$;
   uploadIsValid = true;
   constructor(
-    private lectureService: LectureService,
+    private lectureService: SharedService,
     private route: ActivatedRoute,
     private router: Router
   ) {
     this.lectureId = this.route.snapshot.paramMap.get('id');
-    if (this.lectureId) this.lectureService.get(this.lectureId).valueChanges().pipe(take(1))
+    if (this.lectureId) this.lectureService.get('lectures', this.lectureId).valueChanges().pipe(take(1))
       .subscribe(t => this.lecture = t);
     }
 
@@ -41,16 +41,16 @@ export class LectureFormComponent implements OnInit {
     this.lecture.description = value.description;
     this.lecture.videoUrl = value.videoUrl;
 
-    if (this.lectureId) this.lectureService.update(this.lectureId, this.lecture)
-    else this.lectureService.create(this.lecture);
+    if (this.lectureId) this.lectureService.update('lectures', this.lectureId, this.lecture)
+    else this.lectureService.create('lectures', this.lecture);
 
     this.router.navigate(['/admin/lectures']);
   }
   
   delete() {
-    if (!confirm('Точно хотите удалить тренировку?')) return;
+    if (!confirm('Точно хотите удалить лекцию?')) return;
     
-    this.lectureService.delete(this.lectureId);
+    this.lectureService.delete('lectures', this.lectureId);
     this.router.navigate(['/admin/lectures']);
     
   }

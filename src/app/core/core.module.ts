@@ -17,6 +17,10 @@ import { TrainingCardComponent } from './components/training-card/training-card.
 import { TrainingsListComponent } from './components/trainings-list/trainings-list.component';
 import { TrainingsComponent } from './components/trainings/trainings.component';
 import { RecipeComponent } from './recipe/recipe.component';
+import { MotivationComponent } from './components/motivation/motivation.component';
+import { ArticlesComponent } from './components/articles/articles.component';
+import { MeditationsComponent } from './components/meditations/meditations.component';
+import { MeditationCardComponent } from './components/meditation-card/meditation-card.component';
 
 
 
@@ -37,6 +41,10 @@ import { RecipeComponent } from './recipe/recipe.component';
     LectureCardComponent,
     MoreComponent,
     ResetPasswordComponent,
+    MotivationComponent,
+    ArticlesComponent,
+    MeditationsComponent,
+    MeditationCardComponent,
   ],
   imports: [
     CommonModule,

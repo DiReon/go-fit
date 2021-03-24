@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Training } from 'src/app/shared/models/training';
 import { CategoryService } from 'src/app/shared/services/category.service';
-import { TrainingService } from 'src/app/shared/services/training.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-training-form',
@@ -16,13 +16,13 @@ export class TrainingFormComponent implements OnInit {
   categories$;
   uploadIsValid = true;
   constructor(
-    private trainingService: TrainingService,
+    private trainingService: SharedService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router
   ) {
     this.trainingId = this.route.snapshot.paramMap.get('id');
-    if (this.trainingId) this.trainingService.get(this.trainingId).valueChanges().pipe(take(1)).subscribe(t => {
+    if (this.trainingId) this.trainingService.get('trainings', this.trainingId).valueChanges().pipe(take(1)).subscribe(t => {
       this.training = t;
       console.log("this training in quiz form:", this.training);
       
@@ -52,8 +52,8 @@ export class TrainingFormComponent implements OnInit {
     this.training.videoUrl = value.videoUrl;
     this.training.complexity = value.complexity;
 
-    if (this.trainingId) this.trainingService.update(this.trainingId, this.training)
-    else this.trainingService.create(this.training);
+    if (this.trainingId) this.trainingService.update('trainings', this.trainingId, this.training)
+    else this.trainingService.create('trainings', this.training);
 
     this.router.navigate(['/admin/trainings']);
   }
@@ -61,7 +61,7 @@ export class TrainingFormComponent implements OnInit {
   delete() {
     if (!confirm('Точно хотите удалить тренировку?')) return;
     
-    this.trainingService.delete(this.trainingId);
+    this.trainingService.delete('trainings', this.trainingId);
     this.router.navigate(['/admin/trainings']);
     
   }

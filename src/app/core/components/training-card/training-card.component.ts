@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { Subscription } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { UserService } from 'src/app/shared/services/user.service';
 
 import { AppUser } from '../../../shared/models/app-user';
 import { Training } from '../../../shared/models/training';
 import { AuthService } from '../../../shared/services/auth.service';
-import { TrainingService } from '../../../shared/services/training.service';
+import { SharedService } from '../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-training-card',
@@ -24,7 +23,7 @@ export class TrainingCardComponent implements OnInit {
   appUser: AppUser;
 
   constructor(
-    private trainingService: TrainingService,
+    private trainingService: SharedService,
     private authService: AuthService,
     private userService: UserService,
     private route: ActivatedRoute,
@@ -42,7 +41,7 @@ export class TrainingCardComponent implements OnInit {
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);  
-    this.trainingSubscription = this.trainingService.get(this.trainingId).valueChanges().subscribe(t => {
+    this.trainingSubscription = this.trainingService.get('trainings', this.trainingId).valueChanges().subscribe(t => {
       this.training = t;
       this.videoId = this.training.videoUrl.split('https://youtu.be/')[1];
     })
