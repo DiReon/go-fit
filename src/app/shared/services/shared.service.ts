@@ -36,7 +36,6 @@ export class SharedService {
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))));
   }
 
-
   get(type: string, contentId: string) {
     return this.db.object<any>(`/${type}/${contentId}`);
   }

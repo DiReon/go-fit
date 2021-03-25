@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MealService } from 'src/app/shared/services/meal.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-meal',
@@ -11,11 +11,11 @@ export class MealComponent implements OnInit {
   meal$;
   mealId
   constructor(
-    private mealService: MealService,
+    private mealService: SharedService,
     private route: ActivatedRoute,
   ) { 
     this.mealId = this.route.snapshot.paramMap.get('mealId')
-    this.meal$ = mealService.get(this.mealId).valueChanges();
+    this.meal$ = mealService.get('meals', this.mealId).valueChanges();
   }
 
   ngOnInit(): void {

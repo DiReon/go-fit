@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminContentComponent } from './admin/components/admin-content/admin-content.component';
 
-import { AdminDietComponent } from './admin/components/admin-diet/admin-diet.component';
-import { AdminLecturesComponent } from './admin/components/admin-lectures/admin-lectures.component';
-import { AdminMeditationsComponent } from './admin/components/admin-meditations/admin-meditations.component';
-import { AdminTrainingsComponent } from './admin/components/admin-trainings/admin-trainings.component';
 import { LectureFormComponent } from './admin/components/lecture-form/lecture-form.component';
 import { MealFormComponent } from './admin/components/meal-form/meal-form.component';
 import { MeditationFormComponent } from './admin/components/meditation-form/meditation-form.component';
@@ -57,16 +54,13 @@ const routes: Routes = [
 
   {path: 'admin/trainings/new', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/trainings/:id', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
-  {path: 'admin/trainings', component: AdminTrainingsComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/diet/new', component: MealFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/diet/:id', component: MealFormComponent, canActivate: [AdminAuthGuard]},
-  {path: 'admin/diet', component: AdminDietComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/lectures/new', component: LectureFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/lectures/:id', component: LectureFormComponent, canActivate: [AdminAuthGuard]},
-  {path: 'admin/lectures', component: AdminLecturesComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/meditations/new', component: MeditationFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/meditations/:id', component: MeditationFormComponent, canActivate: [AdminAuthGuard]},
-  {path: 'admin/meditations', component: AdminMeditationsComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/:type', component: AdminContentComponent, canActivate: [AdminAuthGuard]},
 
 ];
 
