@@ -10,7 +10,7 @@
     <p *ngIf="uploadCompleted">Загрузка завершена!</p>
 </div>
 
-<ng-container *ngIf = "url">
+<ng-container *ngFor = "let url of urls">
     <div class="row m-2">
         <img [src]="url" alt="Загруженный файл" class="col-6">
         <button (click) = "deleteFile(url)" class="btn btn-danger col-2">[Х]</button>

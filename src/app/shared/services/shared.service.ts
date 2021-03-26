@@ -14,6 +14,11 @@ export class SharedService {
     this.db.list(`/${type}`).push(content);
   }
 
+  setContent(type, content) {
+    let time = new Date().getTime().toString();
+    this.db.list(`/${type}`).set(time, content);
+  }
+
   update(type, contentId, content) {
     return this.db.object(`/${type}/${contentId}`).update(content);
   }
@@ -26,6 +31,11 @@ export class SharedService {
       .pipe(
         map(changes => 
         changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))));
+  }
+
+  getListOfAll(type: string) {
+    this.listRef = this.db.list(`/${type}`);
+    return this.listRef.valueChanges();
   }
 
   getFromCategory(category: string) {

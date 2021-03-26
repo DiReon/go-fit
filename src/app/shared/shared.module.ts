@@ -8,6 +8,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppRoutingModule } from '../app-routing.module';
 import { MealCardComponent } from './components/meal-card/meal-card.component';
+import { PictureTilesComponent } from './components/picture-tiles/picture-tiles.component';
 import { UploadFilesComponent } from './components/upload-files/upload-files.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
@@ -19,6 +20,7 @@ import { UserService } from './services/user.service';
   declarations: [
     MealCardComponent,
     UploadFilesComponent,
+    PictureTilesComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { UserService } from './services/user.service';
     YouTubePlayerModule,
     MealCardComponent,
     UploadFilesComponent,
+    PictureTilesComponent,
   ],
   providers: [
     AuthService,

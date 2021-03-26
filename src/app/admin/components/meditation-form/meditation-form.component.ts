@@ -13,26 +13,29 @@ export class MeditationFormComponent implements OnInit {
   meditation = {} as Lecture;
   meditationId: string;
   uploadIsValid = true;
+  urls = [];
   constructor(
     private meditationService: SharedService,
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.meditationId = this.route.snapshot.paramMap.get('id');
-    if (this.meditationId) this.meditationService.get('meditations', this.meditationId).valueChanges().pipe(take(1))
-      .subscribe(t => this.meditation = t);
+      this.meditationId = this.route.snapshot.paramMap.get('id');
+      if (this.meditationId) this.meditationService.get('meditations', this.meditationId).valueChanges().pipe(take(1))
+        .subscribe(t => {
+          this.meditation = t;
+          this.urls.push(this.meditation.thumbnailUrl);
+        });
     }
 
   ngOnInit(): void {}
 
-  onUploadFile(url) {
-    this.meditation.thumbnailUrl = url;
+  onUploadFile(urls) {
+    this.meditation.thumbnailUrl = urls[0];
   }
 
   uploadValidTrigger(value: boolean) {
     this.uploadIsValid = value;
   }
-
 
   save(value) {
     

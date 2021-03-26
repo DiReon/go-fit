@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faCheckSquare } from '@fortawesome/free-regular-svg-icons';
 import { Subscription } from 'rxjs';
@@ -12,22 +12,15 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   templateUrl: './meditations.component.html',
   styleUrls: ['./meditations.component.css']
 })
-export class MeditationsComponent implements OnInit {
+export class MeditationsComponent implements OnInit, OnDestroy {
   meditations: Lecture[];
-  appUser: AppUser;
   subscription: Subscription;
-  authSubscription: Subscription;
-  icon = faCheckSquare;
   constructor(
     private sharedService: SharedService,
-    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
     this.subscription = this.sharedService.getAll('meditations').subscribe(t => this.meditations = t)
-    this.authSubscription = this.authService.appUser$.subscribe(u => {
-      this.appUser = u;
-    })
   }
 
   ngOnDestroy() {

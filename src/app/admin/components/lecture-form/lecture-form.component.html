@@ -12,7 +12,7 @@
                 <div class="alert alert-danger" *ngIf="videoUrl.touched && videoUrl.invalid">Нужна ссылка на видео</div>
             </div>
             <upload-files 
-                [url] = "lecture.thumbnailUrl"
+                [urls] = "urls"
                 [type] = "'lecture'" 
                 (upload) = "onUploadFile($event)"
                 (uploadIsValid) = "uploadValidTrigger($event)">

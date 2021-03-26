@@ -17,7 +17,7 @@
                 <div class="alert alert-danger" *ngIf="description.touched && description.invalid">Введите, пожалуйста, рецепт</div>
             </div>
             <upload-files 
-                [url] = "meal.imageUrl"
+                [urls] = "urls"
                 [type] = "'type'"
                 (upload) = "onUploadFile($event)"
                 (uploadIsValid) = "uploadValidTrigger($event)">

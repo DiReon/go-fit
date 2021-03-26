@@ -10,6 +10,7 @@ import { MealFormComponent } from './components/meal-form/meal-form.component';
 import { MeditationFormComponent } from './components/meditation-form/meditation-form.component';
 import { TrainingFormComponent } from './components/training-form/training-form.component';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
+import { AdminMotivationComponent } from './components/admin-motivation/admin-motivation.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AdminAuthGuard } from './services/admin-auth-guard.service';
     LectureFormComponent,
     MeditationFormComponent,
     AdminContentComponent,
+    AdminMotivationComponent,
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
@@ -14,6 +15,7 @@ export class LectureFormComponent implements OnInit {
   lectureId: string;
   categories$;
   uploadIsValid = true;
+  urls = [];
   constructor(
     private lectureService: SharedService,
     private route: ActivatedRoute,
@@ -21,13 +23,16 @@ export class LectureFormComponent implements OnInit {
   ) {
     this.lectureId = this.route.snapshot.paramMap.get('id');
     if (this.lectureId) this.lectureService.get('lectures', this.lectureId).valueChanges().pipe(take(1))
-      .subscribe(t => this.lecture = t);
+      .subscribe(t => {
+        this.lecture = t;
+        this.urls.push(this.lecture.thumbnailUrl);
+      });
     }
 
   ngOnInit(): void {}
 
-  onUploadFile(url) {
-    this.lecture.thumbnailUrl = url;
+  onUploadFile(urls) {
+    this.lecture.thumbnailUrl = urls[0];
   }
 
   uploadValidTrigger(value: boolean) {

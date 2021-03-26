@@ -15,6 +15,7 @@ export class TrainingFormComponent implements OnInit {
   trainingId: string;
   categories$;
   uploadIsValid = true;
+  urls = [];
   constructor(
     private trainingService: SharedService,
     private categoryService: CategoryService,
@@ -24,6 +25,7 @@ export class TrainingFormComponent implements OnInit {
     this.trainingId = this.route.snapshot.paramMap.get('id');
     if (this.trainingId) this.trainingService.get('trainings', this.trainingId).valueChanges().pipe(take(1)).subscribe(t => {
       this.training = t;
+      this.urls.push(this.training.thumbnailUrl);
       console.log("this training in quiz form:", this.training);
       
     });
@@ -32,9 +34,9 @@ export class TrainingFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onUploadFile(url) {
-    this.training.thumbnailUrl = url;
-    console.log("Emitted url:", url);
+  onUploadFile(urls) {
+    this.training.thumbnailUrl = urls[0];
+    console.log("Emitted url:", urls[0]);
     
   }
 

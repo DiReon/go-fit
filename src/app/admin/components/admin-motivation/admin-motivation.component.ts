@@ -3,12 +3,13 @@ import { Subscription } from 'rxjs';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
-  selector: 'motivation',
-  templateUrl: './motivation.component.html',
-  styleUrls: ['./motivation.component.css']
+  selector: 'app-admin-motivation',
+  templateUrl: './admin-motivation.component.html',
+  styleUrls: ['./admin-motivation.component.css']
 })
-export class MotivationComponent implements OnInit, OnDestroy {
+export class AdminMotivationComponent implements OnInit, OnDestroy {
   urls: string[];
+  uploadIsValid = true;  
   subscription: Subscription;
   constructor(
       private sharedService: SharedService,
@@ -24,8 +25,18 @@ export class MotivationComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
     }
+    onUploadFile(urlsArr) {
+      urlsArr.forEach(url => {
+        this.urls.push(url);
+        this.sharedService.setContent('motivation', url)
+      });
+    }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+    uploadValidTrigger(value: boolean) {
+      this.uploadIsValid = value;
+    }
+
+    ngOnDestroy() {
+      this.subscription.unsubscribe();
+    }
 }

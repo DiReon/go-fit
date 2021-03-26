@@ -13,21 +13,25 @@ export class MealFormComponent implements OnInit {
   meal = {} as Meal;
   mealId: string;
   uploadIsValid = true;
+  urls = [];
   constructor(
     private mealService: SharedService,
     private route: ActivatedRoute,
     private router: Router
   ) {
     this.mealId = this.route.snapshot.paramMap.get('id');
-    if (this.mealId) this.mealService.get('meals', this.mealId).valueChanges().pipe(take(1)).subscribe(t => this.meal = t);
+    if (this.mealId) this.mealService.get('meals', this.mealId).valueChanges().pipe(take(1)).subscribe(t => {
+      this.meal = t;
+      this.urls.push(this.meal.imageUrl)
+    });
   }
 
   ngOnInit(): void {
   }
   
-  onUploadFile(url) {
-    this.meal.imageUrl = url;
-    console.log("Emitted url:", url);
+  onUploadFile(urls) {
+    this.meal.imageUrl = urls[0];
+    console.log("Emitted url:", urls[0]);
     
   }
 
