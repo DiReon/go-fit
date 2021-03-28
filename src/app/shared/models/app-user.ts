@@ -15,6 +15,9 @@ export class AppUser {
     goal: string;
     physicalActivity: number;
     isAdmin: boolean;
+    activeMonth: Array<string>;
+    //trialMonth: string;
+    //registrationDate: string;
 
     constructor(init?: Partial<AppUser>) {
         Object.assign(this, init)

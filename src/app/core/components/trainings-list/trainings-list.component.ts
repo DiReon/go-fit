@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faCheckSquare } from '@fortawesome/free-regular-svg-icons';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { AppUser } from 'src/app/shared/models/app-user';
 import { Training } from 'src/app/shared/models/training';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -18,7 +19,6 @@ export class TrainingsListComponent implements OnInit {
   appUser: AppUser;
   completedKeys = [];
   subscription: Subscription;
-  authSubscription: Subscription;
   icon = faCheckSquare;
   constructor(
     private route: ActivatedRoute,
@@ -28,16 +28,29 @@ export class TrainingsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.category = this.route.snapshot.paramMap.get('category');
-    if (this.category == 'all') { this.subscription = this.trainingService.getAll('trainings').subscribe(t => this.trainings = t) }
-    else this.subscription = this.trainingService.getFromCategory(this.category).subscribe(t => this.trainings = t)
-    this.authSubscription = this.authService.appUser$.subscribe(u => {
+    let trainings$: Observable<Training[]>;
+    trainings$ = (this.category == 'all') ? this.trainingService.getAll('trainings') : this.trainingService
+      .getFromCategory(this.category)
+    
+    this.subscription = trainings$.pipe(switchMap(t => {
+      this.trainings = t;
+      return this.authService.appUser$;
+    })).subscribe(u => {
       this.appUser = u;
+      console.log(this.appUser);
       let ct = [];
       if (u) ct = this.appUser.completedTrainings;
       this.completedKeys = ct ? Object.values(ct): [];
       console.log("Completed training keys", this.completedKeys);
+      if (this.appUser.activeMonth) {
+        this.trainings = this.trainings.filter(t => this.appUser.activeMonth.indexOf(t.period) != -1);
+      } else this.trainings = null;
       console.log("All trainings: ", this.trainings);
     })
+  }
+
+  getTrainings() {
+
   }
 
   checkCompletion(training) {
