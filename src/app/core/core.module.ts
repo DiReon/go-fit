@@ -21,6 +21,7 @@ import { MotivationComponent } from './components/motivation/motivation.componen
 import { ArticlesComponent } from './components/articles/articles.component';
 import { MeditationsComponent } from './components/meditations/meditations.component';
 import { MeditationCardComponent } from './components/meditation-card/meditation-card.component';
+import { ArticleCardComponent } from './components/article-card/article-card.component';
 
 
 
@@ -45,6 +46,7 @@ import { MeditationCardComponent } from './components/meditation-card/meditation
     ArticlesComponent,
     MeditationsComponent,
     MeditationCardComponent,
+    ArticleCardComponent,
   ],
   imports: [
     CommonModule,

@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminContentComponent } from './admin/components/admin-content/admin-content.component';
 import { AdminMotivationComponent } from './admin/components/admin-motivation/admin-motivation.component';
+import { ArticleFormComponent } from './admin/components/article-form/article-form.component';
 
 import { LectureFormComponent } from './admin/components/lecture-form/lecture-form.component';
 import { MealFormComponent } from './admin/components/meal-form/meal-form.component';
 import { MeditationFormComponent } from './admin/components/meditation-form/meditation-form.component';
 import { TrainingFormComponent } from './admin/components/training-form/training-form.component';
 import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
+import { ArticleCardComponent } from './core/components/article-card/article-card.component';
 import { ArticlesComponent } from './core/components/articles/articles.component';
 import { DietComponent } from './core/components/diet/diet.component';
 import { HomeComponent } from './core/components/home/home.component';
@@ -50,8 +52,9 @@ const routes: Routes = [
   {path: 'more', component: MoreComponent, canActivate: [AuthGuard]},
   {path: 'meditations', component: MeditationsComponent, canActivate: [AuthGuard]},
   {path: 'meditations/:meditationId', component: MeditationCardComponent, canActivate: [AuthGuard]},
-  {path: 'motivation', component: MotivationComponent, canActivate: [AuthGuard]},
   {path: 'articles', component: ArticlesComponent, canActivate: [AuthGuard]},
+  {path: 'articles/:articleId', component: ArticleCardComponent, canActivate: [AuthGuard]},
+  {path: 'motivation', component: MotivationComponent, canActivate: [AuthGuard]},
 
   {path: 'admin/trainings/new', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/trainings/:id', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
@@ -61,6 +64,8 @@ const routes: Routes = [
   {path: 'admin/lectures/:id', component: LectureFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/meditations/new', component: MeditationFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/meditations/:id', component: MeditationFormComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/articles/new', component: ArticleFormComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/articles/:id', component: ArticleFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/motivation', component: AdminMotivationComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/:type', component: AdminContentComponent, canActivate: [AdminAuthGuard]},
 

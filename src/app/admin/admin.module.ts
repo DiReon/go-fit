@@ -11,6 +11,7 @@ import { MeditationFormComponent } from './components/meditation-form/meditation
 import { TrainingFormComponent } from './components/training-form/training-form.component';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { AdminMotivationComponent } from './components/admin-motivation/admin-motivation.component';
+import { ArticleFormComponent } from './components/article-form/article-form.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AdminMotivationComponent } from './components/admin-motivation/admin-mo
     MeditationFormComponent,
     AdminContentComponent,
     AdminMotivationComponent,
+    ArticleFormComponent,
   ],
   imports: [
     CommonModule,

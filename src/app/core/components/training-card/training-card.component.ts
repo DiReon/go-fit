@@ -23,7 +23,7 @@ export class TrainingCardComponent implements OnInit {
   appUser: AppUser;
 
   constructor(
-    private trainingService: SharedService,
+    private sharedService: SharedService,
     private authService: AuthService,
     private userService: UserService,
     private route: ActivatedRoute,
@@ -41,7 +41,7 @@ export class TrainingCardComponent implements OnInit {
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);  
-    this.trainingSubscription = this.trainingService.get('trainings', this.trainingId).valueChanges().subscribe(t => {
+    this.trainingSubscription = this.sharedService.get('trainings', this.trainingId).valueChanges().subscribe(t => {
       this.training = t;
       this.videoId = this.training.videoUrl.split('https://youtu.be/')[1];
     })

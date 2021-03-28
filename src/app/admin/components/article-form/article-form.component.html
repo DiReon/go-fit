@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-md-6">
+        <form #f= "ngForm" (ngSubmit) = "save(f.value)">
+            <div class="form-group">
+                <label for="title">Название</label>
+                <input #title="ngModel" [(ngModel)] = "article.title" name = "title" id= "title" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="title.touched && title.invalid">Введите, пожалуйста, название</div>
+            </div>
+            <upload-files 
+                [urls] = "urls"
+                [type] = "'article'" 
+                (upload) = "onUploadFile($event)"
+                (uploadIsValid) = "uploadValidTrigger($event)">
+            </upload-files>
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <textarea #description="ngModel" [(ngModel)] = "article.description" name = "description" id= "description" type="text" class="form-control" required></textarea>
+                <div class="alert alert-danger" *ngIf="description.touched && description.invalid">Введите, пожалуйста, описание</div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col align-self-start">
+                        <button [disabled] = "!uploadIsValid" class="btn btn-outline-success">Сохранить</button>
+                    </div>
+                    <div class="col align-self-end">
+                        <button type="button" (click) = "delete()" class="btn btn-outline-warning">Удалить</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    
+</div>

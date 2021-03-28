@@ -49,7 +49,7 @@ export class UploadFilesComponent implements OnInit {
         case 'motivation':
           filePath = `/motivation/${time}_${file.name}`
           break;
-        case 'articles':
+        case 'article':
           filePath = `/articles/${time}_${file.name}`
           break;
       }
