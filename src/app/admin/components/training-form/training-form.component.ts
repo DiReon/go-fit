@@ -26,9 +26,10 @@ export class TrainingFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.activeMonth = this.monthArr[0];
-    this.activeYear = this.yearArr[0]; 
+    let currentMonth = new Date().getMonth();
+    this.activeMonth = this.monthArr[currentMonth];
     let currentYear = new Date().getFullYear();
+    this.activeYear = currentYear.toString(); 
     let y = 2020;
     while (y <= currentYear) {
       y++;
@@ -37,7 +38,7 @@ export class TrainingFormComponent implements OnInit {
     this.trainingId = this.route.snapshot.paramMap.get('id');
     if (this.trainingId) this.trainingService.get('trainings', this.trainingId).valueChanges().pipe(take(1)).subscribe(t => {
       this.training = t;
-      [this.activeMonth, this.activeYear] = this.training.period.split('_')
+      if (this.training.period) [this.activeMonth, this.activeYear] = this.training.period.split('_')
       this.urls.push(this.training.thumbnailUrl);
       console.log("this training in quiz form:", this.training);
     });

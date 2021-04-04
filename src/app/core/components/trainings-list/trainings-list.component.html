@@ -1,3 +1,7 @@
+<div *ngIf = "trialDays >= 1" class="alert alert-success" role="alert">
+    Дней до окончания пробного периода: {{ trialDays }}
+</div>
+<div *ngIf = "trialDays == 0" class="alert alert-warning" role="alert">Последний день пробного периода!</div>
 <div class="row">
     <div class="col">
         <div class="row">

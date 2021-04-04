@@ -19,6 +19,7 @@ export class UserService {
       name: user.displayName, 
       email: user.email,
       photoUrl: user.photoURL,
+      registrationDate: new Date().getTime()
     })
   }
 

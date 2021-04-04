@@ -16,10 +16,12 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 export class TrainingsListComponent implements OnInit {
   category: string;
   trainings: Training[];
+  trainingsTemp: Training[];
   appUser: AppUser;
   completedKeys = [];
   subscription: Subscription;
   icon = faCheckSquare;
+  trialDays: number;
   constructor(
     private route: ActivatedRoute,
     private trainingService: SharedService,
@@ -33,7 +35,7 @@ export class TrainingsListComponent implements OnInit {
       .getFromCategory(this.category)
     
     this.subscription = trainings$.pipe(switchMap(t => {
-      this.trainings = t;
+      this.trainingsTemp = t;
       return this.authService.appUser$;
     })).subscribe(u => {
       this.appUser = u;
@@ -43,8 +45,12 @@ export class TrainingsListComponent implements OnInit {
       this.completedKeys = ct ? Object.values(ct): [];
       console.log("Completed training keys", this.completedKeys);
       if (this.appUser.activeMonth) {
-        this.trainings = this.trainings.filter(t => this.appUser.activeMonth.indexOf(t.period) != -1);
+        this.trainings = this.trainingsTemp.filter(t => this.appUser.activeMonth.indexOf(t.period) != -1);
       } else this.trainings = null;
+      console.log("Registration date: ", this.appUser.registrationDate);
+      let today = new Date().getTime();
+      this.trialDays = Math.round((3 - (today - (+this.appUser.registrationDate))/24/3600/1000));
+      if (this.trialDays >= 0) this.trainings = this.trainingsTemp;
       console.log("All trainings: ", this.trainings);
     })
   }
