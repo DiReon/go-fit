@@ -2,6 +2,13 @@
     Дней до окончания пробного периода: {{ trialDays }}
 </div>
 <div *ngIf = "trialDays == 0" class="alert alert-warning" role="alert">Последний день пробного периода!</div>
+<div *ngIf = "noTrainings">
+    <div class="alert alert-warning" role="alert">
+        Пробный период истек, обратитесь ко мне для продления доступа :) +79872525260, Регина
+    </div>
+    <a href="https://api.whatsapp.com/send?phone=79872525260" class="btn btn-success" target="_blank">Написать в WhatsApp</a>
+</div>
+
 <div class="row">
     <div class="col">
         <div class="row">

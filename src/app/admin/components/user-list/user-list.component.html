@@ -1,0 +1,15 @@
+<ul class="list-group">
+    <li *ngFor = "let user of users" class="list-group-item">
+        <div class="row">
+            {{ user.email }}
+            {{ user.name }}
+            <ul *ngIf = "user.activeMonth" class="list-group list-group-horizontal">
+                <li *ngFor = "let month of user.activeMonth" class="list-group-item">
+                    {{ month }}
+                </li>
+            </ul>
+            <button *ngIf = "!isMonthActive(user, currentMonth)" (click) = "addMonth(user, currentMonth)" class="btn btn-outline-success">+{{ currentMonth }}</button>
+            <button *ngIf = "!isMonthActive(user, nextMonth)" (click) = "addMonth(user, nextMonth)" class="btn btn-outline-success">+{{ nextMonth }}</button>
+        </div>
+    </li>
+</ul>

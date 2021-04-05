@@ -22,6 +22,7 @@ export class TrainingsListComponent implements OnInit {
   subscription: Subscription;
   icon = faCheckSquare;
   trialDays: number;
+  noTrainings = false;
   constructor(
     private route: ActivatedRoute,
     private trainingService: SharedService,
@@ -32,8 +33,12 @@ export class TrainingsListComponent implements OnInit {
     this.category = this.route.snapshot.paramMap.get('category');
     let trainings$: Observable<Training[]>;
     trainings$ = (this.category == 'all') ? this.trainingService.getAll('trainings') : this.trainingService
-      .getFromCategory(this.category)
-    
+      .getFromCategory(this.category);
+    let date = new Date();
+    let monthArr = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+    let currentMonth = monthArr[date.getMonth()] + "_" + date.getFullYear().toString();
+    console.log(`Current month: ${currentMonth}`);
+
     this.subscription = trainings$.pipe(switchMap(t => {
       this.trainingsTemp = t;
       return this.authService.appUser$;
@@ -46,17 +51,15 @@ export class TrainingsListComponent implements OnInit {
       console.log("Completed training keys", this.completedKeys);
       if (this.appUser.activeMonth) {
         this.trainings = this.trainingsTemp.filter(t => this.appUser.activeMonth.indexOf(t.period) != -1);
+        if (this.appUser.activeMonth.indexOf(currentMonth) != -1) this.trainings = this.trainingsTemp;
       } else this.trainings = null;
       console.log("Registration date: ", this.appUser.registrationDate);
       let today = new Date().getTime();
       this.trialDays = Math.round((3 - (today - (+this.appUser.registrationDate))/24/3600/1000));
       if (this.trialDays >= 0) this.trainings = this.trainingsTemp;
       console.log("All trainings: ", this.trainings);
+      if (!this.trainings || !this.trainings.length) this.noTrainings = true;
     })
-  }
-
-  getTrainings() {
-
   }
 
   checkCompletion(training) {
