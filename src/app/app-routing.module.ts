@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AdminContentComponent } from './admin/components/admin-content/admin-content.component';
 import { AdminMotivationComponent } from './admin/components/admin-motivation/admin-motivation.component';
 import { ArticleFormComponent } from './admin/components/article-form/article-form.component';
-
 import { LectureFormComponent } from './admin/components/lecture-form/lecture-form.component';
 import { MealFormComponent } from './admin/components/meal-form/meal-form.component';
 import { MeditationFormComponent } from './admin/components/meditation-form/meditation-form.component';

@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
-import { BsNavbarComponent } from './components/bs-navbar/bs-navbar.component';
+import { AmNavbarComponent } from './components/am-navbar/am-navbar.component';
+import { ArticleCardComponent } from './components/article-card/article-card.component';
+import { ArticlesComponent } from './components/articles/articles.component';
 import { DietComponent } from './components/diet/diet.component';
 import { MealFilterComponent } from './components/diet/meal-filter/meal-filter.component';
 import { HomeComponent } from './components/home/home.component';
@@ -10,24 +12,21 @@ import { LectureCardComponent } from './components/lecture-card/lecture-card.com
 import { LecturesComponent } from './components/lectures/lectures.component';
 import { LoginComponent } from './components/login/login.component';
 import { MealComponent } from './components/meal/meal.component';
+import { MeditationCardComponent } from './components/meditation-card/meditation-card.component';
+import { MeditationsComponent } from './components/meditations/meditations.component';
 import { MoreComponent } from './components/more/more.component';
+import { MotivationComponent } from './components/motivation/motivation.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { TrainingCardComponent } from './components/training-card/training-card.component';
 import { TrainingsListComponent } from './components/trainings-list/trainings-list.component';
 import { TrainingsComponent } from './components/trainings/trainings.component';
 import { RecipeComponent } from './recipe/recipe.component';
-import { MotivationComponent } from './components/motivation/motivation.component';
-import { ArticlesComponent } from './components/articles/articles.component';
-import { MeditationsComponent } from './components/meditations/meditations.component';
-import { MeditationCardComponent } from './components/meditation-card/meditation-card.component';
-import { ArticleCardComponent } from './components/article-card/article-card.component';
 
 
 
 @NgModule({
   declarations: [
-    BsNavbarComponent,
     DietComponent,
     HomeComponent,
     LoginComponent,
@@ -47,13 +46,14 @@ import { ArticleCardComponent } from './components/article-card/article-card.com
     MeditationsComponent,
     MeditationCardComponent,
     ArticleCardComponent,
+    AmNavbarComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
   ],
   exports: [
-    BsNavbarComponent,
+    AmNavbarComponent,
   ]
 })
 export class CoreModule { }

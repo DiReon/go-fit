@@ -1,18 +1,10 @@
-<div class="row">
-    <div class="col">
-        <div class="row">
-            <ng-container *ngFor = "let training of trainings; let i = index">
-                <div class="col-4" style="margin-bottom: 2px;">
-                    <div *ngIf = "training.title" class="m-0">
-                        <a [routerLink] = "['/trainings/', training.category, training.key]">
-                            <img [src]="training.thumbnailUrl" class="cropped" alt="{{ training.title }}">
-                            
-                            <fa-icon *ngIf = "checkCompletion(training)" [icon]="icon" size="2x" class="icon-check"></fa-icon>
-                        </a>
-                    </div>
-                </div>
-                <div *ngIf = "(i + 1) % 3 === 0" class="w-100"></div>
-            </ng-container>
+<mat-grid-list cols="3" rowHeight="1:1">
+    <mat-grid-tile *ngFor = "let training of trainings; let i = index">
+        <div *ngIf = "training.title">
+            <a [routerLink] = "['/trainings/', training.category, training.key]">
+                <img [src]="training.thumbnailUrl" class="cropped" alt="{{ training.title }}">
+                <fa-icon *ngIf = "checkCompletion(training)" [icon]="icon" size="2x" class="icon-check"></fa-icon>
+            </a>
         </div>
-    </div>
-</div>
+    </mat-grid-tile>
+</mat-grid-list>

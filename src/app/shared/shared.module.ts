@@ -1,6 +1,18 @@
+import { LayoutModule } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +42,18 @@ import { UserService } from './services/user.service';
     NgbModule,
     FontAwesomeModule,
     YouTubePlayerModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatSidenavModule,
+    MatGridListModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatExpansionModule,
   ],
   exports: [
     AppRoutingModule,
@@ -38,9 +62,21 @@ import { UserService } from './services/user.service';
     NgbModule,
     FontAwesomeModule,
     YouTubePlayerModule,
+    BrowserAnimationsModule,
     MealCardComponent,
     UploadFilesComponent,
     PictureTilesComponent,
+    MatSidenavModule,
+    MatGridListModule,
+    MatSliderModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatCardModule,
   ],
   providers: [
     AuthService,

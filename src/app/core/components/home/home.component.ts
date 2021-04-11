@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (!u.name) this.router.navigate(['user-profile']);
         this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
         this.appUser = new AppUser(u);
+        console.log("HomeComponent loaded");
+        
       };
     })
   }

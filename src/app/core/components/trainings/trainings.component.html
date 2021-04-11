@@ -1,20 +1,12 @@
-
-
-<div class="row">
-    <div class="col">
-        <div class="row">
-            <ng-container *ngFor = "let c of categories$ | async">
-                <div class="col-6 col-lg-3 text-center m-0 p-1">
-                    <a [routerLink] = "['/trainings/', c.payload.val().name]">
-                        <img [src]="c.payload.val().thumbnailUrl" class="cropped p-0" style="max-width: 300px; max-height: 300px" alt="{{ c.payload.val().name }}">
-                    </a>
-                </div>
-            </ng-container>
-            <div class="col-6 col-lg-3 text-center m-0 p-1">
-                <a routerLink = "/trainings/all">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/App%20thumbnails%2F%D0%9E%D0%B1%D1%89%D0%B8%D0%B9%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%82%D1%80%D0%B5%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BE%D0%BA.jpg?alt=media&token=050e9c0c-b737-4649-b93a-e68d179b6a4b" class="cropped p-0" style="max-width: 300px; max-height: 300px" alt="Общий список тренировок">
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+<mat-grid-list cols="2" rowHeight="1:1">
+    <mat-grid-tile *ngFor = "let c of categories$ | async">
+        <a [routerLink] = "['/trainings/', c.payload.val().name]">
+            <img [src]="c.payload.val().thumbnailUrl" class="cropped" alt="{{ c.payload.val().name }}">
+        </a>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <a routerLink = "/trainings/all">
+            <img src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/App%20thumbnails%2F%D0%9E%D0%B1%D1%89%D0%B8%D0%B9%20%D1%81%D0%BF%D0%B8%D1%81%D0%BE%D0%BA%20%D1%82%D1%80%D0%B5%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%BE%D0%BA.jpg?alt=media&token=050e9c0c-b737-4649-b93a-e68d179b6a4b" class="cropped" alt="Общий список тренировок">
+        </a>
+    </mat-grid-tile>
+</mat-grid-list>  

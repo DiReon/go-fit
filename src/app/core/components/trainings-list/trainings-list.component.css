@@ -13,13 +13,13 @@
     position: absolute;
     top: 4px;
     right: 8px;
-    color: rgba(112, 238, 81, 1);
+    color: rgb(0, 219, 18);
 }
 
 .cropped {
     object-fit: cover;
 
-    width: 31.5vw;
-    height: 31.5vw;
+    width: 32.1vw;
+    height: 32.1vw;
 }
 
