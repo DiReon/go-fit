@@ -1,0 +1,6 @@
+.cropped {
+    object-fit: cover;
+
+    width: 49vw;
+    height: 49vw;
+}

@@ -9,7 +9,7 @@
       <a mat-list-item routerLink="/trainings">Тренировки</a>
       <a mat-list-item routerLink="/diet">Питание</a>
       <a mat-list-item routerLink = "/lectures">Лекции</a>
-      <a mat-list-item [matMenuTriggerFor]="menu" routerLink = "/meditations">Разное</a>
+      <a mat-list-item [matMenuTriggerFor]="menu">Разное</a>
       <mat-menu #menu="matMenu">
         <a mat-menu-item routerLink = "/meditations">Медитации</a>
         <a mat-menu-item routerLink = "/motivation">Мотивация</a>
@@ -26,6 +26,17 @@
       <ng-template #anonymousUser>
         <a mat-list-item routerLink = "/login">Войти</a>
       </ng-template>
+      <ng-container *ngIf = "appUser?.isAdmin">
+        <a mat-list-item [matMenuTriggerFor]="adminMenu">Администрирование</a>
+        <mat-menu #adminMenu="matMenu">
+          <a mat-menu-item routerLink = "/admin/trainings">Тренировки</a>
+          <a mat-menu-item routerLink = "/admin/lectures">Мотивация</a>
+          <a mat-menu-item routerLink = "/admin/meals">Рецепты</a>
+          <a mat-menu-item routerLink = "/admin/meditations">Медитации</a>
+          <a mat-menu-item routerLink = "/admin/motivation">Мотивация</a>
+          <a mat-menu-item routerLink = "/admin/articles">Статьи</a>
+        </mat-menu>
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

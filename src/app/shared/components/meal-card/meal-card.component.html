@@ -1,7 +1,4 @@
-<div *ngIf = "meal.title" class="card p-0" style = "margin-right: 1vw">
-    <img [src]="meal.imageUrl" class="card-img-top cropped m-0 p-0"  alt="{{ meal.title }}" *ngIf = "meal.imageUrl">
+<mat-card>
+    <img mat-card-image [src]="meal.imageUrl" class="cropped"  alt="{{ meal.title }}" *ngIf = "meal.imageUrl">
     <div class="shade"></div>
-    <div class="card-img-overlay ts m-0 p-0">
-        <h6 class="card-title m-0 p-0 text-white text-center">{{ meal.title }}</h6>
-    </div>
-</div>
+</mat-card>

@@ -1,14 +1,7 @@
-<div class="row">
-    <div class="col">
-        <div class="row">
-            <ng-container *ngFor = "let meal of meals; let i = index">
-                <div class="col-6 p-0 m-0">
-                    <a [routerLink] = "['/diet/recipes', meal.key]" class="text-success">
-                        <meal-card [meal] = "meal"></meal-card>
-                    </a>
-                </div>
-                <div *ngIf = "(i + 1) % 2 === 0" class="w-100"></div>
-            </ng-container>
-        </div>
-    </div>
-</div>
+<mat-grid-list cols="2" rowHeight="3:2">
+    <mat-grid-tile *ngFor = "let meal of meals; let i = index">
+        <a [routerLink] = "['/diet/recipes', meal.key]">
+            <meal-card [meal] = "meal"></meal-card>
+        </a>
+    </mat-grid-tile>
+</mat-grid-list>

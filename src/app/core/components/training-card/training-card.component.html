@@ -14,7 +14,7 @@
             <div style="white-space: pre-wrap;">{{ training.description }}</div>
         </mat-card-content>
         <mat-card-actions>
-            <button *ngIf = "appUser" (click) = "markCompleted()" class="btn btn-success w-100">Сделано!</button>
+            <button mat-raised-button color = "primary" *ngIf = "appUser" (click) = "markCompleted()">Сделано!</button>
         </mat-card-actions>
     </mat-card>
 </div>
