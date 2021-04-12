@@ -1,14 +1,5 @@
 {
-  "targets": {
-    "regina-go": {
-      "hosting": {
-        "go-fit": [
-          "regina-go"
-        ]
-      }
-    }
-  },
   "projects": {
-    "default": "regina-go"
+    "default": "reginarus-go"
   }
 }
