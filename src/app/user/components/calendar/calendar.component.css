@@ -16,3 +16,31 @@
     background-color: #28A745;
     border-top: 1px solid white;
 }
+
+.column {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  mat-grid-tile {
+    background: lightblue;
+  }
+
+  mat-button-toggle-group {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content:space-around;
+      border-radius: 0; 
+    }
+
+  mat-button-toggle {
+    width: 100%;
+    border: none; 
+    border-radius: 0; 
+    background-color: rgb(10,194,206);
+    color: aliceblue;
+  }

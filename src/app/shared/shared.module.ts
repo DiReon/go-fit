@@ -31,7 +31,7 @@ import { MealService } from './services/meal.service';
 import { SharedService } from './services/shared.service';
 import { UserService } from './services/user.service';
 import { MatNativeDateModule } from '@angular/material/core';
-//import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 @NgModule({
   declarations: [
     MealCardComponent,
@@ -62,6 +62,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatSnackBarModule,
     MatDatepickerModule,
+    MatButtonToggleModule,
   ],
   exports: [
     AppRoutingModule,
@@ -90,6 +91,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatButtonToggleModule,
   ],
   providers: [
     AuthService,

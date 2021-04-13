@@ -1,48 +1,35 @@
 
-<div class="row mb-5" >
-    <div (click) = "loadMonth(-1)" class="col btn btn-info" style="border: none; border-radius: 0; background-color: rgb(10,194,206)" >{{ previousMonth }}</div>
-    <div class="col btn btn-info" style="border: none; border-radius: 0; background-color: rgb(64,214, 221);">
-        {{ currentMonth }} {{ year }}
-    </div>
-    <div (click) = "loadMonth(1)" class="col btn btn-info" style="border: none; border-radius: 0; background-color: rgb(10,194,206)">{{ nextMonth }}</div>
-</div>
+<mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle (click) = "loadMonth(-1)">{{ previousMonth }}</mat-button-toggle>
+    <mat-button-toggle >{{ currentMonth }} {{ year }}</mat-button-toggle>
+    <mat-button-toggle (click) = "loadMonth(1)">{{ nextMonth }}</mat-button-toggle>
+</mat-button-toggle-group>
 
-<div class="container w-100 mx-auto">
-    <div class="row justify-content-center">
-        <ng-container *ngFor = "let day of days; let i = index">
-            <div class="col p-0 m-0" >
-                <div class="card m-0 p-0" style="height: 13vw; ">
-                    <div (click) = "showJournal(i)" class="card-body m-0 p-0" >
-                        <h6 class="card-title" style="font-size: 1rem;">{{ i+1 }}</h6>
-                        </div>
-                        <div class="footer">
-                            <div *ngFor = "let title of day.trainingTitles" class="m-0" >
-                                <div *ngIf = "title" class="training"></div>
-                            </div>
-                            <div *ngIf = "day.activity" class="training"></div>
-                            <div *ngIf = "day.stepsIsGood" class="steps"></div>
-                            <div *ngIf = "day.isKkalInRange" class="kkal"></div>
-                    </div>
-                    </div>
-                </div>
-            <div *ngIf = "(i + 1) % 7 === 0" class="w-100"></div>
-        </ng-container>
-        <ng-container *ngFor = "let extraDay of extraDays">
-            <div class="col p-0 m-0" style="width: 13.5vw; height: 13.5vw; border: 1px solid white;"></div>
-        </ng-container>
-    </div>
-</div>
+<mat-grid-list cols = "7" rowHeight = "1:1">
+    <mat-grid-tile *ngFor = "let day of days; let i = index" class="column">
+        <div class="column">
+            <button mat-button (click) = "showJournal(i)">{{ i+1 }}</button>
+            <div *ngFor = "let title of day.trainingTitles">
+                <div *ngIf = "title" class="training"></div>
+            </div>
+            <div *ngIf = "day.activity" class="training"></div>
+            <div *ngIf = "day.stepsIsGood" class="steps"></div>
+            <div *ngIf = "day.isKkalInRange" class="kkal"></div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
 <div><div class="training" style="width: 13vw; display: inline-block"></div> - одна тренировка или другая активность</div>
 <div><div class="steps" style="width: 13vw; display: inline-block"></div> - больше 8000 шагов</div>
 <div><div class="kkal" style="width: 13vw; display: inline-block"></div> - в норме по калориям</div>
 
 <div *ngIf = "showRecord">
-    <ul class="list-group">
-        <li *ngFor = "let title of selectedDay.trainingTitles" class="list-group-item">Тренировка: {{ title }}</li>
-        <li *ngIf = "selectedDay.activity" class="list-group-item">Активность: {{ selectedDay.activity }}</li>
-        <li *ngIf = "selectedDay.steps" class="list-group-item">Шаги: {{ selectedDay.steps }}</li>
-        <li *ngIf = "selectedDay.kkal" class="list-group-item">Калории: {{ selectedDay.kkal }}</li>
-        <li *ngIf = "selectedDay.weight" class="list-group-item">Вес: {{ selectedDay.weight }}</li>
-    </ul>
-    <button (click) = "updateJournal(selectedDate+1)" class="btn btn-outline-success btn-block">Добавить/Изменить</button>
+    <mat-list>
+        <mat-list-item *ngFor = "let title of selectedDay.trainingTitles" >Тренировка: {{ title }}</mat-list-item>
+        <mat-list-item *ngIf = "selectedDay.activity" >Активность: {{ selectedDay.activity }}</mat-list-item>
+        <mat-list-item *ngIf = "selectedDay.steps" >Шаги: {{ selectedDay.steps }}</mat-list-item>
+        <mat-list-item *ngIf = "selectedDay.kkal" >Калории: {{ selectedDay.kkal }}</mat-list-item>
+        <mat-list-item *ngIf = "selectedDay.weight" >Вес: {{ selectedDay.weight }}</mat-list-item>
+    </mat-list>
+    <button mat-raised-button color = "primary" (click) = "updateJournal(selectedDate+1)">Добавить/Изменить</button>
 </div>
