@@ -6,31 +6,32 @@
 
     <form *ngIf = "showActions" #f = ngForm (ngSubmit) = "save(f.value)">
         Добавить новую запись в дневник:
-        <div class="form-group">
-            <label for="">Дата:</label>
-            <input (change) = "load()" [(ngModel)] = "date" name = "date" id="date" type="date" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="weight">Ваш вес сегодня:</label>
-            <input [(ngModel)] = "weight" name = "weight" id= "weight" type="number" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="">Сделано шагов:</label>
-            <input [(ngModel)] = "steps" name = "steps" id="steps" type="number" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="">Съедено калорий:</label>
-            <input [(ngModel)] = "kkal" name = "kkal" id="kkal" type="number" class="form-control">
-        </div>
-        <ul *ngIf = "trainingTitles && trainingTitles?.length != 0" class="list-group">Выполненные тренировки:
-            <li *ngFor = "let title of trainingTitles" class="list-group-item">{{ title }}</li>
+        <mat-form-field appearance = "standard">
+            <mat-label>Дата:</mat-label>
+            <input matInput [matDatepicker]="picker" (dateChange) = "load()" [(ngModel)] = "date" name = "date" id="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance = "standard">
+            <mat-label>Ваш вес сегодня:</mat-label>
+            <input matInput [(ngModel)] = "weight" name = "weight" id= "weight" type="number">
+        </mat-form-field>
+        <mat-form-field appearance = "standard">
+            <mat-label>Сделано шагов:</mat-label>
+            <input matInput [(ngModel)] = "steps" name = "steps" id="steps" type="number">
+        </mat-form-field>
+        <mat-form-field appearance = "standard">
+            <mat-label>Съедено калорий:</mat-label>
+            <input matInput [(ngModel)] = "kkal" name = "kkal" id="kkal" type="number">
+        </mat-form-field>
+        <ul *ngIf = "trainingTitles && trainingTitles?.length != 0" >Выполненные тренировки:
+            <li *ngFor = "let title of trainingTitles">{{ title }}</li>
         </ul>
-        <div class="form-group">
-            <label for="">Добавить активность:</label>
-            <input [(ngModel)] = "activity" name = "activity" id="activity" type="text" class="form-control">
-        </div>
-        <div *ngIf = "showConfirmationMsg" class="alert alert-success" role="alert">Запись сохранена</div>
-        <button class="btn btn-success btn-block">Сохранить</button>
+        <mat-form-field appearance = "standard">
+            <mat-label>Добавить активность:</mat-label>
+            <input matInput [(ngModel)] = "activity" name = "activity" id="activity" type="text">
+        </mat-form-field>
+        <button mat-raised-button color = "primary" (click)="openSnackBar()">Сохранить</button>
     </form>
 </ng-container>
 <ng-template #anonymousUser>

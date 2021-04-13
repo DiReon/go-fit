@@ -5,19 +5,22 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AppRoutingModule } from '../app-routing.module';
 import { MealCardComponent } from './components/meal-card/meal-card.component';
 import { PictureTilesComponent } from './components/picture-tiles/picture-tiles.component';
@@ -27,7 +30,8 @@ import { AuthService } from './services/auth.service';
 import { MealService } from './services/meal.service';
 import { SharedService } from './services/shared.service';
 import { UserService } from './services/user.service';
-
+import { MatNativeDateModule } from '@angular/material/core';
+//import { MatMomentDateModule } from '@angular/material-moment-adapter';
 @NgModule({
   declarations: [
     MealCardComponent,
@@ -54,6 +58,10 @@ import { UserService } from './services/user.service';
     MatCardModule,
     MatMenuModule,
     MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatDatepickerModule,
   ],
   exports: [
     AppRoutingModule,
@@ -77,6 +85,11 @@ import { UserService } from './services/user.service';
     MatMenuModule,
     MatExpansionModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     AuthService,

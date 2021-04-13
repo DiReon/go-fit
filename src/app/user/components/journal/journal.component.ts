@@ -6,7 +6,7 @@ import { AppUser } from 'src/app/shared/models/app-user';
 import { MyRecord } from 'src/app/shared/models/my-record';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
-
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-journal',
   templateUrl: './journal.component.html',
@@ -17,7 +17,6 @@ export class JournalComponent implements OnInit {
   weight: number;
   showActions = true;
   date: string;
-  showConfirmationMsg = false;
   subscription: Subscription;
   kkal: number;
   steps: number;
@@ -29,7 +28,8 @@ export class JournalComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar,
   ) { 
     this.day = +this.route.snapshot.queryParamMap.get('day');
     this.month = +this.route.snapshot.queryParamMap.get('month');
@@ -51,17 +51,22 @@ export class JournalComponent implements OnInit {
   ngOnInit() {}
 
   load() {
+    this.date = formatDate(this.date, 'yyyy-MM-dd', 'en');
+    console.log(this.kkal = this.steps = this.weight = this.activity = null)
     if (this.appUser.journal && this.appUser.journal!=null) {
       console.log("Journal: ", this.appUser.journal);
       console.log(Object.values(this.appUser.journal));
       let record = Object.values(this.appUser.journal).filter(r => r.date == this.date)[0];
+      console.log("Date from form: ", this.date);
+      
       if (record) {
         this.kkal = record.kkal || null;
         this.steps = record.steps || null;
         this.weight = record.weight || null;
         this.trainingTitles = record.trainingTitles ? Object.values(record.trainingTitles) : [];
         this.activity = record.activity || null;
-      } else this.kkal = this.steps = this.weight = this.activity = null
+        console.log("Record: ", record);
+      }
     }
   }
 
@@ -74,7 +79,6 @@ export class JournalComponent implements OnInit {
     console.log(`is kkal in range? ${value.isKkalInRange}`);
 
     if (this.appUser.userId) this.userService.addToJournal(this.appUser.userId, value)
-    this.showConfirmationMsg = true;
   }
 
   isKkalInRange(kkal) {
@@ -92,6 +96,12 @@ export class JournalComponent implements OnInit {
         break;
     }
     return result;
+  }
+
+  openSnackBar() {
+    this._snackBar.open("Запись сохранена", "OK", {
+      duration: 2000,
+    });
   }
 
   ngOnDestroy() {
