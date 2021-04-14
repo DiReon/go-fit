@@ -1,5 +1,11 @@
 <form #f = "ngForm" (ngSubmit) = "register(f.value)">
-    <input #email = "ngModel" [(ngModel)] = "email2" name ="email" type="text" class="form-control mb-2" placeholder="Email" required autofocus>
-    <input #password = "ngModel" [(ngModel)] = "password2" name="password" type="password" class="form-control mb-2" placeholder="Пароль" required>
-    <button class="btn btn-lg btn-primary btn-block mb-1">Зарегистрироваться</button>
+    <mat-form-field>
+        <mat-label>Адрес электронной почты</mat-label>
+        <input matInput #email = "ngModel" [(ngModel)]="email2" name="email" required autofocus>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Пароль</mat-label>
+        <input matInput #password = "ngModel" [(ngModel)]="password2" name="password" required>
+      </mat-form-field>
+    <button mat-raised-button color = "primary">Зарегистрироваться</button>
 </form>

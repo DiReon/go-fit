@@ -1,4 +1,10 @@
-.btn-light {
-    border-color: #20c997;
-    border-radius: 20px;
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+mat-form-field {
+    width: 100%;
 }

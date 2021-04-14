@@ -4,6 +4,7 @@ import { AppUser } from '../../../shared/models/app-user';
 import { AuthService } from '../../../shared/services/auth.service';
 import { take } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,23 +16,16 @@ export class UserProfileComponent implements OnInit {
   constructor(private userService: UserService,
               private authService: AuthService,
               private router: Router) {
-    this.authService.appUser$.pipe(take(1)).subscribe(user => {
-      this.appUser = new AppUser(user);
-      // console.log("Last user weight record: ", this.appUser.lastWeightRecord);
-      // if (!this.appUser.lastWeight) this.appUser.weight = [{date: null, weightToday: null}]
-    });
+    this.authService.appUser$.pipe(take(1)).subscribe(user => this.appUser = new AppUser(user));
   }
 
   ngOnInit(): void {
   }
 
   save(value) {
-    console.log("Form value: ", value);
-    let date = new Date().getTime();
-    // this.appUser.weight.push({date: date, weightToday: this.appUser.lastWeightRecord})
-    // console.log("User weight records: ", this.appUser.weight);
+    console.log(this.appUser);
+    
     if (this.appUser.userId) this.userService.update(this.appUser.userId, this.appUser);
-    // if (this.appUser.userId) this.userService.update(this.appUser.userId, this.appUser.weight);
 
     this.router.navigate(['/'])
   }
