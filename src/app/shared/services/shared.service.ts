@@ -11,6 +11,7 @@ export class SharedService {
   constructor(private db: AngularFireDatabase) { }
 
   create(type, content) {
+    content.dateCreated = new Date().getTime();
     this.db.list(`/${type}`).push(content);
   }
 

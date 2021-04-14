@@ -18,6 +18,30 @@
                 (upload) = "onUploadFile($event)"
                 (uploadIsValid) = "uploadValidTrigger($event)">
             </upload-files>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col align-self-start">
+                        <div class="form-group">
+                            <label for="month">Месяц</label>
+                            <select #month="ngModel" [(ngModel)] = "activeMonth" name = "month" id= "month" type="text" class="form-control" required>
+                                <option *ngFor = "let m of monthArr" value="{{m}}">{{ m }}</option>
+                            </select>
+                            <div class="alert alert-danger" *ngIf="month.touched && month.invalid">Выберите активный месяц для тренировки</div>
+                        </div>
+                    </div>
+                    <div class="col align-self-end">
+                        <div class="form-group">
+                            <label for="year">Год</label>
+                            <select #year="ngModel" [(ngModel)] = "activeYear" name = "year" id= "year" type="text" class="form-control" required>
+                                <option *ngFor = "let y of yearArr" value="{{y}}">{{ y }}</option>
+                            </select>
+                            <div class="alert alert-danger" *ngIf="year.touched && year.invalid">Выберите активный год для тренировки</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class = "form-group">
                 <label for = "complexity">Уровень сложности</label>
                 <select #complexity = "ngModel" [(ngModel)] = "training.complexity" name = "complexity" id = "complexity" type = "text" class="form-control" required>
@@ -45,8 +69,16 @@
                 <div class="alert alert-danger" *ngIf="description.touched && description.invalid">Введите, пожалуйста, описание</div>
             </div>
 
-            <button [disabled] = "!uploadIsValid" class="btn btn-primary">Сохранить</button>
-            <button type="button" (click) = "delete()" class="btn btn-danger">Удалить</button>
+            <div class="container">
+                <div class="row">
+                    <div class="col align-self-start">
+                        <button [disabled] = "!uploadIsValid" class="btn btn-outline-success">Сохранить</button>
+                    </div>
+                    <div class="col align-self-end">
+                        <button type="button" (click) = "delete()" class="btn btn-outline-warning">Удалить</button>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
     

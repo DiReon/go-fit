@@ -16,18 +16,31 @@ export class TrainingFormComponent implements OnInit {
   categories$;
   uploadIsValid = true;
   urls = [];
+  activeMonth: string;
+  activeYear: string;
+  monthArr = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+  yearArr = ['2020'];
   constructor(
     private trainingService: SharedService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router
   ) {
+    let currentMonth = new Date().getMonth();
+    this.activeMonth = this.monthArr[currentMonth];
+    let currentYear = new Date().getFullYear();
+    this.activeYear = currentYear.toString(); 
+    let y = 2020;
+    while (y <= currentYear) {
+      y++;
+      this.yearArr.push(y.toString());
+    }
     this.trainingId = this.route.snapshot.paramMap.get('id');
     if (this.trainingId) this.trainingService.get('trainings', this.trainingId).valueChanges().pipe(take(1)).subscribe(t => {
       this.training = t;
+      if (this.training.period) [this.activeMonth, this.activeYear] = this.training.period.split('_')
       this.urls.push(this.training.thumbnailUrl);
       console.log("this training in quiz form:", this.training);
-      
     });
     this.categories$ = this.categoryService.getAll().snapshotChanges();
   }
@@ -53,6 +66,8 @@ export class TrainingFormComponent implements OnInit {
     this.training.description = value.description;
     this.training.videoUrl = value.videoUrl;
     this.training.complexity = value.complexity;
+    console.log(`active date: ${this.activeMonth} ${this.activeYear}`);
+    this.training.period = `${this.activeMonth}_${this.activeYear}`;
 
     if (this.trainingId) this.trainingService.update('trainings', this.trainingId, this.training)
     else this.trainingService.create('trainings', this.training);

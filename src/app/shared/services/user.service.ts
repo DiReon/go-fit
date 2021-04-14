@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { AppUser } from 'src/app/shared/models/app-user';
 import { Training } from 'src/app/shared/models/training';
 import { MyRecord } from '../models/my-record';
@@ -19,6 +19,7 @@ export class UserService {
       name: user.displayName, 
       email: user.email,
       photoUrl: user.photoURL,
+      registrationDate: new Date().getTime()
     })
   }
 
@@ -28,8 +29,11 @@ export class UserService {
 
   get(uid: string): AngularFireObject<AppUser> {
     console.log("called userService.get(", uid, ")");
-    
     return this.db.object('/users/' + uid)
+  }
+
+  getAll(): AngularFireList<AppUser> {
+    return this.db.list('/users/', ref => ref.orderByChild('email'));
   }
 
   getCompletedTrainings(uid: string) {
@@ -58,6 +62,10 @@ export class UserService {
     
     this.db.list(`/users/${uid}/journal`).update(record.date, record);
     if (record.weight) this.db.object(`/users/${uid}/lastWeight`).set(record.weight);
+  }
+
+  addActiveMonth(uid: string, activeMonth: string[]) {
+    this.db.object(`/users/${uid}`).update({activeMonth: activeMonth});
   }
 
 }

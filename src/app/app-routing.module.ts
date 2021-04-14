@@ -8,6 +8,7 @@ import { LectureFormComponent } from './admin/components/lecture-form/lecture-fo
 import { MealFormComponent } from './admin/components/meal-form/meal-form.component';
 import { MeditationFormComponent } from './admin/components/meditation-form/meditation-form.component';
 import { TrainingFormComponent } from './admin/components/training-form/training-form.component';
+import { UserListComponent } from './admin/components/user-list/user-list.component';
 import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
 import { ArticleCardComponent } from './core/components/article-card/article-card.component';
 import { ArticlesComponent } from './core/components/articles/articles.component';
@@ -67,6 +68,7 @@ const routes: Routes = [
   {path: 'admin/articles/new', component: ArticleFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/articles/:id', component: ArticleFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/motivation', component: AdminMotivationComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/user-list', component: UserListComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/:type', component: AdminContentComponent, canActivate: [AdminAuthGuard]},
 
 ];

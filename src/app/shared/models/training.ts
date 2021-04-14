@@ -6,4 +6,6 @@ export interface Training {
     description: string;
     thumbnailUrl: string;
     key: string;
+    period: string;
+    multiperiod: boolean;
 }
