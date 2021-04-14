@@ -2,10 +2,12 @@
     <mat-form-field>
         <mat-label>Адрес электронной почты</mat-label>
         <input matInput #email = "ngModel" [(ngModel)]="email2" name="email" required autofocus>
+        <mat-error *ngIf="email.touched && email.invalid">Введите адрес электронной почты</mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Пароль</mat-label>
         <input matInput #password = "ngModel" [(ngModel)]="password2" name="password" required>
+        <mat-error *ngIf="password.touched && password.invalid">Введите пароль</mat-error>
       </mat-form-field>
     <button mat-raised-button color = "primary">Зарегистрироваться</button>
 </form>

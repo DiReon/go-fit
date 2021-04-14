@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { faCheckSquare } from '@fortawesome/free-regular-svg-icons';
 import { Observable, Subscription } from 'rxjs';
@@ -27,6 +28,7 @@ export class TrainingsListComponent implements OnInit {
     private route: ActivatedRoute,
     private trainingService: SharedService,
     private authService: AuthService,
+    private _snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +59,8 @@ export class TrainingsListComponent implements OnInit {
       let today = new Date().getTime();
       this.trialDays = Math.round((3 - (today - (+this.appUser.registrationDate))/24/3600/1000));
       if (this.trialDays >= 0) this.trainings = this.trainingsTemp;
+      if (this.trialDays >= 1) this.openSnackBar(`Дней до окончания пробного периода: ${this.trialDays}`, "OK")
+      if (this.trialDays == 0) this.openSnackBar(`Последний день пробного периода!`, "OK")
       console.log("All trainings: ", this.trainings);
       if (!this.trainings || !this.trainings.length) this.noTrainings = true;
     })
@@ -66,6 +70,11 @@ export class TrainingsListComponent implements OnInit {
     return (this.completedKeys.indexOf(training['key'])!=-1) ? true: false
   }
 
+  openSnackBar(message, action) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

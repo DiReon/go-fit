@@ -1,12 +1,8 @@
-<div *ngIf = "trialDays >= 1" class="alert alert-success" role="alert">
-    Дней до окончания пробного периода: {{ trialDays }}
-</div>
-<div *ngIf = "trialDays == 0" class="alert alert-warning" role="alert">Последний день пробного периода!</div>
 <div *ngIf = "noTrainings">
-    <div class="alert alert-warning" role="alert">
+    <div>
         Пробный период истек, обратитесь ко мне для продления доступа :) +79872525260, Регина
     </div>
-    <a href="https://api.whatsapp.com/send?phone=79872525260" class="btn btn-success" target="_blank">Написать в WhatsApp</a>
+    <a mat-raised-button href="https://api.whatsapp.com/send?phone=79872525260">Написать в WhatsApp</a>
 </div>
 
 <mat-grid-list cols="3" rowHeight="1:1">
