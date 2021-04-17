@@ -1,10 +1,16 @@
-<h6>{{ meditation.title}}</h6>
-
-<div class="embed-responsive embed-responsive-16by9">
-    <youtube-player class="embed-responsive-item"
-        [videoId]="videoId"
-        suggestedQuality="hd720"
-    >
-    </youtube-player>
+<div #demoYouTubePlayer>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{ meditation.title}}</mat-card-title>
+        </mat-card-header>
+            <youtube-player 
+                [videoId]="videoId"
+                suggestedQuality="hd720"
+                [width]="videoWidth" [height]="videoHeight"
+            >
+            </youtube-player>
+        <mat-card-content>
+            <div style="white-space: pre-wrap;">{{ meditation.description }}</div>
+        </mat-card-content>
+    </mat-card>
 </div>
-<div style="white-space: pre-wrap;">{{ meditation.description }}</div>

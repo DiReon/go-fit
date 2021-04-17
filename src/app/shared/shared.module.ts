@@ -34,7 +34,9 @@ import { AuthService } from './services/auth.service';
 import { MealService } from './services/meal.service';
 import { SharedService } from './services/shared.service';
 import { UserService } from './services/user.service';
-
+import {MatTableModule} from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [
     MealCardComponent,
@@ -67,6 +69,9 @@ import { UserService } from './services/user.service';
     MatDatepickerModule,
     MatButtonToggleModule,
     MatSelectModule,
+    MatTableModule,
+    MatSortModule, 
+    MatPaginatorModule,
   ],
   exports: [
     AppRoutingModule,
@@ -97,6 +102,9 @@ import { UserService } from './services/user.service';
     MatNativeDateModule,
     MatButtonToggleModule,
     MatSelectModule,
+    MatTableModule,
+    MatSortModule, 
+    MatPaginatorModule,
   ],
   providers: [
     AuthService,

@@ -1,4 +1,4 @@
-<div class="form-group">
+<form>
     <label for="file">Выберите обложку для загрузки:</label>
     <input 
         type="file" 
@@ -8,12 +8,12 @@
         class="form-control-file" 
         required>
     <p *ngIf="uploadCompleted">Загрузка завершена!</p>
-</div>
+</form>
 
 <ng-container *ngFor = "let url of urls">
-    <div class="row m-2">
+    <div class="thumbnail">
         <img [src]="url" alt="Загруженный файл" class="col-6">
-        <button (click) = "deleteFile(url)" class="btn btn-danger col-2">[Х]</button>
+        <button mat-raised-button color = "warn" (click) = "deleteFile(url)">[Х]</button>
     </div>
 </ng-container>
 

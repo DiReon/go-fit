@@ -6,7 +6,6 @@ import { AmNavbarComponent } from './components/am-navbar/am-navbar.component';
 import { ArticleCardComponent } from './components/article-card/article-card.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { DietComponent } from './components/diet/diet.component';
-import { MealFilterComponent } from './components/diet/meal-filter/meal-filter.component';
 import { HomeComponent } from './components/home/home.component';
 import { LectureCardComponent } from './components/lecture-card/lecture-card.component';
 import { LecturesComponent } from './components/lectures/lectures.component';
@@ -23,8 +22,6 @@ import { TrainingsListComponent } from './components/trainings-list/trainings-li
 import { TrainingsComponent } from './components/trainings/trainings.component';
 import { RecipeComponent } from './recipe/recipe.component';
 
-
-
 @NgModule({
   declarations: [
     DietComponent,
@@ -33,7 +30,6 @@ import { RecipeComponent } from './recipe/recipe.component';
     TrainingCardComponent,
     TrainingsComponent,
     TrainingsListComponent,
-    MealFilterComponent,
     RegisterComponent,
     RecipeComponent,
     MealComponent,

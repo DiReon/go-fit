@@ -1,7 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
-import { ColumnMode } from '@swimlane/ngx-datatable';
 import { Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -17,8 +19,12 @@ export class AdminContentComponent implements OnInit, OnDestroy {
   icon = faEdit;
   rows = [];
   temp = [];
-  ColumnMode = ColumnMode;
-  
+  displayedColumns: string[] = ['title', 'complexity', 'category', 'actions'];
+  dataSource = new MatTableDataSource(this.rows); 
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(
     private sharedService: SharedService,
     private route: ActivatedRoute,
@@ -37,16 +43,20 @@ export class AdminContentComponent implements OnInit, OnDestroy {
       })).subscribe(
             response => {
               this.rows = this.temp = response;
+              this.dataSource = new MatTableDataSource(this.rows);
+              this.dataSource.sort = this.sort;
+              this.dataSource.paginator = this.paginator;
+              console.log(this.rows);
             })
   }
-
+  
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  filter(query) {
-    this.rows = (query) ?
-      this.temp.filter(p => p.title.toLowerCase().includes(query.toLowerCase())) :
-      this.temp;
+  filter(event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  
 }

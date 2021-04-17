@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -13,12 +14,15 @@ import { UserService } from 'src/app/shared/services/user.service';
   templateUrl: './lecture-card.component.html',
   styleUrls: ['./lecture-card.component.css']
 })
-export class LectureCardComponent implements OnInit {
+export class LectureCardComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('demoYouTubePlayer') demoYouTubePlayer: ElementRef<HTMLDivElement>;
   lecture = {} as Lecture;
   lectureId: string;
   videoId: string;
   lectureSubscription: Subscription;
   appUser: AppUser;
+  videoWidth = 1280;
+  videoHeight = 720;
 
   constructor(
     private lectureService: SharedService,
@@ -26,6 +30,7 @@ export class LectureCardComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router,
+    private _changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -42,13 +47,28 @@ export class LectureCardComponent implements OnInit {
       this.videoId = this.lecture.videoUrl.split('https://youtu.be/')[1];
     })
   }
+
+  ngAfterViewInit(): void {
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+  }
   
   markCompleted() {
     this.userService.markLectureCompleted(this.appUser.userId, this.lectureId);
     this.router.navigate(['/lectures'])
   }
 
+  onResize = (): void => {
+    // Automatically expand the video to fit the page up to 1200px x 720px
+    if (this.demoYouTubePlayer.nativeElement) {
+      this.videoWidth = Math.min(this.demoYouTubePlayer.nativeElement.clientWidth, 1280);
+      this.videoHeight = this.videoWidth * 9/16;
+      this._changeDetectorRef.detectChanges();
+    }
+  }
+
   ngOnDestroy() {
     this.lectureSubscription.unsubscribe();
+    window.removeEventListener('resize', this.onResize);
   }
 }

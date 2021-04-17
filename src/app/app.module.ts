@@ -20,7 +20,6 @@ import { UserModule } from './user/user.module';
     CoreModule,
     UserModule,
     AngularFireModule.initializeApp(environment.firebase),
-  
   ],
 
   bootstrap: [AppComponent]

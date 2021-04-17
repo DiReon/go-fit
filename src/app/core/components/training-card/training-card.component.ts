@@ -67,8 +67,6 @@ export class TrainingCardComponent implements OnInit, AfterViewInit, OnDestroy {
     window.removeEventListener('resize', this.onResize);
   }
 
-
-
   onResize = (): void => {
     // Automatically expand the video to fit the page up to 1200px x 720px
     if (this.demoYouTubePlayer.nativeElement) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AppUser } from 'src/app/shared/models/app-user';
@@ -10,16 +10,20 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   templateUrl: './meditation-card.component.html',
   styleUrls: ['./meditation-card.component.css']
 })
-export class MeditationCardComponent implements OnInit {
+export class MeditationCardComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild('demoYouTubePlayer') demoYouTubePlayer: ElementRef<HTMLDivElement>;
   meditation = {} as Lecture;
   meditationId: string;
   videoId: string;
   meditationSubscription: Subscription;
   appUser: AppUser;
+  videoWidth = 1280;
+  videoHeight = 720;
 
   constructor(
     private sharedService: SharedService,
     private route: ActivatedRoute,
+    private _changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -34,6 +38,20 @@ export class MeditationCardComponent implements OnInit {
       this.meditation = t;
       this.videoId = this.meditation.videoUrl.split('https://youtu.be/')[1];
     })
+  }
+
+  ngAfterViewInit(): void {
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+  }
+ 
+  onResize = (): void => {
+    // Automatically expand the video to fit the page up to 1200px x 720px
+    if (this.demoYouTubePlayer.nativeElement) {
+      this.videoWidth = Math.min(this.demoYouTubePlayer.nativeElement.clientWidth, 1280);
+      this.videoHeight = this.videoWidth * 9/16;
+      this._changeDetectorRef.detectChanges();
+    }
   }
   
   ngOnDestroy() {

@@ -59,8 +59,8 @@ const routes: Routes = [
 
   {path: 'admin/trainings/new', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/trainings/:id', component: TrainingFormComponent, canActivate: [AdminAuthGuard]},
-  {path: 'admin/diet/new', component: MealFormComponent, canActivate: [AdminAuthGuard]},
-  {path: 'admin/diet/:id', component: MealFormComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/meals/new', component: MealFormComponent, canActivate: [AdminAuthGuard]},
+  {path: 'admin/meals/:id', component: MealFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/lectures/new', component: LectureFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/lectures/:id', component: LectureFormComponent, canActivate: [AdminAuthGuard]},
   {path: 'admin/meditations/new', component: MeditationFormComponent, canActivate: [AdminAuthGuard]},

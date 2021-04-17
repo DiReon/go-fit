@@ -1,0 +1,10 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+
+.cropped {
+    object-fit: cover;
+
+    width: 32.5vw;
+    height: 32.5vw;
+}

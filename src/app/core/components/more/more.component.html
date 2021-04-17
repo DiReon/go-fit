@@ -1,21 +1,19 @@
-<div class="row">
-    <div class="col">
-      <div class="row">
-        <div class="col-6 col-lg-3 text-center m-0 p-1" style="max-width: 400px; margin: auto">
-          <a class="nav-link p-0" routerLink = "/meditations">
-            <img class="card-img"  src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/App%20thumbnails%2F%D0%9C%D0%B5%D0%B4%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D0%B8.jfif?alt=media&token=cfe3b81b-c327-4c42-a3aa-4b3ac4738875"  alt="Медитации">
-          </a>
-        </div>
-        <div class="col-6 col-lg-3 text-center m-0 p-1" style="max-width: 400px; margin: auto">
-            <a class="nav-link p-0" routerLink = "/motivation">
-              <img class="card-img"  src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/App%20thumbnails%2F%D0%9C%D0%BE%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%8F.jfif?alt=media&token=927984f3-04ad-42bc-88a4-c88affa73273"  alt="Мотивация">
-            </a>
-        </div>
-        <div class="col-6 col-lg-3 text-center m-0 p-1" style="max-width: 400px; margin: auto">
-            <a class="nav-link p-0" routerLink = "/articles">
-              <img class="card-img"  src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/App%20thumbnails%2F%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D0%B8.jfif?alt=media&token=9b42c37f-346e-4fac-a14c-bf2ae1859054"  alt="Статьи">
-            </a>
-        </div>
-      </div>
-    </div>
-  </div>
+<mat-grid-list cols="3" rowHeight="1:1">
+  <mat-grid-tile>
+    <a routerLink = "/meditations">
+      <img class="cropped"  src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/App%20thumbnails%2F%D0%9C%D0%B5%D0%B4%D0%B8%D1%82%D0%B0%D1%86%D0%B8%D0%B8.jfif?alt=media&token=cfe3b81b-c327-4c42-a3aa-4b3ac4738875"  alt="Медитации">
+    </a>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <a routerLink = "/motivation">
+      <img class="cropped"  src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/App%20thumbnails%2F%D0%9C%D0%BE%D1%82%D0%B8%D0%B2%D0%B0%D1%86%D0%B8%D1%8F.jfif?alt=media&token=927984f3-04ad-42bc-88a4-c88affa73273"  alt="Мотивация">
+    </a>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <a routerLink = "/articles">
+      <img class="cropped"  src="https://firebasestorage.googleapis.com/v0/b/regina-go.appspot.com/o/App%20thumbnails%2F%D0%A1%D1%82%D0%B0%D1%82%D1%8C%D0%B8.jfif?alt=media&token=9b42c37f-346e-4fac-a14c-bf2ae1859054"  alt="Статьи">
+    </a>
+  </mat-grid-tile>
+</mat-grid-list>
