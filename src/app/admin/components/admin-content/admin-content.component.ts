@@ -19,7 +19,7 @@ export class AdminContentComponent implements OnInit, OnDestroy {
   icon = faEdit;
   rows = [];
   temp = [];
-  displayedColumns: string[] = ['title', 'complexity', 'category', 'actions'];
+  displayedColumns: string[] = ['title', 'category', 'actions'];
   dataSource = new MatTableDataSource(this.rows); 
 
   @ViewChild(MatSort) sort: MatSort;

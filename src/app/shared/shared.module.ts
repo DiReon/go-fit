@@ -14,16 +14,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppRoutingModule } from '../app-routing.module';
 import { MealCardComponent } from './components/meal-card/meal-card.component';
@@ -34,9 +35,7 @@ import { AuthService } from './services/auth.service';
 import { MealService } from './services/meal.service';
 import { SharedService } from './services/shared.service';
 import { UserService } from './services/user.service';
-import {MatTableModule} from '@angular/material/table';
-import { MatSortModule } from '@angular/material/sort';
-import { MatPaginatorModule } from '@angular/material/paginator';
+
 @NgModule({
   declarations: [
     MealCardComponent,
@@ -47,8 +46,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    NgxDatatableModule,
-    NgbModule,
     FontAwesomeModule,
     YouTubePlayerModule,
     BrowserAnimationsModule,
@@ -76,8 +73,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   exports: [
     AppRoutingModule,
     FormsModule,
-    NgxDatatableModule,
-    NgbModule,
     FontAwesomeModule,
     YouTubePlayerModule,
     BrowserAnimationsModule,

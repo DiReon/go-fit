@@ -9,12 +9,14 @@
     <mat-grid-tile *ngFor = "let day of days; let i = index" class="column">
         <div class="column">
             <button mat-button (click) = "showJournal(i)">{{ i+1 }}</button>
-            <div *ngFor = "let title of day.trainingTitles">
-                <div *ngIf = "title" class="training"></div>
+            <div class="lines">
+                <div *ngFor = "let title of day.trainingTitles">
+                    <div *ngIf = "title" class="training"></div>
+                </div>
+                <div *ngIf = "day.activity" class="training"></div>
+                <div *ngIf = "day.stepsIsGood" class="steps"></div>
+                <div *ngIf = "day.isKkalInRange" class="kkal"></div>
             </div>
-            <div *ngIf = "day.activity" class="training"></div>
-            <div *ngIf = "day.stepsIsGood" class="steps"></div>
-            <div *ngIf = "day.isKkalInRange" class="kkal"></div>
         </div>
     </mat-grid-tile>
 </mat-grid-list>

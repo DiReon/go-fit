@@ -5,3 +5,8 @@ mat-form-field {
 table {
     width: 100%;
 }
+
+td {
+    font-size: 0.8rem;
+
+}

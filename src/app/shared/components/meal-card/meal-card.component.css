@@ -3,7 +3,8 @@
     object-position: 50% 50%;
 
     width: 49vw;
-    height: 30vw;
+    height: 45vw;
+    margin: 0;
 }
 
 .box {
@@ -23,15 +24,16 @@
 }
 
 p {
+    width: 95%;
     color: white;
-    font-size: 32px;
+    font-size: 0.8rem;
     margin: 0;
     transform: translate(-50%,-50%);
     text-align: center;
     position: absolute;
     top: 50%;
     left: 50%;
-
+    z-index: 1000;
   }
   .ts {
     font-family: Arial;
@@ -54,4 +56,24 @@ p {
        1px -1px 1px #000000,
       -1px  1px 1px #000000,
        1px  1px 1px #000000;
+  }
+
+  .bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    color: aliceblue;
+  }
+
+  .centered {
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: aliceblue;
+  }
+
+  mat-card {
+    padding: 0;
   }

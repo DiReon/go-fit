@@ -28,7 +28,8 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   isMonthActive(user, month) {
-    if (user.activeMonth) return (user.activeMonth.indexOf(month) != -1); 
+    if (user.activeMonth && user.activeMonth != null) return (user.activeMonth.indexOf(month) != -1);
+    return false; 
   }
 
   addMonth(user: AppUser, month) {
