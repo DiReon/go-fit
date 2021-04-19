@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { SharedModule } from '../shared/shared.module';
 import { AdminContentComponent } from './components/admin-content/admin-content.component';
@@ -28,7 +27,6 @@ import { UserListComponent } from './components/user-list/user-list.component';
   imports: [
     CommonModule,
     SharedModule,
-    NgxDatatableModule,
     FormsModule
   ],
   providers: [
