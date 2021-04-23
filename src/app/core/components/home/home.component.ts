@@ -3,9 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AppUser } from 'src/app/shared/models/app-user';
-import { MyRecord } from 'src/app/shared/models/my-record';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -21,11 +19,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   kkal: number;
   steps: number;
+  card = {
+    route: null,
+    isFlipped: false
+  }
   constructor(
     private authService: AuthService,
-    private userService: UserService,
     private router: Router) { 
-    this.subscription = this.authService.appUser$.subscribe( u => {
+      this.subscription = this.authService.appUser$.subscribe( u => {
       if (u) {
         if (!u.name) this.router.navigate(['user-profile']);
         this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
@@ -37,6 +38,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {}
+
+  onClick(value) {
+    this.card.route = value;
+    this.card.isFlipped = true;
+    setTimeout(() => {
+      this.router.navigate([`/${value}`])
+    }, 500)
+  }
 
   ngOnDestroy() {
     this.subscription.unsubscribe()

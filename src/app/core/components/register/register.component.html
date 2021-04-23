@@ -6,7 +6,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Пароль</mat-label>
-        <input matInput #password = "ngModel" [(ngModel)]="password2" name="password" required>
+        <input matInput #password = "ngModel" [(ngModel)]="password2" name="password" type="password" required>
         <mat-error *ngIf="password.touched && password.invalid">Введите пароль</mat-error>
       </mat-form-field>
     <button mat-raised-button color = "primary">Зарегистрироваться</button>
