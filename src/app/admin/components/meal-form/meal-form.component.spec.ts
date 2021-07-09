@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { from, Observable, of } from 'rxjs';
@@ -69,7 +69,7 @@ xdescribe('MealFormComponent', () => {
   spy.get.and.returnValue(getSpy)
   getSpy.valueChanges.and.returnValue(of(mockMeal))
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
 
     TestBed.configureTestingModule({
       imports: [FormsModule],

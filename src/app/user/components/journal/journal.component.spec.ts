@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
@@ -36,7 +36,7 @@ xdescribe('JournalComponent', () => {
   let fixture: ComponentFixture<JournalComponent>;
   let userSpy = jasmine.createSpyObj('UserService', ['addToJournal']);
   let snackSpy = jasmine.createSpyObj('MatSnackBar', ['openSnackBar'])
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ JournalComponent ],
       providers: [

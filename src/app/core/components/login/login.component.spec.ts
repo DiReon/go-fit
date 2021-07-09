@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -12,7 +12,7 @@ describe('LoginComponent', () => {
   let authSpy = jasmine.createSpyObj('AuthService', ['login'])
   let userSpy = jasmine.createSpyObj('UserService', ['cancelAllQuizzes'])
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ LoginComponent ],
       providers: [
