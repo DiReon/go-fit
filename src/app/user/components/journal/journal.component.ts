@@ -79,6 +79,7 @@ export class JournalComponent implements OnInit {
     console.log(`is kkal in range? ${value.isKkalInRange}`);
 
     if (this.appUser.userId) this.userService.addToJournal(this.appUser.userId, value)
+    this.router.navigate(['calendar']);
   }
 
   isKkalInRange(kkal) {

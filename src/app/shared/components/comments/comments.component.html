@@ -1,0 +1,35 @@
+<form *ngIf = "user != null" [formGroup] = "commentsForm" (ngSubmit) = "onSubmit()">
+    <mat-form-field style="width: 100%">
+        <mat-label>Добавить комментарий:</mat-label>
+        <textarea matInput appTextFilter formControlName = "comment" id="comment" (change) = "onChange()" [input] = "commentsForm.get('comment')"></textarea>
+    </mat-form-field>
+    <div>
+        <button mat-raised-button [disabled] = "!commentsForm.valid">Отправить</button>
+    </div>
+</form>
+<!-- <mat-card *ngFor = "let comment of comments">
+    <mat-card-header>
+        <mat-card-title>
+            {{ comment.authorName }}
+            <button mat-button *ngIf = "comment.authorId == user?.userId" (click) = "delete(comment)">[X]</button>
+            <button mat-button *ngIf = "comment.authorId == user?.userId" (click) = "modify(comment)">M</button>
+        </mat-card-title>
+
+        <mat-card-subtitle>{{ comment.dateCreated | date: 'short' }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{ comment.text }}</p>
+    </mat-card-content>
+</mat-card> -->
+<div *ngFor = "let comment of comments" style="margin-left: 10px; ">
+    <div style="width: 90%; display: inline-block; padding-top: 10px;">
+        <div style="color: rgb(0, 149, 199);"><strong>{{ comment.authorName }}:</strong></div>
+         <div>{{ comment.text }}</div>
+         <div style="font-size: x-small; color: lightgray;">{{ comment.dateCreated | date:'short' }}</div>
+    </div>
+    
+    <div style="position: absolute; width: 10%; height: 100%; display: inline-block">
+        <button mat-icon-button *ngIf = "comment.authorId == user?.userId" (click) = "delete(comment)">[X]</button>
+    </div>
+</div>
+<p *ngIf = "!comments?.length">Комментариев пока нет.</p>
