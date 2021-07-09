@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { UserComment } from 'src/app/shared/models/user-comment';
 import { UserService } from 'src/app/shared/services/user.service';
 
 import { AppUser } from '../../../shared/models/app-user';
@@ -25,6 +26,7 @@ export class TrainingCardComponent implements OnInit, AfterViewInit, OnDestroy {
   appUser: AppUser;
   videoWidth = 1280;
   videoHeight = 720;
+  comments: UserComment[];
   constructor(
     private sharedService: SharedService,
     private authService: AuthService,
@@ -48,6 +50,8 @@ export class TrainingCardComponent implements OnInit, AfterViewInit, OnDestroy {
       
     this.trainingSubscription = this.sharedService.get('trainings', this.trainingId).valueChanges().subscribe(t => {
       this.training = t;
+      this.training.key = this.trainingId;
+      
       this.videoId = this.training.videoUrl.split('https://youtu.be/')[1];
     })
   }
@@ -68,7 +72,6 @@ export class TrainingCardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onResize = (): void => {
-    // Automatically expand the video to fit the page up to 1200px x 720px
     if (this.demoYouTubePlayer.nativeElement) {
       this.videoWidth = Math.min(this.demoYouTubePlayer.nativeElement.clientWidth, 1280);
       this.videoHeight = this.videoWidth * 9/16;

@@ -1,12 +1,13 @@
 import { LayoutModule } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialog, MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -27,9 +28,12 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from '../app-routing.module';
+import { CommentsComponent } from './components/comments/comments.component';
+import { DialogOverviewExampleDialog } from './components/comments/dialog-overview-example-dialog';
 import { MealCardComponent } from './components/meal-card/meal-card.component';
 import { PictureTilesComponent } from './components/picture-tiles/picture-tiles.component';
 import { UploadFilesComponent } from './components/upload-files/upload-files.component';
+import { TextFilterDirective } from './directives/text-filter.directive';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { MealService } from './services/meal.service';
@@ -41,11 +45,15 @@ import { UserService } from './services/user.service';
     MealCardComponent,
     UploadFilesComponent,
     PictureTilesComponent,
+    CommentsComponent,
+    DialogOverviewExampleDialog,
+    TextFilterDirective,
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     YouTubePlayerModule,
     BrowserAnimationsModule,
@@ -69,16 +77,19 @@ import { UserService } from './services/user.service';
     MatTableModule,
     MatSortModule, 
     MatPaginatorModule,
+    MatDialogModule,
   ],
   exports: [
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     YouTubePlayerModule,
     BrowserAnimationsModule,
     MealCardComponent,
     UploadFilesComponent,
     PictureTilesComponent,
+    CommentsComponent,
     MatSidenavModule,
     MatGridListModule,
     MatSliderModule,
@@ -100,6 +111,8 @@ import { UserService } from './services/user.service';
     MatTableModule,
     MatSortModule, 
     MatPaginatorModule,
+    MatDialogModule,
+    TextFilterDirective,
   ],
   providers: [
     AuthService,
@@ -107,6 +120,7 @@ import { UserService } from './services/user.service';
     UserService,
     SharedService,
     MealService,
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ],
 })
 export class SharedModule { }

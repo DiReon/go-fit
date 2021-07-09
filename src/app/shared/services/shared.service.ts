@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { map } from 'rxjs/operators';
+import { UserComment } from '../models/user-comment';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,17 @@ export class SharedService {
 
   get(type: string, contentId: string) {
     return this.db.object<any>(`/${type}/${contentId}`);
+  }
+
+  recordComment(type: string, contentId: string, comment: UserComment) {
+    let key = comment.dateCreated.toString();
+    console.log(key);
+    
+    this.db.list(`/${type}/${contentId}/comments`).update(key, comment);    
+  }
+
+  deleteComment(type: string, contentId: string, key: string) {
+    this.db.list(`/${type}/${contentId}/comments`).remove(key);
   }
   
   delete(type: string, contentId: string) {

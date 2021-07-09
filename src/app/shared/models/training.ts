@@ -1,3 +1,5 @@
+import { UserComment } from "./user-comment";
+
 export interface Training {
     title: string;
     videoUrl: string;
@@ -8,4 +10,5 @@ export interface Training {
     key: string;
     period: string;
     multiperiod: boolean;
+    comments: UserComment[];
 }

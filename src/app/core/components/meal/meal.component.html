@@ -1,9 +1,9 @@
-<mat-card *ngIf = "meal$ | async as meal">
+<mat-card *ngIf = "meal">
   <img mat-card-image [src]="meal.imageUrl" alt="meal.title">
   <mat-card-content>
       <p>{{ meal.title }}</p>
       <div style="white-space: pre-wrap;">{{ meal.description }}</div>
       <div style="white-space: pre-wrap;">{{ meal.recipe }}</div>
   </mat-card-content>
-  
 </mat-card>
+<comments [user] = "appUser" [content] = "meal" [type] = "'meals'"></comments>
