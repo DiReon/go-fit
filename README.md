@@ -4,8 +4,7 @@
 Пользователь может вести записи в Дневнике, активность из Дневника отображается в Календаре.<br>
 Интерфейс администратора позволяет управлять как контентом, так и доступом пользователей к нему.<br>
 Приложение разрабатывалось только под мобильные устройства, не адаптировано для большого экрана.<br>
-Версия на Angular Material: https://reginarus-go.web.app/ <br>
-Версия на Bootstrap 4: https://regina-go.web.app/ <br>
+Рабочая версия: https://regina-go.web.app/ <br>
 
 ![home_page](https://github.com/DiReon/go-fit/blob/master/Snapshoot_0.png)
 ![journal_calendar](https://github.com/DiReon/go-fit/blob/master/Snapshoot_1.png)
@@ -19,7 +18,8 @@
 
 - [Angular](https://github.com/angular/angular-cli)
 - [Firebase](https://firebase.google.com/)
-- [Angular Material](https://material.angular.io/)
-- [Bootstrap](https://getbootstrap.com/)
 - [Angular YoutubePlayer](https://www.npmjs.com/package/@angular/youtube-player)
+- [Angular Material](https://material.angular.io/)
+<br>Альтернативная версия без Angular Material использует:
+- [Bootstrap](https://getbootstrap.com/)
 - [ngx-datatable](https://swimlane.github.io/ngx-datatable/)
